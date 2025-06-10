@@ -1,0 +1,257 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\home\\add_category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\add_category.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\models\\tbl_category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\models\\tbl_category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\home\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\dashboard.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\models\\student.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\models\\tbl_admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\models\\tbl_admin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\shared\\_layout2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\shared\\_layout2.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\home\\alogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\alogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\models\\model1.edmx||{C99AEA30-8E36-4515-B76F-496F5A48A6AA}|"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\home\\tlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\tlogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|c:\\users\\acer\\onedrive\\desktop\\dot net quiz app\\quizwebapplication\\quizwebapplication\\views\\home\\slogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\views\\home\\slogin.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\quizwebapplication\\models\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}",
+      "RelativeMoniker": "D:0:0:{743BE210-DC99-4413-8BD7-17182DCEC34A}|QuizWebApplication\\QuizWebApplication.csproj|solutionrelative:quizwebapplication\\models\\.editorconfig||{3B902123-F8A7-4915-9F01-361F908088D0}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 3,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\Index.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T03:32:07.344Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "tbl_category.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\tbl_category.cs",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Models\\tbl_category.cs",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\tbl_category.cs",
+              "RelativeToolTip": "QuizWebApplication\\Models\\tbl_category.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAABkAAAAjAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-10T20:58:29.957Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Controllers\\HomeController.cs",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "QuizWebApplication\\Controllers\\HomeController.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAYwDAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T11:32:18.967Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Add_Category.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Add_Category.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\Add_Category.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Add_Category.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\Add_Category.cshtml",
+              "ViewState": "AgIAABgAAAAAAAAAAAAAwCUAAABMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T20:55:25.669Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "Dashboard.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Dashboard.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\Dashboard.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\Dashboard.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\Dashboard.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T20:47:24.946Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "tbl_admin.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\tbl_admin.cs",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Models\\tbl_admin.cs",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\tbl_admin.cs",
+              "RelativeToolTip": "QuizWebApplication\\Models\\tbl_admin.cs",
+              "ViewState": "AgIAAA4AAAAAAAAAAAAuwBYAAAAmAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T11:29:14.183Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "student.cs",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\student.cs",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Models\\student.cs",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\student.cs",
+              "RelativeToolTip": "QuizWebApplication\\Models\\student.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAQwB8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-06-09T11:35:45.363Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "_Layout2.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Shared\\_Layout2.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Shared\\_Layout2.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Shared\\_Layout2.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Shared\\_Layout2.cshtml",
+              "ViewState": "AgIAAAMAAAAAAAAAAADwvw4AAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T20:42:44.33Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "tlogin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\tlogin.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\tlogin.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\tlogin.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\tlogin.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA0AAAAcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T11:33:30.522Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Model1.edmx [Diagram1]",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\Model1.edmx",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Models\\Model1.edmx",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\Model1.edmx [Diagram1]",
+              "RelativeToolTip": "QuizWebApplication\\Models\\Model1.edmx [Diagram1]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001116|",
+              "WhenOpened": "2025-06-09T11:22:18.466Z",
+              "EditorCaption": " [Diagram1]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": ".editorconfig",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\.editorconfig",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Models\\.editorconfig",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Models\\.editorconfig",
+              "RelativeToolTip": "QuizWebApplication\\Models\\.editorconfig",
+              "ViewState": "AgIAAPYAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001001|",
+              "WhenOpened": "2025-06-09T11:15:24.368Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABUAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-09T03:32:43.321Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "alogin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\alogin.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\alogin.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\alogin.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\alogin.cshtml",
+              "ViewState": "AgIAABIAAAAAAAAAAAAAwDEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T20:04:46.132Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "slogin.cshtml",
+              "DocumentMoniker": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\slogin.cshtml",
+              "RelativeDocumentMoniker": "QuizWebApplication\\Views\\Home\\slogin.cshtml",
+              "ToolTip": "C:\\Users\\Acer\\OneDrive\\Desktop\\Dot Net Quiz App\\QuizWebApplication\\QuizWebApplication\\Views\\Home\\slogin.cshtml",
+              "RelativeToolTip": "QuizWebApplication\\Views\\Home\\slogin.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-06-10T19:57:44.775Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
