@@ -1,0 +1,81 @@
+﻿@model QuizWebApplication.Models.student
+
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <link href="~/Content/bootstrap.css" rel="stylesheet" />
+    <title>Student Signup</title>
+    <style>
+        body {
+            background: #f0f2f5;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .signup-container {
+            max-width: 500px;
+            margin: 60px auto;
+            padding: 30px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+
+        h4 {
+            font-weight: 600;
+            margin-bottom: 20px;
+            text-align: center;
+            color: #343a40;
+        }
+
+        .btn-primary {
+            width: 100%;
+        }
+    </style>
+</head>
+<body>
+    <div class="signup-container">
+        @using (Html.BeginForm(null, null, FormMethod.Post, new { enctype = "multipart/form-data" }))
+        {
+            @Html.AntiForgeryToken()
+            if (ViewBag.msg != null)
+            {
+               <div class="alert alert-danger">
+                   <strong>Error!</strong> @ViewBag.msg
+               </div> 
+            }
+            <h4>Student Signup</h4>
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.std_name)
+                @Html.EditorFor(model => model.std_name, new { htmlAttributes = new { @class = "form-control", placeholder = "Enter your name" } })
+                @Html.ValidationMessageFor(model => model.std_name, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.std_password)
+                @Html.EditorFor(model => model.std_password, new { htmlAttributes = new { @class = "form-control", type = "password", placeholder = "Enter password" } })
+                @Html.ValidationMessageFor(model => model.std_password, "", new { @class = "text-danger" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.std_image)
+                @Html.TextBoxFor(model => model.std_image, new { @class = "form-control", type = "file" })
+                @Html.ValidationMessageFor(model => model.std_image, "", new { @class = "text-danger" })
+            </div>
+
+            <button type="submit" class="btn btn-primary mt-3" style="background-color:aquamarine">Create Account</button>
+
+            <div class="text-center mt-3">
+                @Html.ActionLink("Back to Home", "Index", null, new { @class = "btn btn-link" })
+            </div>
+        }
+    </div>
+</body>
+</html>

@@ -1,6 +1,7 @@
 ﻿using QuizWebApplication.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -14,6 +15,14 @@ namespace QuizWebApplication.Controllers
         public ActionResult tlogin()
         {
             return View();
+        }
+        
+        [HttpGet]
+        public ActionResult LogOut()
+        {
+            Session.Abandon();
+            Session.RemoveAll();
+            return RedirectToAction("Index");
         }
         [HttpPost]
         public ActionResult tlogin(tbl_admin ad)
@@ -34,8 +43,82 @@ namespace QuizWebApplication.Controllers
         {
             return View();
         }
-        
+        [HttpPost]
+        public ActionResult slogin( student s)
+        {
+            student sv= db.students.Where(x => x.std_name == s.std_name && x.std_password == s.std_password).SingleOrDefault();
+            if (sv == null)
+            {
+                ViewBag.msg = "Invalid Username or Password!";
+            }
+            else
+            {
+                return RedirectToAction("ExamDashboard");
+            }
+            return View();
+        }
+
+
+
+        [HttpGet]
+        public ActionResult sregister()
+        {
+            return View();
+        }
+        [HttpPost]
+        public ActionResult sregister(student smv,HttpPostedFileBase imgfile)
+        {
+            student s= new student();
+            try
+            {
+                s.std_name = smv.std_name;
+                s.std_password = smv.std_password;
+                s.std_image = uploadImage(imgfile); // Assuming you handle image upload separately
+                db.students.Add(s);
+                db.SaveChanges();
+                return RedirectToAction("slogin");
+            }
+            catch (Exception )
+            {
+
+                ViewBag.msg = "Data Could Not Found";
+            }
+            return View();
+        }
+        public string uploadImage(HttpPostedFileBase file)
+        {
+            Random r = new Random();
+            string path = "-1";
+            int random = r.Next();
+
+            if (file != null && file.ContentLength > 0)
+            {
+                string extension = Path.GetExtension(file.FileName);
+                if (extension.ToLower().Equals("jpg") || extension.ToLower().Equals("jpeg") || extension.ToLower().Equals("png"))
+                {
+                    try
+                    {
+                        path = Path.Combine(Server.MapPath("/Content/images/"), random + Path.GetFileName(file.FileName));
+                        file.SaveAs(path);
+                        path = "~/Content/upload/" + random + Path.GetFileName(file.FileName);
+
+
+                    }
+                    catch (Exception e)
+                    {
+                        path = "-1";
+                    }
+                }
+            }
+            
+            
+            return path; // Return null if no file was uploaded
+        }
         public ActionResult Dashboard()
+        {
+            return View();
+        }
+        public ActionResult ExamDashboard()
         {
             return View();
         }
@@ -68,6 +151,10 @@ namespace QuizWebApplication.Controllers
 
         public ActionResult Index()
         {
+            if (Session["ad_id"] != null)
+            {
+                return RedirectToAction("Dashboard");
+            }
             return View();
         }
 
@@ -96,8 +183,9 @@ namespace QuizWebApplication.Controllers
             qa.q_fk_catid = q.q_fk_catid; // Assuming this is the foreign key to the category
             db.tbl_questions.Add(qa);
             db.SaveChanges();
-            ViewBag.ms="Question Added Successfully";
-            return View();
+            TempData["ms"]="Question Added Successfully";
+            TempData.Keep();
+            return RedirectToAction("AddQuestions");
         }
 
         public ActionResult About()
