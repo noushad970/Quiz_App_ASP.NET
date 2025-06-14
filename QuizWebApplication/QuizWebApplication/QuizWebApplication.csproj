@@ -236,10 +236,10 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\tlogin.cshtml" />
     <Content Include="Views\Home\slogin.cshtml" />
-    <Content Include="Views\Home\alogin.cshtml" />
     <Content Include="Views\Home\Dashboard.cshtml" />
     <Content Include="Views\Shared\_Layout2.cshtml" />
     <Content Include="Views\Home\Add_Category.cshtml" />
+    <Content Include="Views\Home\AddQuestions.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
