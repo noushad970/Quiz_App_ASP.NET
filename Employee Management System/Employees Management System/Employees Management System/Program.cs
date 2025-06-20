@@ -11,7 +11,7 @@ namespace EmployeeManagementSystem
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new LoginForm()); // <-- This should be your login form
+            Application.Run(new LoginSelection()); // <-- This should be your login form
         }
     }
 }

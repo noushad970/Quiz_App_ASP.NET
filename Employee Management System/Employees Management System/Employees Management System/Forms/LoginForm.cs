@@ -33,7 +33,7 @@ namespace Employees_Management_System.Forms
             {
                 MessageBox.Show("Login Successful!", "Welcome", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 // Navigate to Main Form
-                AdminDashboard dashboard = new AdminDashboard();
+                AdminDashboard dashboard = new AdminDashboard("Noushad");
                 this.Hide();
                 dashboard.Show();
             }

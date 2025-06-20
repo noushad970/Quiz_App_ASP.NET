@@ -2,7 +2,10 @@
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.IO;
+using System.Text;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Employees_Management_System.Forms
 {
@@ -11,13 +14,18 @@ namespace Employees_Management_System.Forms
         private int selectedEmployeeId = -1;
         private int selectedDepartmentId = -1;
         private int slidePosition = 0;
+        private string currentUsername;
 
-        public AdminDashboard()
+        public AdminDashboard(string username)
         {
             InitializeComponent();
             this.Opacity = 0; // Start with 0 opacity for fade-in effect
             dgvEmployeeDetails.EnableHeadersVisualStyles = false;
+            currentUsername = username;
+            lblWelcome.Text = $"Welcome, {currentUsername}!";
         }
+
+      
 
         private void AdminDashboard_Load(object sender, EventArgs e)
         {
@@ -26,6 +34,7 @@ namespace Employees_Management_System.Forms
             LoadDepartmentManagement();
             LoadRequestManagement();
             LoadDepartments();
+            LoadEmployeeCodes();
             panelEmployeeDetails.Visible = true; // Default to Employee Details
             slideTimer.Start(); // Start slide animation
             ApplyDataGridViewStyling();
@@ -131,12 +140,32 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT RequestId, EmployeeCode, RequestType, Reason, RequestDate, Status FROM EmployeeRequests";
+                string query = "SELECT RequestId, EmployeeCode, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE Status = 'Pending'";
                 using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                 {
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgvRequestManagement.DataSource = dt;
+
+                    // Add Accept and Decline buttons if not already added
+                    if (!dgvRequestManagement.Columns.Contains("Accept"))
+                    {
+                        DataGridViewButtonColumn acceptBtn = new DataGridViewButtonColumn();
+                        acceptBtn.Name = "Accept";
+                        acceptBtn.HeaderText = "Accept";
+                        acceptBtn.Text = "Accept";
+                        acceptBtn.UseColumnTextForButtonValue = true;
+                        dgvRequestManagement.Columns.Add(acceptBtn);
+                    }
+                    if (!dgvRequestManagement.Columns.Contains("Decline"))
+                    {
+                        DataGridViewButtonColumn declineBtn = new DataGridViewButtonColumn();
+                        declineBtn.Name = "Decline";
+                        declineBtn.HeaderText = "Decline";
+                        declineBtn.Text = "Decline";
+                        declineBtn.UseColumnTextForButtonValue = true;
+                        dgvRequestManagement.Columns.Add(declineBtn);
+                    }
                 }
             }
         }
@@ -158,12 +187,32 @@ namespace Employees_Management_System.Forms
             }
         }
 
+        private void LoadEmployeeCodes()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT EmployeeCode FROM Employees";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    cmbEmployeeCode.DataSource = dt;
+                    cmbEmployeeCode.DisplayMember = "EmployeeCode";
+                    cmbEmployeeCode.ValueMember = "EmployeeCode";
+                }
+            }
+        }
+
         private void btnEmployeeDetails_Click(object sender, EventArgs e)
         {
             panelEmployeeDetails.Visible = true;
             panelDepartmentManagement.Visible = false;
             panelRequestManagement.Visible = false;
             panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = false;
             LoadEmployeeDetails();
         }
 
@@ -173,6 +222,9 @@ namespace Employees_Management_System.Forms
             panelDepartmentManagement.Visible = false;
             panelRequestManagement.Visible = false;
             panelEmployeeSection.Visible = true;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = false;
             ClearEmployeeFields();
             selectedEmployeeId = -1;
         }
@@ -183,6 +235,9 @@ namespace Employees_Management_System.Forms
             panelDepartmentManagement.Visible = true;
             panelRequestManagement.Visible = false;
             panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = false;
             LoadDepartmentManagement();
             txtDepartmentName.Text = "";
             selectedDepartmentId = -1;
@@ -194,7 +249,47 @@ namespace Employees_Management_System.Forms
             panelDepartmentManagement.Visible = false;
             panelRequestManagement.Visible = true;
             panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = false;
             LoadRequestManagement();
+        }
+
+        private void btnEmployeeReport_Click(object sender, EventArgs e)
+        {
+            panelEmployeeDetails.Visible = false;
+            panelDepartmentManagement.Visible = false;
+            panelRequestManagement.Visible = false;
+            panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = true;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = false;
+            txtSearchSecretCode.Text = "";
+            LoadEmployeeReport();
+        }
+
+        private void btnAttendanceSummary_Click(object sender, EventArgs e)
+        {
+            panelEmployeeDetails.Visible = false;
+            panelDepartmentManagement.Visible = false;
+            panelRequestManagement.Visible = false;
+            panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = true;
+            panelWorkingDates.Visible = false;
+            LoadAttendanceSummary();
+        }
+
+        private void btnWorkingDates_Click(object sender, EventArgs e)
+        {
+            panelEmployeeDetails.Visible = false;
+            panelDepartmentManagement.Visible = false;
+            panelRequestManagement.Visible = false;
+            panelEmployeeSection.Visible = false;
+            panelEmployeeReport.Visible = false;
+            panelAttendanceSummary.Visible = false;
+            panelWorkingDates.Visible = true;
+            monthCalendar.SetDate(DateTime.Now.AddMonths(1)); // Default to next month
         }
 
         private void dgvEmployeeDetails_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -551,6 +646,302 @@ namespace Employees_Management_System.Forms
                         }
                     }
                 }
+            }
+        }
+
+        private void dgvRequestManagement_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0)
+            {
+                DataGridViewRow row = dgvRequestManagement.Rows[e.RowIndex];
+                int requestId = Convert.ToInt32(row.Cells["RequestId"].Value);
+                if (e.ColumnIndex == dgvRequestManagement.Columns["Accept"].Index)
+                {
+                    UpdateRequestStatus(requestId, "Accepted");
+                    MessageBox.Show("Request Accepted!");
+                }
+                else if (e.ColumnIndex == dgvRequestManagement.Columns["Decline"].Index)
+                {
+                    UpdateRequestStatus(requestId, "Declined");
+                    MessageBox.Show("Request Declined!");
+                }
+                LoadRequestManagement();
+            }
+        }
+
+        private void UpdateRequestStatus(int requestId, string status)
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "UPDATE EmployeeRequests SET Status = @Status WHERE RequestId = @RequestId";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@RequestId", requestId);
+                    cmd.Parameters.AddWithValue("@Status", status);
+                    cmd.ExecuteNonQuery();
+                }
+            }
+        }
+
+        private void btnRefreshRequests_Click(object sender, EventArgs e)
+        {
+            LoadRequestManagement();
+        }
+
+        private void txtSearchSecretCode_TextChanged(object sender, EventArgs e)
+        {
+            LoadEmployeeReport();
+        }
+
+        private void LoadEmployeeReport()
+        {
+            string secretCode = txtSearchSecretCode.Text.Trim();
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees WHERE SecretCode = @SecretCode";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@SecretCode", secretCode);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvEmployeeReport.DataSource = dt;
+                }
+            }
+        }
+
+        private void btnDownloadPDF_Click(object sender, EventArgs e)
+        {
+            if (dgvEmployeeReport.Rows.Count == 0)
+            {
+                MessageBox.Show("No employee data to generate PDF!");
+                return;
+            }
+
+            if (dgvEmployeeReport.Rows.Count > 1)
+            {
+                MessageBox.Show("Please search for a single employee to generate PDF!");
+                return;
+            }
+
+            DataGridViewRow row = dgvEmployeeReport.Rows[0];
+            string employeeCode = row.Cells["EmployeeCode"].Value.ToString();
+            string name = row.Cells["Name"].Value.ToString();
+            string email = row.Cells["Email"].Value.ToString();
+            string phone = row.Cells["Phone"].Value.ToString();
+            string departmentId = row.Cells["DepartmentId"].Value.ToString();
+            string secretCode = row.Cells["SecretCode"].Value.ToString();
+            string salary = row.Cells["Salary"].Value.ToString();
+
+            string latexContent = @"
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage{geometry}
+\geometry{a4paper, margin=1in}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{graphicx}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\rhead{Employee Report - Generated on " + DateTime.Now.ToString("MMMM dd, yyyy HH:mm:ss") + @"}
+\lhead{Employees Management System}
+\cfoot{\thepage}
+\begin{document}
+
+\begin{center}
+    \textbf{\Large Employee Report}
+\end{center}
+
+\begin{itemize}
+    \item \textbf{Employee Code:} " + employeeCode + @"
+    \item \textbf{Name:} " + name + @"
+    \item \textbf{Email:} " + email + @"
+    \item \textbf{Phone:} " + phone + @"
+    \item \textbf{Department ID:} " + departmentId + @"
+    \item \textbf{Secret Code:} " + secretCode + @"
+    \item \textbf{Salary:} " + salary + @"
+\end{itemize}
+
+\end{document}
+";
+
+            string tempLatexFile = Path.Combine(Path.GetTempPath(), "employee_report.tex");
+            File.WriteAllText(tempLatexFile, latexContent);
+
+            string pdfFile = Path.Combine(Path.GetTempPath(), "employee_report.pdf");
+            System.Diagnostics.Process process = new System.Diagnostics.Process();
+            process.StartInfo.FileName = "latexmk";
+            process.StartInfo.Arguments = $"-pdf -output-directory={Path.GetTempPath()} {tempLatexFile}";
+            process.StartInfo.UseShellExecute = false;
+            process.StartInfo.RedirectStandardOutput = true;
+            process.Start();
+            process.WaitForExit();
+
+            if (File.Exists(pdfFile))
+            {
+                System.Diagnostics.Process.Start(pdfFile);
+                MessageBox.Show("PDF generated and opened successfully!");
+            }
+            else
+            {
+                MessageBox.Show("Failed to generate PDF!");
+            }
+        }
+
+        private void LoadAttendanceSummary()
+        {
+            if (cmbEmployeeCode.SelectedValue == null) return;
+
+            string employeeCode = cmbEmployeeCode.SelectedValue.ToString();
+            DateTime now = DateTime.Now;
+            DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                    cmd.Parameters.AddWithValue("@StartDate", startOfMonth);
+                    cmd.Parameters.AddWithValue("@EndDate", endOfMonth);
+                    int attendanceDays = (int)cmd.ExecuteScalar();
+
+                    // Check working days based on WorkingDates
+                    string workingQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND (IsWorkingDay = 1 OR IsWorkingDay IS NULL)";
+                    using (SqlCommand cmdWorking = new SqlCommand(workingQuery, conn))
+                    {
+                        cmdWorking.Parameters.AddWithValue("@StartDate", startOfMonth);
+                        cmdWorking.Parameters.AddWithValue("@EndDate", endOfMonth);
+                        int totalWorkingDays = (int)cmdWorking.ExecuteScalar();
+                        int leaveDays = totalWorkingDays - attendanceDays;
+                        decimal deduction = leaveDays * 200;
+                        decimal salary = 0;
+                        string salaryQuery = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode";
+                        using (SqlCommand cmdSalary = new SqlCommand(salaryQuery, conn))
+                        {
+                            cmdSalary.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                            object salaryObj = cmdSalary.ExecuteScalar();
+                            if (salaryObj != null && salaryObj != DBNull.Value)
+                            {
+                                salary = Convert.ToDecimal(salaryObj);
+                            }
+                        }
+                        decimal totalSalary = salary - deduction;
+
+                        lblAttendanceDays.Text = $"Attendance Days: {attendanceDays}";
+                        lblLeaveDays.Text = $"Leave Days: {leaveDays}";
+                        lblDeduction.Text = $"Deduction: {deduction:C}";
+                        lblTotalSalary.Text = $"Total Salary: {totalSalary:C}";
+                    }
+                }
+            }
+        }
+        private void cmbEmployeeCode_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            LoadAttendanceSummary();
+        }
+
+        private void btnUpdateSalary_Click(object sender, EventArgs e)
+        {
+            if (cmbEmployeeCode.SelectedValue == null) return;
+
+            string employeeCode = cmbEmployeeCode.SelectedValue.ToString();
+            DateTime now = DateTime.Now;
+            DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode";
+                decimal currentSalary = 0;
+                using (SqlCommand cmdSalary = new SqlCommand(query, conn))
+                {
+                    cmdSalary.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                    object salaryObj = cmdSalary.ExecuteScalar();
+                    if (salaryObj != null && salaryObj != DBNull.Value)
+                    {
+                        currentSalary = Convert.ToDecimal(salaryObj);
+                    }
+                }
+
+                query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                    cmd.Parameters.AddWithValue("@StartDate", startOfMonth);
+                    cmd.Parameters.AddWithValue("@EndDate", endOfMonth);
+                    int attendanceDays = (int)cmd.ExecuteScalar();
+
+                    query = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate";
+                    using (SqlCommand cmdWorking = new SqlCommand(query, conn))
+                    {
+                        cmdWorking.Parameters.AddWithValue("@StartDate", startOfMonth);
+                        cmdWorking.Parameters.AddWithValue("@EndDate", endOfMonth);
+                        int totalWorkingDays = (int)cmdWorking.ExecuteScalar();
+                        int leaveDays = totalWorkingDays - attendanceDays;
+                        decimal deduction = leaveDays * 200;
+                        decimal totalSalary = currentSalary - deduction;
+
+                        query = "UPDATE Employees SET Salary = @Salary WHERE EmployeeCode = @EmployeeCode";
+                        using (SqlCommand cmdUpdate = new SqlCommand(query, conn))
+                        {
+                            cmdUpdate.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                            cmdUpdate.Parameters.AddWithValue("@Salary", totalSalary);
+                            cmdUpdate.ExecuteNonQuery();
+                            MessageBox.Show("Salary updated successfully!");
+                            LoadAttendanceSummary();
+                        }
+                    }
+                }
+            }
+        }
+
+        private void btnSaveWorkingDates_Click(object sender, EventArgs e)
+        {
+            // Calculate the next month's range
+            DateTime now = DateTime.Now; // 11:09 AM +06, June 20, 2025
+            DateTime nextMonth = now.AddMonths(1); // July 20, 2025
+            DateTime firstDayOfNextMonth = new DateTime(nextMonth.Year, nextMonth.Month, 1);
+            DateTime lastDayOfNextMonth = firstDayOfNextMonth.AddMonths(1).AddDays(-1); // July 31, 2025
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                // Delete existing working dates for the next month to avoid duplicates
+                string deleteQuery = "DELETE FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate";
+                using (SqlCommand cmdDelete = new SqlCommand(deleteQuery, conn))
+                {
+                    cmdDelete.Parameters.AddWithValue("@StartDate", firstDayOfNextMonth);
+                    cmdDelete.Parameters.AddWithValue("@EndDate", lastDayOfNextMonth);
+                    cmdDelete.ExecuteNonQuery();
+                }
+
+                // Get the selected dates from monthCalendar (assuming user selects working days)
+                DateTime startDate = monthCalendar.SelectionRange.Start;
+                DateTime endDate = monthCalendar.SelectionRange.End;
+
+                // Ensure the selected range is within the next month
+                if (startDate < firstDayOfNextMonth || endDate > lastDayOfNextMonth)
+                {
+                    MessageBox.Show("Please select dates within the next month only!");
+                    return;
+                }
+
+                for (DateTime date = startDate; date <= endDate; date = date.AddDays(1))
+                {
+                    string insertQuery = "INSERT INTO WorkingDates (WorkDate, IsWorkingDay) VALUES (@WorkDate, 1)";
+                    using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
+                    {
+                        cmdInsert.Parameters.AddWithValue("@WorkDate", date);
+                        cmdInsert.ExecuteNonQuery();
+                    }
+                }
+                MessageBox.Show($"Working dates for {firstDayOfNextMonth:MMMM yyyy} saved successfully!");
             }
         }
     }

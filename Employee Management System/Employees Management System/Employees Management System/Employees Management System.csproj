@@ -77,23 +77,41 @@
     <Compile Include="Forms\EmployeeDetailsForm.Designer.cs">
       <DependentUpon>EmployeeDetailsForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\ViewEmployeesForm.cs">
+    <Compile Include="Forms\EmployeeLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\ViewEmployeesForm.Designer.cs">
-      <DependentUpon>ViewEmployeesForm.cs</DependentUpon>
+    <Compile Include="Forms\EmployeeLogin.Designer.cs">
+      <DependentUpon>EmployeeLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\EmployeeProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\EmployeeProfile.Designer.cs">
+      <DependentUpon>EmployeeProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\GiveAttendance.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\GiveAttendance.Designer.cs">
+      <DependentUpon>GiveAttendance.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LeaveRequest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LeaveRequest.Designer.cs">
+      <DependentUpon>LeaveRequest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Forms\LoginSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Forms\LoginSelection.Designer.cs">
+      <DependentUpon>LoginSelection.cs</DependentUpon>
     </Compile>
     <Compile Include="Forms\LoginForm.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Forms\LoginForm.Designer.cs">
       <DependentUpon>LoginForm.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Forms\RequestsForm.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="Forms\RequestsForm.Designer.cs">
-      <DependentUpon>RequestsForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />

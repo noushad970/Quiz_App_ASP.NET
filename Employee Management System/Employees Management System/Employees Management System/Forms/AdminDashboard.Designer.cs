@@ -38,6 +38,9 @@
             this.btnDepartmentManagement = new System.Windows.Forms.Button();
             this.btnRequestManagement = new System.Windows.Forms.Button();
             this.panelMenu = new System.Windows.Forms.Panel();
+            this.btnWorkingDates = new System.Windows.Forms.Button();
+            this.btnAttendanceSummary = new System.Windows.Forms.Button();
+            this.btnEmployeeReport = new System.Windows.Forms.Button();
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelEmployeeSection = new System.Windows.Forms.Panel();
             this.btnDeleteEmployee = new System.Windows.Forms.Button();
@@ -67,7 +70,24 @@
             this.lblDepartmentName = new System.Windows.Forms.Label();
             this.dgvDepartmentManagement = new System.Windows.Forms.DataGridView();
             this.panelRequestManagement = new System.Windows.Forms.Panel();
+            this.btnRefreshRequests = new System.Windows.Forms.Button();
             this.dgvRequestManagement = new System.Windows.Forms.DataGridView();
+            this.panelEmployeeReport = new System.Windows.Forms.Panel();
+            this.btnDownloadPDF = new System.Windows.Forms.Button();
+            this.txtSearchSecretCode = new System.Windows.Forms.TextBox();
+            this.lblSearchSecretCode = new System.Windows.Forms.Label();
+            this.dgvEmployeeReport = new System.Windows.Forms.DataGridView();
+            this.panelAttendanceSummary = new System.Windows.Forms.Panel();
+            this.lblTotalSalary = new System.Windows.Forms.Label();
+            this.lblDeduction = new System.Windows.Forms.Label();
+            this.lblLeaveDays = new System.Windows.Forms.Label();
+            this.lblAttendanceDays = new System.Windows.Forms.Label();
+            this.btnUpdateSalary = new System.Windows.Forms.Button();
+            this.cmbEmployeeCode = new System.Windows.Forms.ComboBox();
+            this.lblEmployeeCodeSummary = new System.Windows.Forms.Label();
+            this.panelWorkingDates = new System.Windows.Forms.Panel();
+            this.btnSaveWorkingDates = new System.Windows.Forms.Button();
+            this.monthCalendar = new System.Windows.Forms.MonthCalendar();
             this.fadeTimer = new System.Windows.Forms.Timer(this.components);
             this.slideTimer = new System.Windows.Forms.Timer(this.components);
             this.panelMenu.SuspendLayout();
@@ -78,6 +98,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartmentManagement)).BeginInit();
             this.panelRequestManagement.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvRequestManagement)).BeginInit();
+            this.panelEmployeeReport.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeReport)).BeginInit();
+            this.panelAttendanceSummary.SuspendLayout();
+            this.panelWorkingDates.SuspendLayout();
             this.SuspendLayout();
             // 
             // lblWelcome
@@ -150,6 +174,9 @@
             // panelMenu
             // 
             this.panelMenu.BackColor = System.Drawing.Color.FromArgb(45, 52, 54);
+            this.panelMenu.Controls.Add(this.btnWorkingDates);
+            this.panelMenu.Controls.Add(this.btnAttendanceSummary);
+            this.panelMenu.Controls.Add(this.btnEmployeeReport);
             this.panelMenu.Controls.Add(this.btnRequestManagement);
             this.panelMenu.Controls.Add(this.btnDepartmentManagement);
             this.panelMenu.Controls.Add(this.btnEmployeeSection);
@@ -161,6 +188,48 @@
             this.panelMenu.Size = new System.Drawing.Size(240, 450);
             this.panelMenu.TabIndex = 4;
             // 
+            // btnWorkingDates
+            // 
+            this.btnWorkingDates.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnWorkingDates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnWorkingDates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnWorkingDates.ForeColor = System.Drawing.Color.White;
+            this.btnWorkingDates.Location = new System.Drawing.Point(20, 360);
+            this.btnWorkingDates.Name = "btnWorkingDates";
+            this.btnWorkingDates.Size = new System.Drawing.Size(200, 40);
+            this.btnWorkingDates.TabIndex = 7;
+            this.btnWorkingDates.Text = "Working Dates";
+            this.btnWorkingDates.UseVisualStyleBackColor = false;
+            this.btnWorkingDates.Click += new System.EventHandler(this.btnWorkingDates_Click);
+            // 
+            // btnAttendanceSummary
+            // 
+            this.btnAttendanceSummary.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnAttendanceSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAttendanceSummary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAttendanceSummary.ForeColor = System.Drawing.Color.White;
+            this.btnAttendanceSummary.Location = new System.Drawing.Point(20, 310);
+            this.btnAttendanceSummary.Name = "btnAttendanceSummary";
+            this.btnAttendanceSummary.Size = new System.Drawing.Size(200, 40);
+            this.btnAttendanceSummary.TabIndex = 6;
+            this.btnAttendanceSummary.Text = "Attendance Summary";
+            this.btnAttendanceSummary.UseVisualStyleBackColor = false;
+            this.btnAttendanceSummary.Click += new System.EventHandler(this.btnAttendanceSummary_Click);
+            // 
+            // btnEmployeeReport
+            // 
+            this.btnEmployeeReport.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnEmployeeReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnEmployeeReport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnEmployeeReport.ForeColor = System.Drawing.Color.White;
+            this.btnEmployeeReport.Location = new System.Drawing.Point(20, 260);
+            this.btnEmployeeReport.Name = "btnEmployeeReport";
+            this.btnEmployeeReport.Size = new System.Drawing.Size(200, 40);
+            this.btnEmployeeReport.TabIndex = 5;
+            this.btnEmployeeReport.Text = "Employee Report";
+            this.btnEmployeeReport.UseVisualStyleBackColor = false;
+            this.btnEmployeeReport.Click += new System.EventHandler(this.btnEmployeeReport_Click);
+            // 
             // panelMain
             // 
             this.panelMain.BackColor = System.Drawing.Color.WhiteSmoke;
@@ -168,6 +237,9 @@
             this.panelMain.Controls.Add(this.panelRequestManagement);
             this.panelMain.Controls.Add(this.panelDepartmentManagement);
             this.panelMain.Controls.Add(this.panelEmployeeDetails);
+            this.panelMain.Controls.Add(this.panelWorkingDates);
+            this.panelMain.Controls.Add(this.panelAttendanceSummary);
+            this.panelMain.Controls.Add(this.panelEmployeeReport);
             this.panelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelMain.Location = new System.Drawing.Point(240, 0);
             this.panelMain.Name = "panelMain";
@@ -521,12 +593,27 @@
             // 
             // panelRequestManagement
             // 
+            this.panelRequestManagement.Controls.Add(this.btnRefreshRequests);
             this.panelRequestManagement.Controls.Add(this.dgvRequestManagement);
             this.panelRequestManagement.Location = new System.Drawing.Point(0, 0);
             this.panelRequestManagement.Name = "panelRequestManagement";
             this.panelRequestManagement.Size = new System.Drawing.Size(560, 450);
             this.panelRequestManagement.TabIndex = 2;
             this.panelRequestManagement.Visible = false;
+            // 
+            // btnRefreshRequests
+            // 
+            this.btnRefreshRequests.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnRefreshRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefreshRequests.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnRefreshRequests.ForeColor = System.Drawing.Color.White;
+            this.btnRefreshRequests.Location = new System.Drawing.Point(450, 10);
+            this.btnRefreshRequests.Name = "btnRefreshRequests";
+            this.btnRefreshRequests.Size = new System.Drawing.Size(100, 30);
+            this.btnRefreshRequests.TabIndex = 1;
+            this.btnRefreshRequests.Text = "Refresh";
+            this.btnRefreshRequests.UseVisualStyleBackColor = false;
+            this.btnRefreshRequests.Click += new System.EventHandler(this.btnRefreshRequests_Click);
             // 
             // dgvRequestManagement
             // 
@@ -541,6 +628,189 @@
             this.dgvRequestManagement.RowHeadersVisible = false;
             this.dgvRequestManagement.Size = new System.Drawing.Size(560, 450);
             this.dgvRequestManagement.TabIndex = 0;
+            this.dgvRequestManagement.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequestManagement_CellContentClick);
+            // 
+            // panelEmployeeReport
+            // 
+            this.panelEmployeeReport.Controls.Add(this.btnDownloadPDF);
+            this.panelEmployeeReport.Controls.Add(this.txtSearchSecretCode);
+            this.panelEmployeeReport.Controls.Add(this.lblSearchSecretCode);
+            this.panelEmployeeReport.Controls.Add(this.dgvEmployeeReport);
+            this.panelEmployeeReport.Location = new System.Drawing.Point(0, 0);
+            this.panelEmployeeReport.Name = "panelEmployeeReport";
+            this.panelEmployeeReport.Size = new System.Drawing.Size(560, 450);
+            this.panelEmployeeReport.TabIndex = 6;
+            this.panelEmployeeReport.Visible = false;
+            // 
+            // btnDownloadPDF
+            // 
+            this.btnDownloadPDF.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnDownloadPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDownloadPDF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnDownloadPDF.ForeColor = System.Drawing.Color.White;
+            this.btnDownloadPDF.Location = new System.Drawing.Point(400, 50);
+            this.btnDownloadPDF.Name = "btnDownloadPDF";
+            this.btnDownloadPDF.Size = new System.Drawing.Size(100, 30);
+            this.btnDownloadPDF.TabIndex = 3;
+            this.btnDownloadPDF.Text = "Download PDF";
+            this.btnDownloadPDF.UseVisualStyleBackColor = false;
+            this.btnDownloadPDF.Click += new System.EventHandler(this.btnDownloadPDF_Click);
+            // 
+            // txtSearchSecretCode
+            // 
+            this.txtSearchSecretCode.Location = new System.Drawing.Point(150, 50);
+            this.txtSearchSecretCode.Name = "txtSearchSecretCode";
+            this.txtSearchSecretCode.Size = new System.Drawing.Size(200, 22);
+            this.txtSearchSecretCode.TabIndex = 2;
+            this.txtSearchSecretCode.TextChanged += new System.EventHandler(this.txtSearchSecretCode_TextChanged);
+            // 
+            // lblSearchSecretCode
+            // 
+            this.lblSearchSecretCode.AutoSize = true;
+            this.lblSearchSecretCode.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblSearchSecretCode.ForeColor = System.Drawing.Color.Black;
+            this.lblSearchSecretCode.Location = new System.Drawing.Point(50, 50);
+            this.lblSearchSecretCode.Name = "lblSearchSecretCode";
+            this.lblSearchSecretCode.Size = new System.Drawing.Size(83, 17);
+            this.lblSearchSecretCode.TabIndex = 1;
+            this.lblSearchSecretCode.Text = "Secret Code:";
+            // 
+            // dgvEmployeeReport
+            // 
+            this.dgvEmployeeReport.AllowUserToAddRows = false;
+            this.dgvEmployeeReport.AllowUserToDeleteRows = false;
+            this.dgvEmployeeReport.BackgroundColor = System.Drawing.Color.White;
+            this.dgvEmployeeReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvEmployeeReport.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.dgvEmployeeReport.Location = new System.Drawing.Point(0, 100);
+            this.dgvEmployeeReport.Name = "dgvEmployeeReport";
+            this.dgvEmployeeReport.ReadOnly = true;
+            this.dgvEmployeeReport.RowHeadersVisible = false;
+            this.dgvEmployeeReport.Size = new System.Drawing.Size(560, 350);
+            this.dgvEmployeeReport.TabIndex = 0;
+            // 
+            // panelAttendanceSummary
+            // 
+            this.panelAttendanceSummary.Controls.Add(this.lblTotalSalary);
+            this.panelAttendanceSummary.Controls.Add(this.lblDeduction);
+            this.panelAttendanceSummary.Controls.Add(this.lblLeaveDays);
+            this.panelAttendanceSummary.Controls.Add(this.lblAttendanceDays);
+            this.panelAttendanceSummary.Controls.Add(this.btnUpdateSalary);
+            this.panelAttendanceSummary.Controls.Add(this.cmbEmployeeCode);
+            this.panelAttendanceSummary.Controls.Add(this.lblEmployeeCodeSummary);
+            this.panelAttendanceSummary.Location = new System.Drawing.Point(0, 0);
+            this.panelAttendanceSummary.Name = "panelAttendanceSummary";
+            this.panelAttendanceSummary.Size = new System.Drawing.Size(560, 450);
+            this.panelAttendanceSummary.TabIndex = 7;
+            this.panelAttendanceSummary.Visible = false;
+            // 
+            // lblTotalSalary
+            // 
+            this.lblTotalSalary.AutoSize = true;
+            this.lblTotalSalary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblTotalSalary.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalSalary.Location = new System.Drawing.Point(50, 200);
+            this.lblTotalSalary.Name = "lblTotalSalary";
+            this.lblTotalSalary.Size = new System.Drawing.Size(80, 17);
+            this.lblTotalSalary.TabIndex = 6;
+            this.lblTotalSalary.Text = "Total Salary: ";
+            // 
+            // lblDeduction
+            // 
+            this.lblDeduction.AutoSize = true;
+            this.lblDeduction.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblDeduction.ForeColor = System.Drawing.Color.Black;
+            this.lblDeduction.Location = new System.Drawing.Point(50, 180);
+            this.lblDeduction.Name = "lblDeduction";
+            this.lblDeduction.Size = new System.Drawing.Size(70, 17);
+            this.lblDeduction.TabIndex = 5;
+            this.lblDeduction.Text = "Deduction: ";
+            // 
+            // lblLeaveDays
+            // 
+            this.lblLeaveDays.AutoSize = true;
+            this.lblLeaveDays.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblLeaveDays.ForeColor = System.Drawing.Color.Black;
+            this.lblLeaveDays.Location = new System.Drawing.Point(50, 160);
+            this.lblLeaveDays.Name = "lblLeaveDays";
+            this.lblLeaveDays.Size = new System.Drawing.Size(70, 17);
+            this.lblLeaveDays.TabIndex = 4;
+            this.lblLeaveDays.Text = "Leave Days: ";
+            // 
+            // lblAttendanceDays
+            // 
+            this.lblAttendanceDays.AutoSize = true;
+            this.lblAttendanceDays.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblAttendanceDays.ForeColor = System.Drawing.Color.Black;
+            this.lblAttendanceDays.Location = new System.Drawing.Point(50, 140);
+            this.lblAttendanceDays.Name = "lblAttendanceDays";
+            this.lblAttendanceDays.Size = new System.Drawing.Size(100, 17);
+            this.lblAttendanceDays.TabIndex = 3;
+            this.lblAttendanceDays.Text = "Attendance Days: ";
+            // 
+            // btnUpdateSalary
+            // 
+            this.btnUpdateSalary.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnUpdateSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateSalary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateSalary.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateSalary.Location = new System.Drawing.Point(400, 100);
+            this.btnUpdateSalary.Name = "btnUpdateSalary";
+            this.btnUpdateSalary.Size = new System.Drawing.Size(100, 30);
+            this.btnUpdateSalary.TabIndex = 2;
+            this.btnUpdateSalary.Text = "Update Salary";
+            this.btnUpdateSalary.UseVisualStyleBackColor = false;
+            this.btnUpdateSalary.Click += new System.EventHandler(this.btnUpdateSalary_Click);
+            // 
+            // cmbEmployeeCode
+            // 
+            this.cmbEmployeeCode.FormattingEnabled = true;
+            this.cmbEmployeeCode.Location = new System.Drawing.Point(150, 100);
+            this.cmbEmployeeCode.Name = "cmbEmployeeCode";
+            this.cmbEmployeeCode.Size = new System.Drawing.Size(200, 24);
+            this.cmbEmployeeCode.TabIndex = 1;
+            this.cmbEmployeeCode.SelectedIndexChanged += new System.EventHandler(this.cmbEmployeeCode_SelectedIndexChanged);
+            // 
+            // lblEmployeeCodeSummary
+            // 
+            this.lblEmployeeCodeSummary.AutoSize = true;
+            this.lblEmployeeCodeSummary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.lblEmployeeCodeSummary.ForeColor = System.Drawing.Color.Black;
+            this.lblEmployeeCodeSummary.Location = new System.Drawing.Point(50, 100);
+            this.lblEmployeeCodeSummary.Name = "lblEmployeeCodeSummary";
+            this.lblEmployeeCodeSummary.Size = new System.Drawing.Size(100, 17);
+            this.lblEmployeeCodeSummary.TabIndex = 0;
+            this.lblEmployeeCodeSummary.Text = "Employee Code:";
+            // 
+            // panelWorkingDates
+            // 
+            this.panelWorkingDates.Controls.Add(this.btnSaveWorkingDates);
+            this.panelWorkingDates.Controls.Add(this.monthCalendar);
+            this.panelWorkingDates.Location = new System.Drawing.Point(0, 0);
+            this.panelWorkingDates.Name = "panelWorkingDates";
+            this.panelWorkingDates.Size = new System.Drawing.Size(560, 450);
+            this.panelWorkingDates.TabIndex = 8;
+            this.panelWorkingDates.Visible = false;
+            // 
+            // btnSaveWorkingDates
+            // 
+            this.btnSaveWorkingDates.BackColor = System.Drawing.Color.RoyalBlue;
+            this.btnSaveWorkingDates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnSaveWorkingDates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnSaveWorkingDates.ForeColor = System.Drawing.Color.White;
+            this.btnSaveWorkingDates.Location = new System.Drawing.Point(400, 10);
+            this.btnSaveWorkingDates.Name = "btnSaveWorkingDates";
+            this.btnSaveWorkingDates.Size = new System.Drawing.Size(100, 30);
+            this.btnSaveWorkingDates.TabIndex = 1;
+            this.btnSaveWorkingDates.Text = "Save";
+            this.btnSaveWorkingDates.UseVisualStyleBackColor = false;
+            this.btnSaveWorkingDates.Click += new System.EventHandler(this.btnSaveWorkingDates_Click);
+            // 
+            // monthCalendar
+            // 
+            this.monthCalendar.Location = new System.Drawing.Point(50, 50);
+            this.monthCalendar.Name = "monthCalendar";
+            this.monthCalendar.TabIndex = 0;
             // 
             // fadeTimer
             // 
@@ -576,6 +846,12 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvDepartmentManagement)).EndInit();
             this.panelRequestManagement.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvRequestManagement)).EndInit();
+            this.panelEmployeeReport.ResumeLayout(false);
+            this.panelEmployeeReport.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeReport)).EndInit();
+            this.panelAttendanceSummary.ResumeLayout(false);
+            this.panelAttendanceSummary.PerformLayout();
+            this.panelWorkingDates.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -620,5 +896,25 @@
         private System.Windows.Forms.TextBox txtEmployeeCode;
         private System.Windows.Forms.Label lblEmployeeCode;
         private System.Windows.Forms.Timer slideTimer;
+        private System.Windows.Forms.Button btnWorkingDates;
+        private System.Windows.Forms.Button btnAttendanceSummary;
+        private System.Windows.Forms.Button btnEmployeeReport;
+        private System.Windows.Forms.Panel panelEmployeeReport;
+        private System.Windows.Forms.Button btnDownloadPDF;
+        private System.Windows.Forms.TextBox txtSearchSecretCode;
+        private System.Windows.Forms.Label lblSearchSecretCode;
+        private System.Windows.Forms.DataGridView dgvEmployeeReport;
+        private System.Windows.Forms.Panel panelAttendanceSummary;
+        private System.Windows.Forms.Label lblTotalSalary;
+        private System.Windows.Forms.Label lblDeduction;
+        private System.Windows.Forms.Label lblLeaveDays;
+        private System.Windows.Forms.Label lblAttendanceDays;
+        private System.Windows.Forms.Button btnUpdateSalary;
+        private System.Windows.Forms.ComboBox cmbEmployeeCode;
+        private System.Windows.Forms.Label lblEmployeeCodeSummary;
+        private System.Windows.Forms.Panel panelWorkingDates;
+        private System.Windows.Forms.Button btnSaveWorkingDates;
+        private System.Windows.Forms.MonthCalendar monthCalendar;
+        private System.Windows.Forms.Button btnRefreshRequests;
     }
 }
