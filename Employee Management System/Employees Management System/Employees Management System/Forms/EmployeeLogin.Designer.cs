@@ -46,10 +46,11 @@
             // 
             // txtSecretCode
             // 
-            this.txtSecretCode.Location = new System.Drawing.Point(150, 100);
+            this.txtSecretCode.Location = new System.Drawing.Point(260, 50);
             this.txtSecretCode.Name = "txtSecretCode";
             this.txtSecretCode.Size = new System.Drawing.Size(100, 20);
             this.txtSecretCode.TabIndex = 1;
+            this.txtSecretCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
             // 
             // btnLogin
             // 
@@ -57,13 +58,14 @@
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(150, 150);
+            this.btnLogin.Location = new System.Drawing.Point(200, 100);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(100, 40);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
+            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Left;
             // 
             // EmployeeLogin
             // 
@@ -73,8 +75,8 @@
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtSecretCode);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.Name = "EmployeeLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Login";

@@ -1,0 +1,148 @@
+// 
+// panelWorkingDates
+// 
+this.panelWorkingDates.AutoScroll = true;
+this.panelWorkingDates.BackColor = System.Drawing.Color.White;
+this.panelWorkingDates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelWorkingDates.Controls.Add(this.lblWorkingDatesTitle);
+this.panelWorkingDates.Controls.Add(this.btnAddAsOffDay);
+this.panelWorkingDates.Controls.Add(this.btnAddAsWorkingDay);
+this.panelWorkingDates.Controls.Add(this.monthCalendar);
+this.panelWorkingDates.Location = new System.Drawing.Point(341, 12);
+this.panelWorkingDates.Margin = new System.Windows.Forms.Padding(4);
+this.panelWorkingDates.Name = "panelWorkingDates";
+this.panelWorkingDates.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelWorkingDates.Size = new System.Drawing.Size(911, 960);
+this.panelWorkingDates.TabIndex = 6;
+this.panelWorkingDates.Visible = false;
+
+// 
+// panelAttendanceSummary
+// 
+this.panelAttendanceSummary.AutoScroll = true;
+this.panelAttendanceSummary.BackColor = System.Drawing.Color.WhiteSmoke;
+this.panelAttendanceSummary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelAttendanceSummary.Controls.Add(this.lblAttendanceSummaryTitle);
+this.panelAttendanceSummary.Controls.Add(this.btnUpdateSalary);
+this.panelAttendanceSummary.Controls.Add(this.lblTotalSalary);
+this.panelAttendanceSummary.Controls.Add(this.label14);
+this.panelAttendanceSummary.Controls.Add(this.lblDeduction);
+this.panelAttendanceSummary.Controls.Add(this.label13);
+this.panelAttendanceSummary.Controls.Add(this.lblLeaveDays);
+this.panelAttendanceSummary.Controls.Add(this.label12);
+this.panelAttendanceSummary.Controls.Add(this.lblAttendanceDays);
+this.panelAttendanceSummary.Controls.Add(this.label11);
+this.panelAttendanceSummary.Controls.Add(this.cmbEmployeeCode);
+this.panelAttendanceSummary.Controls.Add(this.label10);
+this.panelAttendanceSummary.Location = new System.Drawing.Point(341, 12);
+this.panelAttendanceSummary.Margin = new System.Windows.Forms.Padding(4);
+this.panelAttendanceSummary.Name = "panelAttendanceSummary";
+this.panelAttendanceSummary.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelAttendanceSummary.Size = new System.Drawing.Size(911, 960);
+this.panelAttendanceSummary.TabIndex = 5;
+this.panelAttendanceSummary.Visible = false;
+
+ // 
+ // panelEmployeeReport
+ // 
+ this.panelEmployeeReport.AutoScroll = true;
+ this.panelEmployeeReport.BackColor = System.Drawing.Color.White;
+ this.panelEmployeeReport.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+ this.panelEmployeeReport.Controls.Add(this.lblEmployeeReportTitle);
+ this.panelEmployeeReport.Controls.Add(this.btnDownloadPDF);
+ this.panelEmployeeReport.Controls.Add(this.txtSearchSecretCode);
+ this.panelEmployeeReport.Controls.Add(this.label9);
+ this.panelEmployeeReport.Controls.Add(this.dgvEmployeeReport);
+ this.panelEmployeeReport.Location = new System.Drawing.Point(341, 12);
+ this.panelEmployeeReport.Margin = new System.Windows.Forms.Padding(4);
+ this.panelEmployeeReport.Name = "panelEmployeeReport";
+ this.panelEmployeeReport.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+ this.panelEmployeeReport.Size = new System.Drawing.Size(911, 960);
+ this.panelEmployeeReport.TabIndex = 4;
+ this.panelEmployeeReport.Visible = false;
+
+// 
+// panelRequestManagement
+// 
+this.panelRequestManagement.AutoScroll = true;
+this.panelRequestManagement.BackColor = System.Drawing.Color.WhiteSmoke;
+this.panelRequestManagement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelRequestManagement.Controls.Add(this.lblRequestManagementTitle);
+this.panelRequestManagement.Controls.Add(this.btnRefreshRequests);
+this.panelRequestManagement.Controls.Add(this.dgvRequestManagement);
+this.panelRequestManagement.Location = new System.Drawing.Point(341, 12);
+this.panelRequestManagement.Margin = new System.Windows.Forms.Padding(4);
+this.panelRequestManagement.Name = "panelRequestManagement";
+this.panelRequestManagement.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelRequestManagement.Size = new System.Drawing.Size(911, 960);
+this.panelRequestManagement.TabIndex = 3;
+this.panelRequestManagement.Visible = false;
+
+// 
+// panelDepartmentManagement
+// 
+this.panelDepartmentManagement.AutoScroll = true;
+this.panelDepartmentManagement.BackColor = System.Drawing.Color.White;
+this.panelDepartmentManagement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelDepartmentManagement.Controls.Add(this.lblDepartmentManagementTitle);
+this.panelDepartmentManagement.Controls.Add(this.btnDeleteDepartment);
+this.panelDepartmentManagement.Controls.Add(this.btnUpdateDepartment);
+this.panelDepartmentManagement.Controls.Add(this.btnAddDepartment);
+this.panelDepartmentManagement.Controls.Add(this.txtDepartmentName);
+this.panelDepartmentManagement.Controls.Add(this.label2);
+this.panelDepartmentManagement.Controls.Add(this.dgvDepartmentManagement);
+this.panelDepartmentManagement.Location = new System.Drawing.Point(341, 12);
+this.panelDepartmentManagement.Margin = new System.Windows.Forms.Padding(4);
+this.panelDepartmentManagement.Name = "panelDepartmentManagement";
+this.panelDepartmentManagement.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelDepartmentManagement.Size = new System.Drawing.Size(911, 960);
+this.panelDepartmentManagement.TabIndex = 2;
+this.panelDepartmentManagement.Visible = false;
+
+// 
+// panelEmployeeSection
+// 
+this.panelEmployeeSection.AutoScroll = true;
+this.panelEmployeeSection.BackColor = System.Drawing.Color.WhiteSmoke;
+this.panelEmployeeSection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelEmployeeSection.Controls.Add(this.lblEmployeeSectionTitle);
+this.panelEmployeeSection.Controls.Add(this.btnDeleteEmployee);
+this.panelEmployeeSection.Controls.Add(this.btnUpdateEmployee);
+this.panelEmployeeSection.Controls.Add(this.btnAddEmployee);
+this.panelEmployeeSection.Controls.Add(this.txtSalary);
+this.panelEmployeeSection.Controls.Add(this.label8);
+this.panelEmployeeSection.Controls.Add(this.txtSecretCode);
+this.panelEmployeeSection.Controls.Add(this.label7);
+this.panelEmployeeSection.Controls.Add(this.cmbDepartment);
+this.panelEmployeeSection.Controls.Add(this.label6);
+this.panelEmployeeSection.Controls.Add(this.txtPhone);
+this.panelEmployeeSection.Controls.Add(this.label5);
+this.panelEmployeeSection.Controls.Add(this.txtEmail);
+this.panelEmployeeSection.Controls.Add(this.label4);
+this.panelEmployeeSection.Controls.Add(this.txtName);
+this.panelEmployeeSection.Controls.Add(this.label3);
+this.panelEmployeeSection.Controls.Add(this.txtEmployeeCode);
+this.panelEmployeeSection.Controls.Add(this.label1);
+this.panelEmployeeSection.Location = new System.Drawing.Point(341, 12);
+this.panelEmployeeSection.Margin = new System.Windows.Forms.Padding(4);
+this.panelEmployeeSection.Name = "panelEmployeeSection";
+this.panelEmployeeSection.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelEmployeeSection.Size = new System.Drawing.Size(911, 960);
+this.panelEmployeeSection.TabIndex = 1;
+this.panelEmployeeSection.Visible = false;
+
+// 
+// panelEmployeeDetails
+// 
+this.panelEmployeeDetails.AutoScroll = true;
+this.panelEmployeeDetails.BackColor = System.Drawing.Color.White;
+this.panelEmployeeDetails.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+this.panelEmployeeDetails.Controls.Add(this.lblEmployeeDetailsTitle);
+this.panelEmployeeDetails.Controls.Add(this.dgvEmployeeDetails);
+this.panelEmployeeDetails.Location = new System.Drawing.Point(341, 12);
+this.panelEmployeeDetails.Margin = new System.Windows.Forms.Padding(4);
+this.panelEmployeeDetails.Name = "panelEmployeeDetails";
+this.panelEmployeeDetails.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+this.panelEmployeeDetails.Size = new System.Drawing.Size(911, 960);
+this.panelEmployeeDetails.TabIndex = 0;
+

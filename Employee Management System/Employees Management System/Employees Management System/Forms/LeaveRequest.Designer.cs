@@ -42,7 +42,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(150, 50);
+            this.label1.Location = new System.Drawing.Point(150, 100);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 21);
             this.label1.TabIndex = 0;
@@ -50,18 +50,20 @@
             // 
             // txtReason
             // 
-            this.txtReason.Location = new System.Drawing.Point(150, 80);
+            this.txtReason.Location = new System.Drawing.Point(150, 130);
             this.txtReason.Multiline = true;
             this.txtReason.Name = "txtReason";
             this.txtReason.Size = new System.Drawing.Size(200, 100);
             this.txtReason.TabIndex = 1;
+            this.txtReason.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label2.ForeColor = System.Drawing.Color.Black;
-            this.label2.Location = new System.Drawing.Point(150, 200);
+            this.label2.Location = new System.Drawing.Point(150, 250);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 21);
             this.label2.TabIndex = 2;
@@ -69,10 +71,12 @@
             // 
             // dateTimePicker1
             // 
-            this.dateTimePicker1.Location = new System.Drawing.Point(150, 230);
+            this.dateTimePicker1.Location = new System.Drawing.Point(150, 280);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(200, 20);
             this.dateTimePicker1.TabIndex = 3;
+            this.dateTimePicker1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // btnSubmit
             // 
@@ -80,13 +84,14 @@
             this.btnSubmit.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnSubmit.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnSubmit.ForeColor = System.Drawing.Color.White;
-            this.btnSubmit.Location = new System.Drawing.Point(150, 270);
+            this.btnSubmit.Location = new System.Drawing.Point(150, 320);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(100, 40);
             this.btnSubmit.TabIndex = 4;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = false;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+            this.btnSubmit.Anchor = System.Windows.Forms.AnchorStyles.Left;
             // 
             // label3
             // 
@@ -110,6 +115,8 @@
             this.cmbRequestType.Name = "cmbRequestType";
             this.cmbRequestType.Size = new System.Drawing.Size(200, 21);
             this.cmbRequestType.TabIndex = 6;
+            this.cmbRequestType.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left)
+            | System.Windows.Forms.AnchorStyles.Right)));
             // 
             // LeaveRequest
             // 
@@ -123,8 +130,8 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtReason);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.Name = "LeaveRequest";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Leave Request";

@@ -1,5 +1,7 @@
 ﻿using System;
+using System.Data;
 using System.Data.SqlClient;
+using System.Text;
 using System.Windows.Forms;
 
 namespace Employees_Management_System.Forms
@@ -30,7 +32,7 @@ namespace Employees_Management_System.Forms
 
         private void EmployeeProfile_Load(object sender, EventArgs e)
         {
-            lblEmployeeCode.Text = "Employee Code: " + employeeCode;
+            lblEmployeeCode.Text = "Employee Position: " + employeeCode;
             lblName.Text = "Name: " + name;
             lblEmail.Text = "Email: " + email;
             lblPhone.Text = "Phone: " + phone;
@@ -47,6 +49,90 @@ namespace Employees_Management_System.Forms
                 }
             }
             lblSalary.Text = "Salary: " + salary.ToString("C");
+            LoadLeaveRequests();
+            UpdateAttendanceSummary();
+        }
+
+        private void LoadLeaveRequests()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT RequestId, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE EmployeeCode = @EmployeeCode";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvLeaveRequests.DataSource = dt;
+                    dgvLeaveRequests.Columns["RequestId"].Visible = false;
+                    dgvLeaveRequests.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                }
+            }
+        }
+
+        private void btnThisMonthSchedule_Click(object sender, EventArgs e)
+        {
+            DateTime now = DateTime.Now; // 05:32 PM +06, June 20, 2025
+            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+
+            StringBuilder schedule = new StringBuilder($"Schedule for {firstDayOfMonth:MMMM yyyy}:\n");
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT WorkDate, IsWorkingDay FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
+                    cmd.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            DateTime date = reader.GetDateTime(0);
+                            bool? isWorkingDay = reader.IsDBNull(1) ? (bool?)null : reader.GetBoolean(1);
+                            schedule.AppendLine($"{date:yyyy-MM-dd}: {(isWorkingDay == true ? "Work" : isWorkingDay == false ? "Off" : "Unassigned")}");
+                        }
+                    }
+                }
+            }
+            MessageBox.Show(schedule.ToString());
+        }
+
+        private void UpdateAttendanceSummary()
+        {
+            DateTime now = DateTime.Now; // 05:32 PM +06, June 20, 2025
+            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string dutyQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                using (SqlCommand cmdDuty = new SqlCommand(dutyQuery, conn))
+                {
+                    cmdDuty.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
+                    cmdDuty.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                    int totalDutyDays = (int)cmdDuty.ExecuteScalar();
+                    lblTotalDutyDays.Text = $"Total Duty Days: {totalDutyDays}";
+
+                    string attendanceQuery = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                    using (SqlCommand cmdAttendance = new SqlCommand(attendanceQuery, conn))
+                    {
+                        cmdAttendance.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                        cmdAttendance.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
+                        cmdAttendance.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                        int attendanceDays = (int)cmdAttendance.ExecuteScalar();
+
+                        int unexcusedAbsences = Math.Max(0, totalDutyDays - attendanceDays); // Ensure non-negative
+                        lblUnexcusedAbsences.Text = $"Unexcused Absences: {unexcusedAbsences}";
+
+                        decimal fine = unexcusedAbsences * 200;
+                        lblFine.Text = $"Fine: {fine} Taka";
+                    }
+                }
+            }
         }
 
         private void btnLeaveRequest_Click(object sender, EventArgs e)

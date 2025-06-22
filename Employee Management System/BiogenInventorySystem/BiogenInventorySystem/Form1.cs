@@ -8,11 +8,11 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace Employees_Management_System.Forms
+namespace BiogenInventorySystem
 {
-    public partial class DepartmentForm : Form
+    public partial class Form1 : Form
     {
-        public DepartmentForm()
+        public Form1()
         {
             InitializeComponent();
         }

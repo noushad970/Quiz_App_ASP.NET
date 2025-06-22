@@ -56,6 +56,7 @@
             this.btnMarkAttendance.Text = "Mark";
             this.btnMarkAttendance.UseVisualStyleBackColor = false;
             this.btnMarkAttendance.Click += new System.EventHandler(this.btnMarkAttendance_Click);
+            this.btnMarkAttendance.Anchor = System.Windows.Forms.AnchorStyles.Left;
             // 
             // GiveAttendance
             // 
@@ -64,8 +65,8 @@
             this.ClientSize = new System.Drawing.Size(400, 200);
             this.Controls.Add(this.btnMarkAttendance);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.MaximizeBox = false;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
+            this.MaximizeBox = true;
             this.Name = "GiveAttendance";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Attendance";
