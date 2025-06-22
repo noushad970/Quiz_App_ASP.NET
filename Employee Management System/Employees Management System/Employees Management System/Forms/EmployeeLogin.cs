@@ -55,5 +55,10 @@ namespace Employees_Management_System.Forms
                 }
             }
         }
+
+        private void txtSecretCode_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -66,7 +66,7 @@
             this.tableLayoutPanelMain.Controls.Add(this.tableLayoutPanelSummary, 0, 4);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
             this.tableLayoutPanelMain.RowCount = 5;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 62F));
@@ -74,7 +74,7 @@
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 148F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 98F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(533, 800);
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1098, 800);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // label1
@@ -102,7 +102,7 @@
             this.tableLayoutPanelProfile.Controls.Add(this.lblSalary, 0, 5);
             this.tableLayoutPanelProfile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelProfile.Location = new System.Drawing.Point(4, 66);
-            this.tableLayoutPanelProfile.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelProfile.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelProfile.Name = "tableLayoutPanelProfile";
             this.tableLayoutPanelProfile.RowCount = 6;
             this.tableLayoutPanelProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
@@ -111,7 +111,7 @@
             this.tableLayoutPanelProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanelProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
             this.tableLayoutPanelProfile.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 16.66667F));
-            this.tableLayoutPanelProfile.Size = new System.Drawing.Size(525, 214);
+            this.tableLayoutPanelProfile.Size = new System.Drawing.Size(1090, 214);
             this.tableLayoutPanelProfile.TabIndex = 1;
             // 
             // lblEmployeeCode
@@ -122,9 +122,9 @@
             this.lblEmployeeCode.Location = new System.Drawing.Point(4, 0);
             this.lblEmployeeCode.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmployeeCode.Name = "lblEmployeeCode";
-            this.lblEmployeeCode.Size = new System.Drawing.Size(117, 20);
+            this.lblEmployeeCode.Size = new System.Drawing.Size(134, 20);
             this.lblEmployeeCode.TabIndex = 1;
-            this.lblEmployeeCode.Text = "Employee Code:";
+            this.lblEmployeeCode.Text = "Employee Position:";
             // 
             // lblName
             // 
@@ -190,45 +190,45 @@
             // 
             this.tableLayoutPanelButtons.ColumnCount = 1;
             this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelButtons.Controls.Add(this.btnLeaveRequest, 0, 0);
             this.tableLayoutPanelButtons.Controls.Add(this.btnAttendance, 0, 1);
             this.tableLayoutPanelButtons.Controls.Add(this.btnThisMonthSchedule, 0, 2);
+            this.tableLayoutPanelButtons.Controls.Add(this.btnLeaveRequest, 0, 0);
             this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelButtons.Location = new System.Drawing.Point(4, 288);
-            this.tableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelButtons.Name = "tableLayoutPanelButtons";
             this.tableLayoutPanelButtons.RowCount = 3;
             this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelButtons.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelButtons.Size = new System.Drawing.Size(525, 140);
+            this.tableLayoutPanelButtons.Size = new System.Drawing.Size(1090, 140);
             this.tableLayoutPanelButtons.TabIndex = 2;
             // 
             // btnLeaveRequest
             // 
-            this.btnLeaveRequest.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnLeaveRequest.BackColor = System.Drawing.Color.Crimson;
             this.btnLeaveRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnLeaveRequest.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnLeaveRequest.Font = new System.Drawing.Font("Segoe UI", 8F, System.Drawing.FontStyle.Bold);
             this.btnLeaveRequest.ForeColor = System.Drawing.Color.White;
             this.btnLeaveRequest.Location = new System.Drawing.Point(4, 4);
-            this.btnLeaveRequest.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLeaveRequest.Margin = new System.Windows.Forms.Padding(4);
             this.btnLeaveRequest.Name = "btnLeaveRequest";
-            this.btnLeaveRequest.Size = new System.Drawing.Size(133, 38);
+            this.btnLeaveRequest.Size = new System.Drawing.Size(182, 38);
             this.btnLeaveRequest.TabIndex = 7;
-            this.btnLeaveRequest.Text = "Apply Leave";
+            this.btnLeaveRequest.Text = "Apply Leave Request";
             this.btnLeaveRequest.UseVisualStyleBackColor = false;
             this.btnLeaveRequest.Click += new System.EventHandler(this.btnLeaveRequest_Click);
             // 
             // btnAttendance
             // 
-            this.btnAttendance.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAttendance.ForeColor = System.Drawing.Color.White;
             this.btnAttendance.Location = new System.Drawing.Point(4, 50);
-            this.btnAttendance.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAttendance.Margin = new System.Windows.Forms.Padding(4);
             this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(133, 38);
+            this.btnAttendance.Size = new System.Drawing.Size(182, 38);
             this.btnAttendance.TabIndex = 8;
             this.btnAttendance.Text = "Give Attendance";
             this.btnAttendance.UseVisualStyleBackColor = false;
@@ -236,14 +236,14 @@
             // 
             // btnThisMonthSchedule
             // 
-            this.btnThisMonthSchedule.BackColor = System.Drawing.Color.MediumPurple;
+            this.btnThisMonthSchedule.BackColor = System.Drawing.Color.Gold;
             this.btnThisMonthSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThisMonthSchedule.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnThisMonthSchedule.ForeColor = System.Drawing.Color.White;
+            this.btnThisMonthSchedule.ForeColor = System.Drawing.Color.Black;
             this.btnThisMonthSchedule.Location = new System.Drawing.Point(4, 96);
-            this.btnThisMonthSchedule.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnThisMonthSchedule.Margin = new System.Windows.Forms.Padding(4);
             this.btnThisMonthSchedule.Name = "btnThisMonthSchedule";
-            this.btnThisMonthSchedule.Size = new System.Drawing.Size(133, 39);
+            this.btnThisMonthSchedule.Size = new System.Drawing.Size(182, 39);
             this.btnThisMonthSchedule.TabIndex = 10;
             this.btnThisMonthSchedule.Text = "This Month Schedule";
             this.btnThisMonthSchedule.UseVisualStyleBackColor = false;
@@ -256,11 +256,11 @@
             this.tableLayoutPanelGrid.Controls.Add(this.dgvLeaveRequests, 0, 0);
             this.tableLayoutPanelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelGrid.Location = new System.Drawing.Point(4, 436);
-            this.tableLayoutPanelGrid.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelGrid.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelGrid.Name = "tableLayoutPanelGrid";
             this.tableLayoutPanelGrid.RowCount = 1;
             this.tableLayoutPanelGrid.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelGrid.Size = new System.Drawing.Size(525, 262);
+            this.tableLayoutPanelGrid.Size = new System.Drawing.Size(1090, 262);
             this.tableLayoutPanelGrid.TabIndex = 3;
             // 
             // dgvLeaveRequests
@@ -268,10 +268,10 @@
             this.dgvLeaveRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvLeaveRequests.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLeaveRequests.Location = new System.Drawing.Point(4, 4);
-            this.dgvLeaveRequests.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.dgvLeaveRequests.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLeaveRequests.Name = "dgvLeaveRequests";
             this.dgvLeaveRequests.RowHeadersWidth = 51;
-            this.dgvLeaveRequests.Size = new System.Drawing.Size(517, 254);
+            this.dgvLeaveRequests.Size = new System.Drawing.Size(1082, 254);
             this.dgvLeaveRequests.TabIndex = 9;
             // 
             // tableLayoutPanelSummary
@@ -283,13 +283,13 @@
             this.tableLayoutPanelSummary.Controls.Add(this.lblFine, 0, 2);
             this.tableLayoutPanelSummary.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelSummary.Location = new System.Drawing.Point(4, 706);
-            this.tableLayoutPanelSummary.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tableLayoutPanelSummary.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelSummary.Name = "tableLayoutPanelSummary";
             this.tableLayoutPanelSummary.RowCount = 3;
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(525, 90);
+            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(1090, 90);
             this.tableLayoutPanelSummary.TabIndex = 4;
             // 
             // lblTotalDutyDays
@@ -333,9 +333,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(533, 800);
+            this.ClientSize = new System.Drawing.Size(1098, 800);
             this.Controls.Add(this.tableLayoutPanelMain);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeProfile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Profile";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EmployeeLogin));
             this.label1 = new System.Windows.Forms.Label();
             this.txtSecretCode = new System.Windows.Forms.TextBox();
             this.btnLogin = new System.Windows.Forms.Button();
@@ -36,47 +37,53 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.Highlight;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(150, 50);
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(150, 86);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 21);
+            this.label1.Size = new System.Drawing.Size(129, 28);
             this.label1.TabIndex = 0;
             this.label1.Text = "Secret Code:";
             // 
             // txtSecretCode
             // 
-            this.txtSecretCode.Location = new System.Drawing.Point(260, 50);
-            this.txtSecretCode.Name = "txtSecretCode";
-            this.txtSecretCode.Size = new System.Drawing.Size(100, 20);
-            this.txtSecretCode.TabIndex = 1;
             this.txtSecretCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
+            this.txtSecretCode.Location = new System.Drawing.Point(287, 92);
+            this.txtSecretCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSecretCode.Name = "txtSecretCode";
+            this.txtSecretCode.Size = new System.Drawing.Size(132, 22);
+            this.txtSecretCode.TabIndex = 1;
+            this.txtSecretCode.TextChanged += new System.EventHandler(this.txtSecretCode_TextChanged);
             // 
             // btnLogin
             // 
+            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnLogin.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(200, 100);
+            this.btnLogin.Location = new System.Drawing.Point(229, 157);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.btnLogin.Name = "btnLogin";
-            this.btnLogin.Size = new System.Drawing.Size(100, 40);
+            this.btnLogin.Size = new System.Drawing.Size(133, 49);
             this.btnLogin.TabIndex = 2;
             this.btnLogin.Text = "Login";
             this.btnLogin.UseVisualStyleBackColor = false;
             this.btnLogin.Click += new System.EventHandler(this.btnLogin_Click);
-            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Left;
             // 
             // EmployeeLogin
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(400, 300);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(533, 369);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtSecretCode);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Sizable;
-            this.MaximizeBox = true;
+            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.Name = "EmployeeLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Login";

@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(LoginSelection));
             this.btnAdminLogin = new System.Windows.Forms.Button();
             this.btnEmployeeLogin = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.btnAdminLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAdminLogin.ForeColor = System.Drawing.Color.White;
             this.btnAdminLogin.Location = new System.Drawing.Point(361, 192);
-            this.btnAdminLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnAdminLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnAdminLogin.Name = "btnAdminLogin";
             this.btnAdminLogin.Size = new System.Drawing.Size(133, 49);
             this.btnAdminLogin.TabIndex = 0;
@@ -55,7 +56,7 @@
             this.btnEmployeeLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnEmployeeLogin.ForeColor = System.Drawing.Color.White;
             this.btnEmployeeLogin.Location = new System.Drawing.Point(361, 266);
-            this.btnEmployeeLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnEmployeeLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployeeLogin.Name = "btnEmployeeLogin";
             this.btnEmployeeLogin.Size = new System.Drawing.Size(133, 49);
             this.btnEmployeeLogin.TabIndex = 1;
@@ -66,6 +67,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.Gold;
             this.label1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.label1.ForeColor = System.Drawing.Color.Black;
             this.label1.Location = new System.Drawing.Point(361, 131);
@@ -79,12 +81,14 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.ClientSize = new System.Drawing.Size(878, 483);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnEmployeeLogin);
             this.Controls.Add(this.btnAdminLogin);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.Name = "LoginSelection";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;

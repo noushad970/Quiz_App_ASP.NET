@@ -817,7 +817,6 @@ namespace Employees_Management_System.Forms
                 MessageBox.Show($"Error loading employee report: {ex.Message}");
             }
         }
-
         private void LoadAttendanceSummary()
         {
             if (cmbEmployeeCode.SelectedValue == null) return;
@@ -1075,7 +1074,7 @@ namespace Employees_Management_System.Forms
 \end{center}
 
 \begin{itemize}
-    \item \textbf{Employee Code:} " + employeeCode + @"
+    \item \textbf{Employee Position:} " + employeeCode + @"
     \item \textbf{Name:} " + name + @"
     \item \textbf{Email:} " + email + @"
     \item \textbf{Phone:} " + phone + @"
@@ -1129,5 +1128,7 @@ namespace Employees_Management_System.Forms
                 if (File.Exists(pdfFile) && process.ExitCode != 0) File.Delete(pdfFile);
             }
         }
+
+        
     }
 }

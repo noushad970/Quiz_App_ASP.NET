@@ -31,8 +31,10 @@ namespace Employees_Management_System.Forms
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminDashboard));
             this.panelMain = new System.Windows.Forms.Panel();
             this.panelNavigation = new System.Windows.Forms.Panel();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.btnWorkingDates = new System.Windows.Forms.Button();
+            this.btnAttendanceSummary = new System.Windows.Forms.Button();
             this.btnEmployeeReport = new System.Windows.Forms.Button();
             this.btnRequestManagement = new System.Windows.Forms.Button();
             this.btnDepartmentManagement = new System.Windows.Forms.Button();
@@ -41,6 +43,19 @@ namespace Employees_Management_System.Forms
             this.lblWelcome = new System.Windows.Forms.Label();
             this.panelContent = new System.Windows.Forms.Panel();
             this.panelWorkingDates = new System.Windows.Forms.Panel();
+            this.panelAttendanceSummary = new System.Windows.Forms.Panel();
+            this.lblAttendanceSummaryTitle = new System.Windows.Forms.Label();
+            this.btnUpdateSalary = new System.Windows.Forms.Button();
+            this.lblTotalSalary = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.lblDeduction = new System.Windows.Forms.Label();
+            this.label13 = new System.Windows.Forms.Label();
+            this.lblLeaveDays = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
+            this.lblAttendanceDays = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.cmbEmployeeCode = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.panelEmployeeReport = new System.Windows.Forms.Panel();
             this.lblEmployeeReportTitle = new System.Windows.Forms.Label();
             this.btnDownloadPDF = new System.Windows.Forms.Button();
@@ -53,6 +68,7 @@ namespace Employees_Management_System.Forms
             this.dgvRequestManagement = new System.Windows.Forms.DataGridView();
             this.panelDepartmentManagement = new System.Windows.Forms.Panel();
             this.lblDepartmentManagementTitle = new System.Windows.Forms.Label();
+            this.btnDeleteDepartment = new System.Windows.Forms.Button();
             this.btnUpdateDepartment = new System.Windows.Forms.Button();
             this.btnAddDepartment = new System.Windows.Forms.Button();
             this.txtDepartmentName = new System.Windows.Forms.TextBox();
@@ -60,6 +76,7 @@ namespace Employees_Management_System.Forms
             this.dgvDepartmentManagement = new System.Windows.Forms.DataGridView();
             this.panelEmployeeSection = new System.Windows.Forms.Panel();
             this.lblEmployeeSectionTitle = new System.Windows.Forms.Label();
+            this.btnDeleteEmployee = new System.Windows.Forms.Button();
             this.btnUpdateEmployee = new System.Windows.Forms.Button();
             this.btnAddEmployee = new System.Windows.Forms.Button();
             this.txtSalary = new System.Windows.Forms.TextBox();
@@ -83,10 +100,18 @@ namespace Employees_Management_System.Forms
             this.btnAddAsOffDay = new System.Windows.Forms.Button();
             this.btnAddAsWorkingDay = new System.Windows.Forms.Button();
             this.monthCalendar = new System.Windows.Forms.MonthCalendar();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.pictureBox4 = new System.Windows.Forms.PictureBox();
+            this.pictureBox5 = new System.Windows.Forms.PictureBox();
+            this.pictureBox6 = new System.Windows.Forms.PictureBox();
+            this.pictureBox7 = new System.Windows.Forms.PictureBox();
+            this.pictureBox8 = new System.Windows.Forms.PictureBox();
             this.panelMain.SuspendLayout();
             this.panelNavigation.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             this.panelContent.SuspendLayout();
+            this.panelAttendanceSummary.SuspendLayout();
             this.panelEmployeeReport.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeReport)).BeginInit();
             this.panelRequestManagement.SuspendLayout();
@@ -96,6 +121,12 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeSection.SuspendLayout();
             this.panelEmployeeDetails.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeDetails)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).BeginInit();
             this.SuspendLayout();
             // 
             // panelMain
@@ -113,8 +144,16 @@ namespace Employees_Management_System.Forms
             // panelNavigation
             // 
             this.panelNavigation.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.panelNavigation.Controls.Add(this.pictureBox8);
+            this.panelNavigation.Controls.Add(this.pictureBox7);
+            this.panelNavigation.Controls.Add(this.pictureBox6);
+            this.panelNavigation.Controls.Add(this.pictureBox5);
+            this.panelNavigation.Controls.Add(this.pictureBox4);
+            this.panelNavigation.Controls.Add(this.pictureBox3);
+            this.panelNavigation.Controls.Add(this.pictureBox2);
             this.panelNavigation.Controls.Add(this.pictureBox1);
             this.panelNavigation.Controls.Add(this.btnWorkingDates);
+            this.panelNavigation.Controls.Add(this.btnAttendanceSummary);
             this.panelNavigation.Controls.Add(this.btnEmployeeReport);
             this.panelNavigation.Controls.Add(this.btnRequestManagement);
             this.panelNavigation.Controls.Add(this.btnDepartmentManagement);
@@ -128,24 +167,33 @@ namespace Employees_Management_System.Forms
             this.panelNavigation.Size = new System.Drawing.Size(333, 985);
             this.panelNavigation.TabIndex = 0;
             // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackColor = System.Drawing.Color.White;
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox2.Location = new System.Drawing.Point(3, 43);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(327, 156);
+            this.pictureBox2.TabIndex = 9;
+            this.pictureBox2.TabStop = false;
+            // 
             // pictureBox1
             // 
-            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
-            this.pictureBox1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.pictureBox1.Location = new System.Drawing.Point(64, 31);
+            this.pictureBox1.Location = new System.Drawing.Point(3, 903);
             this.pictureBox1.Name = "pictureBox1";
-            this.pictureBox1.Size = new System.Drawing.Size(208, 85);
+            this.pictureBox1.Size = new System.Drawing.Size(327, 76);
             this.pictureBox1.TabIndex = 8;
             this.pictureBox1.TabStop = false;
             // 
             // btnWorkingDates
             // 
-            this.btnWorkingDates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnWorkingDates.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
             this.btnWorkingDates.FlatAppearance.BorderSize = 0;
             this.btnWorkingDates.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnWorkingDates.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnWorkingDates.ForeColor = System.Drawing.Color.White;
-            this.btnWorkingDates.Location = new System.Drawing.Point(0, 430);
+            this.btnWorkingDates.Location = new System.Drawing.Point(0, 512);
             this.btnWorkingDates.Margin = new System.Windows.Forms.Padding(4);
             this.btnWorkingDates.Name = "btnWorkingDates";
             this.btnWorkingDates.Size = new System.Drawing.Size(333, 62);
@@ -154,14 +202,30 @@ namespace Employees_Management_System.Forms
             this.btnWorkingDates.UseVisualStyleBackColor = false;
             this.btnWorkingDates.Click += new System.EventHandler(this.btnWorkingDates_Click);
             // 
+            // btnAttendanceSummary
+            // 
+            this.btnAttendanceSummary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnAttendanceSummary.FlatAppearance.BorderSize = 0;
+            this.btnAttendanceSummary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnAttendanceSummary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnAttendanceSummary.ForeColor = System.Drawing.Color.White;
+            this.btnAttendanceSummary.Location = new System.Drawing.Point(50, 921);
+            this.btnAttendanceSummary.Margin = new System.Windows.Forms.Padding(4);
+            this.btnAttendanceSummary.Name = "btnAttendanceSummary";
+            this.btnAttendanceSummary.Size = new System.Drawing.Size(222, 51);
+            this.btnAttendanceSummary.TabIndex = 6;
+            this.btnAttendanceSummary.Text = "Attendance Summary";
+            this.btnAttendanceSummary.UseVisualStyleBackColor = false;
+            this.btnAttendanceSummary.Click += new System.EventHandler(this.btnAttendanceSummary_Click);
+            // 
             // btnEmployeeReport
             // 
-            this.btnEmployeeReport.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnEmployeeReport.BackColor = System.Drawing.Color.Magenta;
             this.btnEmployeeReport.FlatAppearance.BorderSize = 0;
             this.btnEmployeeReport.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployeeReport.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnEmployeeReport.ForeColor = System.Drawing.Color.White;
-            this.btnEmployeeReport.Location = new System.Drawing.Point(0, 369);
+            this.btnEmployeeReport.Location = new System.Drawing.Point(0, 452);
             this.btnEmployeeReport.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployeeReport.Name = "btnEmployeeReport";
             this.btnEmployeeReport.Size = new System.Drawing.Size(333, 62);
@@ -172,12 +236,12 @@ namespace Employees_Management_System.Forms
             // 
             // btnRequestManagement
             // 
-            this.btnRequestManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnRequestManagement.BackColor = System.Drawing.Color.Gold;
             this.btnRequestManagement.FlatAppearance.BorderSize = 0;
             this.btnRequestManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRequestManagement.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnRequestManagement.ForeColor = System.Drawing.Color.White;
-            this.btnRequestManagement.Location = new System.Drawing.Point(0, 308);
+            this.btnRequestManagement.ForeColor = System.Drawing.Color.Black;
+            this.btnRequestManagement.Location = new System.Drawing.Point(0, 391);
             this.btnRequestManagement.Margin = new System.Windows.Forms.Padding(4);
             this.btnRequestManagement.Name = "btnRequestManagement";
             this.btnRequestManagement.Size = new System.Drawing.Size(333, 62);
@@ -188,12 +252,12 @@ namespace Employees_Management_System.Forms
             // 
             // btnDepartmentManagement
             // 
-            this.btnDepartmentManagement.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnDepartmentManagement.BackColor = System.Drawing.Color.SpringGreen;
             this.btnDepartmentManagement.FlatAppearance.BorderSize = 0;
             this.btnDepartmentManagement.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDepartmentManagement.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnDepartmentManagement.ForeColor = System.Drawing.Color.White;
-            this.btnDepartmentManagement.Location = new System.Drawing.Point(0, 246);
+            this.btnDepartmentManagement.ForeColor = System.Drawing.Color.Black;
+            this.btnDepartmentManagement.Location = new System.Drawing.Point(0, 329);
             this.btnDepartmentManagement.Margin = new System.Windows.Forms.Padding(4);
             this.btnDepartmentManagement.Name = "btnDepartmentManagement";
             this.btnDepartmentManagement.Size = new System.Drawing.Size(333, 62);
@@ -209,7 +273,7 @@ namespace Employees_Management_System.Forms
             this.btnEmployeeSection.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployeeSection.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnEmployeeSection.ForeColor = System.Drawing.Color.White;
-            this.btnEmployeeSection.Location = new System.Drawing.Point(0, 185);
+            this.btnEmployeeSection.Location = new System.Drawing.Point(0, 268);
             this.btnEmployeeSection.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployeeSection.Name = "btnEmployeeSection";
             this.btnEmployeeSection.Size = new System.Drawing.Size(333, 62);
@@ -220,12 +284,12 @@ namespace Employees_Management_System.Forms
             // 
             // btnEmployeeDetails
             // 
-            this.btnEmployeeDetails.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.btnEmployeeDetails.BackColor = System.Drawing.Color.Crimson;
             this.btnEmployeeDetails.FlatAppearance.BorderSize = 0;
             this.btnEmployeeDetails.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnEmployeeDetails.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnEmployeeDetails.ForeColor = System.Drawing.Color.White;
-            this.btnEmployeeDetails.Location = new System.Drawing.Point(0, 123);
+            this.btnEmployeeDetails.Location = new System.Drawing.Point(0, 206);
             this.btnEmployeeDetails.Margin = new System.Windows.Forms.Padding(4);
             this.btnEmployeeDetails.Name = "btnEmployeeDetails";
             this.btnEmployeeDetails.Size = new System.Drawing.Size(333, 62);
@@ -239,7 +303,7 @@ namespace Employees_Management_System.Forms
             this.lblWelcome.AutoSize = true;
             this.lblWelcome.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblWelcome.ForeColor = System.Drawing.Color.White;
-            this.lblWelcome.Location = new System.Drawing.Point(82, 0);
+            this.lblWelcome.Location = new System.Drawing.Point(79, 9);
             this.lblWelcome.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWelcome.Name = "lblWelcome";
             this.lblWelcome.Size = new System.Drawing.Size(179, 28);
@@ -249,8 +313,8 @@ namespace Employees_Management_System.Forms
             // panelContent
             // 
             this.panelContent.BackColor = System.Drawing.Color.Black;
-            this.panelContent.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelContent.Controls.Add(this.panelWorkingDates);
+            this.panelContent.Controls.Add(this.panelAttendanceSummary);
             this.panelContent.Controls.Add(this.panelEmployeeReport);
             this.panelContent.Controls.Add(this.panelRequestManagement);
             this.panelContent.Controls.Add(this.panelDepartmentManagement);
@@ -267,15 +331,178 @@ namespace Employees_Management_System.Forms
             // 
             this.panelWorkingDates.AutoScroll = true;
             this.panelWorkingDates.BackColor = System.Drawing.Color.DarkTurquoise;
-            this.panelWorkingDates.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.panelWorkingDates.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelWorkingDates.Location = new System.Drawing.Point(341, 12);
             this.panelWorkingDates.Margin = new System.Windows.Forms.Padding(4);
             this.panelWorkingDates.Name = "panelWorkingDates";
             this.panelWorkingDates.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelWorkingDates.Size = new System.Drawing.Size(1246, 960);
+            this.panelWorkingDates.Size = new System.Drawing.Size(1690, 960);
             this.panelWorkingDates.TabIndex = 6;
             this.panelWorkingDates.Visible = false;
+            // 
+            // panelAttendanceSummary
+            // 
+            this.panelAttendanceSummary.AutoScroll = true;
+            this.panelAttendanceSummary.BackColor = System.Drawing.Color.DarkTurquoise;
+            this.panelAttendanceSummary.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panelAttendanceSummary.Controls.Add(this.lblAttendanceSummaryTitle);
+            this.panelAttendanceSummary.Controls.Add(this.btnUpdateSalary);
+            this.panelAttendanceSummary.Controls.Add(this.lblTotalSalary);
+            this.panelAttendanceSummary.Controls.Add(this.label14);
+            this.panelAttendanceSummary.Controls.Add(this.lblDeduction);
+            this.panelAttendanceSummary.Controls.Add(this.label13);
+            this.panelAttendanceSummary.Controls.Add(this.lblLeaveDays);
+            this.panelAttendanceSummary.Controls.Add(this.label12);
+            this.panelAttendanceSummary.Controls.Add(this.lblAttendanceDays);
+            this.panelAttendanceSummary.Controls.Add(this.label11);
+            this.panelAttendanceSummary.Controls.Add(this.cmbEmployeeCode);
+            this.panelAttendanceSummary.Controls.Add(this.label10);
+            this.panelAttendanceSummary.Location = new System.Drawing.Point(341, 12);
+            this.panelAttendanceSummary.Margin = new System.Windows.Forms.Padding(4);
+            this.panelAttendanceSummary.Name = "panelAttendanceSummary";
+            this.panelAttendanceSummary.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
+            this.panelAttendanceSummary.Size = new System.Drawing.Size(1690, 960);
+            this.panelAttendanceSummary.TabIndex = 5;
+            this.panelAttendanceSummary.Visible = false;
+            // 
+            // lblAttendanceSummaryTitle
+            // 
+            this.lblAttendanceSummaryTitle.AutoSize = true;
+            this.lblAttendanceSummaryTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
+            this.lblAttendanceSummaryTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.lblAttendanceSummaryTitle.Location = new System.Drawing.Point(26, 24);
+            this.lblAttendanceSummaryTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAttendanceSummaryTitle.Name = "lblAttendanceSummaryTitle";
+            this.lblAttendanceSummaryTitle.Size = new System.Drawing.Size(217, 28);
+            this.lblAttendanceSummaryTitle.TabIndex = 11;
+            this.lblAttendanceSummaryTitle.Text = "Attendance Summary";
+            // 
+            // btnUpdateSalary
+            // 
+            this.btnUpdateSalary.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.btnUpdateSalary.FlatAppearance.BorderSize = 0;
+            this.btnUpdateSalary.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnUpdateSalary.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnUpdateSalary.ForeColor = System.Drawing.Color.White;
+            this.btnUpdateSalary.Location = new System.Drawing.Point(27, 234);
+            this.btnUpdateSalary.Margin = new System.Windows.Forms.Padding(4);
+            this.btnUpdateSalary.Name = "btnUpdateSalary";
+            this.btnUpdateSalary.Size = new System.Drawing.Size(160, 37);
+            this.btnUpdateSalary.TabIndex = 10;
+            this.btnUpdateSalary.Text = "Update Salary";
+            this.btnUpdateSalary.UseVisualStyleBackColor = false;
+            this.btnUpdateSalary.Click += new System.EventHandler(this.btnUpdateSalary_Click);
+            // 
+            // lblTotalSalary
+            // 
+            this.lblTotalSalary.AutoSize = true;
+            this.lblTotalSalary.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblTotalSalary.Location = new System.Drawing.Point(40, 221);
+            this.lblTotalSalary.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblTotalSalary.Name = "lblTotalSalary";
+            this.lblTotalSalary.Size = new System.Drawing.Size(114, 23);
+            this.lblTotalSalary.TabIndex = 9;
+            this.lblTotalSalary.Text = "Total Salary: 0";
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label14.Location = new System.Drawing.Point(40, 197);
+            this.label14.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(109, 23);
+            this.label14.TabIndex = 8;
+            this.label14.Text = "Total Salary:";
+            // 
+            // lblDeduction
+            // 
+            this.lblDeduction.AutoSize = true;
+            this.lblDeduction.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblDeduction.Location = new System.Drawing.Point(40, 172);
+            this.lblDeduction.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblDeduction.Name = "lblDeduction";
+            this.lblDeduction.Size = new System.Drawing.Size(107, 23);
+            this.lblDeduction.TabIndex = 7;
+            this.lblDeduction.Text = "Deduction: 0";
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label13.Location = new System.Drawing.Point(40, 147);
+            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(98, 23);
+            this.label13.TabIndex = 6;
+            this.label13.Text = "Deduction:";
+            // 
+            // lblLeaveDays
+            // 
+            this.lblLeaveDays.AutoSize = true;
+            this.lblLeaveDays.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblLeaveDays.Location = new System.Drawing.Point(40, 123);
+            this.lblLeaveDays.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblLeaveDays.Name = "lblLeaveDays";
+            this.lblLeaveDays.Size = new System.Drawing.Size(112, 23);
+            this.lblLeaveDays.TabIndex = 5;
+            this.lblLeaveDays.Text = "Leave Days: 0";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label12.Location = new System.Drawing.Point(40, 98);
+            this.label12.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(103, 23);
+            this.label12.TabIndex = 4;
+            this.label12.Text = "Leave Days:";
+            // 
+            // lblAttendanceDays
+            // 
+            this.lblAttendanceDays.AutoSize = true;
+            this.lblAttendanceDays.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.lblAttendanceDays.Location = new System.Drawing.Point(40, 74);
+            this.lblAttendanceDays.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblAttendanceDays.Name = "lblAttendanceDays";
+            this.lblAttendanceDays.Size = new System.Drawing.Size(157, 23);
+            this.lblAttendanceDays.TabIndex = 3;
+            this.lblAttendanceDays.Text = "Attendance Days: 0";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label11.Location = new System.Drawing.Point(40, 49);
+            this.label11.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(150, 23);
+            this.label11.TabIndex = 2;
+            this.label11.Text = "Attendance Days:";
+            // 
+            // cmbEmployeeCode
+            // 
+            this.cmbEmployeeCode.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbEmployeeCode.Font = new System.Drawing.Font("Segoe UI", 10F);
+            this.cmbEmployeeCode.FormattingEnabled = true;
+            this.cmbEmployeeCode.Location = new System.Drawing.Point(27, 160);
+            this.cmbEmployeeCode.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbEmployeeCode.Name = "cmbEmployeeCode";
+            this.cmbEmployeeCode.Size = new System.Drawing.Size(265, 31);
+            this.cmbEmployeeCode.TabIndex = 1;
+            this.cmbEmployeeCode.SelectedIndexChanged += new System.EventHandler(this.cmbEmployeeCode_SelectedIndexChanged);
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.label10.Location = new System.Drawing.Point(40, 147);
+            this.label10.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(139, 23);
+            this.label10.TabIndex = 0;
+            this.label10.Text = "Employee Code:";
             // 
             // panelEmployeeReport
             // 
@@ -291,7 +518,7 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeReport.Margin = new System.Windows.Forms.Padding(4);
             this.panelEmployeeReport.Name = "panelEmployeeReport";
             this.panelEmployeeReport.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelEmployeeReport.Size = new System.Drawing.Size(1246, 960);
+            this.panelEmployeeReport.Size = new System.Drawing.Size(1690, 960);
             this.panelEmployeeReport.TabIndex = 4;
             this.panelEmployeeReport.Visible = false;
             // 
@@ -300,7 +527,7 @@ namespace Employees_Management_System.Forms
             this.lblEmployeeReportTitle.AutoSize = true;
             this.lblEmployeeReportTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblEmployeeReportTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblEmployeeReportTitle.Location = new System.Drawing.Point(26, 12);
+            this.lblEmployeeReportTitle.Location = new System.Drawing.Point(26, 24);
             this.lblEmployeeReportTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblEmployeeReportTitle.Name = "lblEmployeeReportTitle";
             this.lblEmployeeReportTitle.Size = new System.Drawing.Size(175, 28);
@@ -314,7 +541,7 @@ namespace Employees_Management_System.Forms
             this.btnDownloadPDF.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnDownloadPDF.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnDownloadPDF.ForeColor = System.Drawing.Color.White;
-            this.btnDownloadPDF.Location = new System.Drawing.Point(31, 98);
+            this.btnDownloadPDF.Location = new System.Drawing.Point(27, 98);
             this.btnDownloadPDF.Margin = new System.Windows.Forms.Padding(4);
             this.btnDownloadPDF.Name = "btnDownloadPDF";
             this.btnDownloadPDF.Size = new System.Drawing.Size(160, 37);
@@ -325,9 +552,8 @@ namespace Employees_Management_System.Forms
             // 
             // txtSearchSecretCode
             // 
-            this.txtSearchSecretCode.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.txtSearchSecretCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSearchSecretCode.Location = new System.Drawing.Point(31, 61);
+            this.txtSearchSecretCode.Location = new System.Drawing.Point(27, 62);
             this.txtSearchSecretCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtSearchSecretCode.Name = "txtSearchSecretCode";
             this.txtSearchSecretCode.Size = new System.Drawing.Size(265, 30);
@@ -338,7 +564,7 @@ namespace Employees_Management_System.Forms
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label9.Location = new System.Drawing.Point(27, 38);
+            this.label9.Location = new System.Drawing.Point(40, 49);
             this.label9.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(111, 23);
@@ -354,13 +580,13 @@ namespace Employees_Management_System.Forms
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dgvEmployeeReport.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.dgvEmployeeReport.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvEmployeeReport.Location = new System.Drawing.Point(31, 161);
+            this.dgvEmployeeReport.Location = new System.Drawing.Point(40, 160);
             this.dgvEmployeeReport.Margin = new System.Windows.Forms.Padding(4);
             this.dgvEmployeeReport.Name = "dgvEmployeeReport";
             this.dgvEmployeeReport.ReadOnly = true;
             this.dgvEmployeeReport.RowHeadersWidth = 51;
             this.dgvEmployeeReport.RowTemplate.Height = 25;
-            this.dgvEmployeeReport.Size = new System.Drawing.Size(1785, 1587);
+            this.dgvEmployeeReport.Size = new System.Drawing.Size(1450, 1587);
             this.dgvEmployeeReport.TabIndex = 0;
             // 
             // panelRequestManagement
@@ -375,7 +601,7 @@ namespace Employees_Management_System.Forms
             this.panelRequestManagement.Margin = new System.Windows.Forms.Padding(4);
             this.panelRequestManagement.Name = "panelRequestManagement";
             this.panelRequestManagement.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelRequestManagement.Size = new System.Drawing.Size(1246, 960);
+            this.panelRequestManagement.Size = new System.Drawing.Size(1690, 960);
             this.panelRequestManagement.TabIndex = 3;
             this.panelRequestManagement.Visible = false;
             // 
@@ -384,7 +610,7 @@ namespace Employees_Management_System.Forms
             this.lblRequestManagementTitle.AutoSize = true;
             this.lblRequestManagementTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblRequestManagementTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblRequestManagementTitle.Location = new System.Drawing.Point(35, 24);
+            this.lblRequestManagementTitle.Location = new System.Drawing.Point(26, 24);
             this.lblRequestManagementTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblRequestManagementTitle.Name = "lblRequestManagementTitle";
             this.lblRequestManagementTitle.Size = new System.Drawing.Size(219, 28);
@@ -398,7 +624,7 @@ namespace Employees_Management_System.Forms
             this.btnRefreshRequests.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnRefreshRequests.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnRefreshRequests.ForeColor = System.Drawing.Color.White;
-            this.btnRefreshRequests.Location = new System.Drawing.Point(40, 56);
+            this.btnRefreshRequests.Location = new System.Drawing.Point(27, 49);
             this.btnRefreshRequests.Margin = new System.Windows.Forms.Padding(4);
             this.btnRefreshRequests.Name = "btnRefreshRequests";
             this.btnRefreshRequests.Size = new System.Drawing.Size(160, 37);
@@ -414,7 +640,7 @@ namespace Employees_Management_System.Forms
             this.dgvRequestManagement.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.dgvRequestManagement.BackgroundColor = System.Drawing.Color.LightSkyBlue;
+            this.dgvRequestManagement.BackgroundColor = System.Drawing.Color.SkyBlue;
             this.dgvRequestManagement.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgvRequestManagement.Location = new System.Drawing.Point(40, 110);
             this.dgvRequestManagement.Margin = new System.Windows.Forms.Padding(4);
@@ -422,7 +648,7 @@ namespace Employees_Management_System.Forms
             this.dgvRequestManagement.ReadOnly = true;
             this.dgvRequestManagement.RowHeadersWidth = 51;
             this.dgvRequestManagement.RowTemplate.Height = 25;
-            this.dgvRequestManagement.Size = new System.Drawing.Size(1845, 1671);
+            this.dgvRequestManagement.Size = new System.Drawing.Size(1510, 1671);
             this.dgvRequestManagement.TabIndex = 0;
             this.dgvRequestManagement.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvRequestManagement_CellContentClick);
             // 
@@ -432,6 +658,7 @@ namespace Employees_Management_System.Forms
             this.panelDepartmentManagement.BackColor = System.Drawing.Color.DarkTurquoise;
             this.panelDepartmentManagement.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelDepartmentManagement.Controls.Add(this.lblDepartmentManagementTitle);
+            this.panelDepartmentManagement.Controls.Add(this.btnDeleteDepartment);
             this.panelDepartmentManagement.Controls.Add(this.btnUpdateDepartment);
             this.panelDepartmentManagement.Controls.Add(this.btnAddDepartment);
             this.panelDepartmentManagement.Controls.Add(this.txtDepartmentName);
@@ -441,7 +668,7 @@ namespace Employees_Management_System.Forms
             this.panelDepartmentManagement.Margin = new System.Windows.Forms.Padding(4);
             this.panelDepartmentManagement.Name = "panelDepartmentManagement";
             this.panelDepartmentManagement.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelDepartmentManagement.Size = new System.Drawing.Size(1246, 960);
+            this.panelDepartmentManagement.Size = new System.Drawing.Size(1690, 960);
             this.panelDepartmentManagement.TabIndex = 2;
             this.panelDepartmentManagement.Visible = false;
             // 
@@ -450,21 +677,37 @@ namespace Employees_Management_System.Forms
             this.lblDepartmentManagementTitle.AutoSize = true;
             this.lblDepartmentManagementTitle.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Bold);
             this.lblDepartmentManagementTitle.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
-            this.lblDepartmentManagementTitle.Location = new System.Drawing.Point(26, 17);
+            this.lblDepartmentManagementTitle.Location = new System.Drawing.Point(26, 24);
             this.lblDepartmentManagementTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblDepartmentManagementTitle.Name = "lblDepartmentManagementTitle";
             this.lblDepartmentManagementTitle.Size = new System.Drawing.Size(258, 28);
             this.lblDepartmentManagementTitle.TabIndex = 6;
             this.lblDepartmentManagementTitle.Text = "Department Management";
             // 
+            // btnDeleteDepartment
+            // 
+            this.btnDeleteDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.btnDeleteDepartment.FlatAppearance.BorderSize = 0;
+            this.btnDeleteDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteDepartment.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteDepartment.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteDepartment.Location = new System.Drawing.Point(360, 86);
+            this.btnDeleteDepartment.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteDepartment.Name = "btnDeleteDepartment";
+            this.btnDeleteDepartment.Size = new System.Drawing.Size(160, 37);
+            this.btnDeleteDepartment.TabIndex = 5;
+            this.btnDeleteDepartment.Text = "Delete Department";
+            this.btnDeleteDepartment.UseVisualStyleBackColor = false;
+            this.btnDeleteDepartment.Click += new System.EventHandler(this.btnDeleteDepartment_Click);
+            // 
             // btnUpdateDepartment
             // 
-            this.btnUpdateDepartment.BackColor = System.Drawing.Color.Blue;
+            this.btnUpdateDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
             this.btnUpdateDepartment.FlatAppearance.BorderSize = 0;
             this.btnUpdateDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateDepartment.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnUpdateDepartment.ForeColor = System.Drawing.Color.White;
-            this.btnUpdateDepartment.Location = new System.Drawing.Point(199, 86);
+            this.btnUpdateDepartment.Location = new System.Drawing.Point(187, 86);
             this.btnUpdateDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.btnUpdateDepartment.Name = "btnUpdateDepartment";
             this.btnUpdateDepartment.Size = new System.Drawing.Size(160, 37);
@@ -475,12 +718,12 @@ namespace Employees_Management_System.Forms
             // 
             // btnAddDepartment
             // 
-            this.btnAddDepartment.BackColor = System.Drawing.Color.BlueViolet;
+            this.btnAddDepartment.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
             this.btnAddDepartment.FlatAppearance.BorderSize = 0;
             this.btnAddDepartment.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddDepartment.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnAddDepartment.ForeColor = System.Drawing.Color.White;
-            this.btnAddDepartment.Location = new System.Drawing.Point(26, 86);
+            this.btnAddDepartment.Location = new System.Drawing.Point(13, 86);
             this.btnAddDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddDepartment.Name = "btnAddDepartment";
             this.btnAddDepartment.Size = new System.Drawing.Size(160, 37);
@@ -491,9 +734,8 @@ namespace Employees_Management_System.Forms
             // 
             // txtDepartmentName
             // 
-            this.txtDepartmentName.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.txtDepartmentName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtDepartmentName.Location = new System.Drawing.Point(200, 48);
+            this.txtDepartmentName.Location = new System.Drawing.Point(173, 49);
             this.txtDepartmentName.Margin = new System.Windows.Forms.Padding(4);
             this.txtDepartmentName.Name = "txtDepartmentName";
             this.txtDepartmentName.Size = new System.Drawing.Size(345, 30);
@@ -503,7 +745,7 @@ namespace Employees_Management_System.Forms
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
-            this.label2.Location = new System.Drawing.Point(27, 51);
+            this.label2.Location = new System.Drawing.Point(26, 61);
             this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(165, 23);
@@ -525,7 +767,7 @@ namespace Employees_Management_System.Forms
             this.dgvDepartmentManagement.ReadOnly = true;
             this.dgvDepartmentManagement.RowHeadersWidth = 51;
             this.dgvDepartmentManagement.RowTemplate.Height = 25;
-            this.dgvDepartmentManagement.Size = new System.Drawing.Size(1583, 1611);
+            this.dgvDepartmentManagement.Size = new System.Drawing.Size(1248, 1611);
             this.dgvDepartmentManagement.TabIndex = 0;
             this.dgvDepartmentManagement.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvDepartmentManagement_CellClick);
             // 
@@ -535,6 +777,7 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeSection.BackColor = System.Drawing.Color.DarkTurquoise;
             this.panelEmployeeSection.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.panelEmployeeSection.Controls.Add(this.lblEmployeeSectionTitle);
+            this.panelEmployeeSection.Controls.Add(this.btnDeleteEmployee);
             this.panelEmployeeSection.Controls.Add(this.btnUpdateEmployee);
             this.panelEmployeeSection.Controls.Add(this.btnAddEmployee);
             this.panelEmployeeSection.Controls.Add(this.txtSalary);
@@ -555,7 +798,7 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeSection.Margin = new System.Windows.Forms.Padding(4);
             this.panelEmployeeSection.Name = "panelEmployeeSection";
             this.panelEmployeeSection.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelEmployeeSection.Size = new System.Drawing.Size(1246, 960);
+            this.panelEmployeeSection.Size = new System.Drawing.Size(1690, 960);
             this.panelEmployeeSection.TabIndex = 1;
             this.panelEmployeeSection.Visible = false;
             // 
@@ -571,9 +814,25 @@ namespace Employees_Management_System.Forms
             this.lblEmployeeSectionTitle.TabIndex = 17;
             this.lblEmployeeSectionTitle.Text = "Employee Section";
             // 
+            // btnDeleteEmployee
+            // 
+            this.btnDeleteEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
+            this.btnDeleteEmployee.FlatAppearance.BorderSize = 0;
+            this.btnDeleteEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDeleteEmployee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
+            this.btnDeleteEmployee.ForeColor = System.Drawing.Color.White;
+            this.btnDeleteEmployee.Location = new System.Drawing.Point(360, 332);
+            this.btnDeleteEmployee.Margin = new System.Windows.Forms.Padding(4);
+            this.btnDeleteEmployee.Name = "btnDeleteEmployee";
+            this.btnDeleteEmployee.Size = new System.Drawing.Size(160, 37);
+            this.btnDeleteEmployee.TabIndex = 16;
+            this.btnDeleteEmployee.Text = "Delete Employee";
+            this.btnDeleteEmployee.UseVisualStyleBackColor = false;
+            this.btnDeleteEmployee.Click += new System.EventHandler(this.btnDeleteEmployee_Click);
+            // 
             // btnUpdateEmployee
             // 
-            this.btnUpdateEmployee.BackColor = System.Drawing.Color.Purple;
+            this.btnUpdateEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
             this.btnUpdateEmployee.FlatAppearance.BorderSize = 0;
             this.btnUpdateEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnUpdateEmployee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -589,7 +848,7 @@ namespace Employees_Management_System.Forms
             // 
             // btnAddEmployee
             // 
-            this.btnAddEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAddEmployee.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54)))));
             this.btnAddEmployee.FlatAppearance.BorderSize = 0;
             this.btnAddEmployee.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddEmployee.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
@@ -606,7 +865,7 @@ namespace Employees_Management_System.Forms
             // txtSalary
             // 
             this.txtSalary.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSalary.Location = new System.Drawing.Point(173, 293);
+            this.txtSalary.Location = new System.Drawing.Point(173, 283);
             this.txtSalary.Margin = new System.Windows.Forms.Padding(4);
             this.txtSalary.Name = "txtSalary";
             this.txtSalary.Size = new System.Drawing.Size(345, 30);
@@ -626,7 +885,7 @@ namespace Employees_Management_System.Forms
             // txtSecretCode
             // 
             this.txtSecretCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtSecretCode.Location = new System.Drawing.Point(173, 256);
+            this.txtSecretCode.Location = new System.Drawing.Point(173, 246);
             this.txtSecretCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtSecretCode.Name = "txtSecretCode";
             this.txtSecretCode.Size = new System.Drawing.Size(345, 30);
@@ -648,7 +907,7 @@ namespace Employees_Management_System.Forms
             this.cmbDepartment.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbDepartment.Font = new System.Drawing.Font("Segoe UI", 10F);
             this.cmbDepartment.FormattingEnabled = true;
-            this.cmbDepartment.Location = new System.Drawing.Point(173, 219);
+            this.cmbDepartment.Location = new System.Drawing.Point(173, 209);
             this.cmbDepartment.Margin = new System.Windows.Forms.Padding(4);
             this.cmbDepartment.Name = "cmbDepartment";
             this.cmbDepartment.Size = new System.Drawing.Size(345, 31);
@@ -668,7 +927,7 @@ namespace Employees_Management_System.Forms
             // txtPhone
             // 
             this.txtPhone.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtPhone.Location = new System.Drawing.Point(173, 182);
+            this.txtPhone.Location = new System.Drawing.Point(173, 172);
             this.txtPhone.Margin = new System.Windows.Forms.Padding(4);
             this.txtPhone.Name = "txtPhone";
             this.txtPhone.Size = new System.Drawing.Size(345, 30);
@@ -688,7 +947,7 @@ namespace Employees_Management_System.Forms
             // txtEmail
             // 
             this.txtEmail.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtEmail.Location = new System.Drawing.Point(173, 145);
+            this.txtEmail.Location = new System.Drawing.Point(173, 135);
             this.txtEmail.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(345, 30);
@@ -708,7 +967,7 @@ namespace Employees_Management_System.Forms
             // txtName
             // 
             this.txtName.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtName.Location = new System.Drawing.Point(173, 108);
+            this.txtName.Location = new System.Drawing.Point(173, 98);
             this.txtName.Margin = new System.Windows.Forms.Padding(4);
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(345, 30);
@@ -728,7 +987,7 @@ namespace Employees_Management_System.Forms
             // txtEmployeeCode
             // 
             this.txtEmployeeCode.Font = new System.Drawing.Font("Segoe UI", 10F);
-            this.txtEmployeeCode.Location = new System.Drawing.Point(173, 72);
+            this.txtEmployeeCode.Location = new System.Drawing.Point(173, 62);
             this.txtEmployeeCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtEmployeeCode.Name = "txtEmployeeCode";
             this.txtEmployeeCode.Size = new System.Drawing.Size(345, 30);
@@ -744,7 +1003,6 @@ namespace Employees_Management_System.Forms
             this.label1.Size = new System.Drawing.Size(139, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Employee Code:";
-            //this.label1.Click += new System.EventHandler(this.label1_Click);
             // 
             // panelEmployeeDetails
             // 
@@ -757,9 +1015,8 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeDetails.Margin = new System.Windows.Forms.Padding(4);
             this.panelEmployeeDetails.Name = "panelEmployeeDetails";
             this.panelEmployeeDetails.Padding = new System.Windows.Forms.Padding(13, 12, 13, 12);
-            this.panelEmployeeDetails.Size = new System.Drawing.Size(1246, 960);
+            this.panelEmployeeDetails.Size = new System.Drawing.Size(1690, 960);
             this.panelEmployeeDetails.TabIndex = 0;
-            //this.panelEmployeeDetails.Paint += new System.Windows.Forms.PaintEventHandler(this.panelEmployeeDetails_Paint);
             // 
             // lblEmployeeDetailsTitle
             // 
@@ -788,7 +1045,7 @@ namespace Employees_Management_System.Forms
             this.dgvEmployeeDetails.ReadOnly = true;
             this.dgvEmployeeDetails.RowHeadersWidth = 51;
             this.dgvEmployeeDetails.RowTemplate.Height = 25;
-            this.dgvEmployeeDetails.Size = new System.Drawing.Size(1220, 898);
+            this.dgvEmployeeDetails.Size = new System.Drawing.Size(885, 898);
             this.dgvEmployeeDetails.TabIndex = 0;
             this.dgvEmployeeDetails.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployeeDetails_CellClick);
             this.dgvEmployeeDetails.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvEmployeeDetails_CellContentClick);
@@ -803,7 +1060,7 @@ namespace Employees_Management_System.Forms
             this.lblWorkingDatesTitle.Location = new System.Drawing.Point(341, 12);
             this.lblWorkingDatesTitle.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.lblWorkingDatesTitle.Name = "lblWorkingDatesTitle";
-            this.lblWorkingDatesTitle.Size = new System.Drawing.Size(911, 960);
+            this.lblWorkingDatesTitle.Size = new System.Drawing.Size(1690, 960);
             this.lblWorkingDatesTitle.TabIndex = 3;
             this.lblWorkingDatesTitle.Text = "Working Dates";
             // 
@@ -813,7 +1070,7 @@ namespace Employees_Management_System.Forms
             this.btnAddAsOffDay.FlatAppearance.BorderSize = 0;
             this.btnAddAsOffDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAsOffDay.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAddAsOffDay.ForeColor = System.Drawing.Color.White;
+            this.btnAddAsOffDay.ForeColor = System.Drawing.Color.Red;
             this.btnAddAsOffDay.Location = new System.Drawing.Point(200, 271);
             this.btnAddAsOffDay.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddAsOffDay.Name = "btnAddAsOffDay";
@@ -829,7 +1086,7 @@ namespace Employees_Management_System.Forms
             this.btnAddAsWorkingDay.FlatAppearance.BorderSize = 0;
             this.btnAddAsWorkingDay.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAddAsWorkingDay.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
-            this.btnAddAsWorkingDay.ForeColor = System.Drawing.Color.White;
+            this.btnAddAsWorkingDay.ForeColor = System.Drawing.Color.Green;
             this.btnAddAsWorkingDay.Location = new System.Drawing.Point(27, 271);
             this.btnAddAsWorkingDay.Margin = new System.Windows.Forms.Padding(4);
             this.btnAddAsWorkingDay.Name = "btnAddAsWorkingDay";
@@ -846,6 +1103,72 @@ namespace Employees_Management_System.Forms
             this.monthCalendar.Name = "monthCalendar";
             this.monthCalendar.TabIndex = 0;
             // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackColor = System.Drawing.Color.Crimson;
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox3.Location = new System.Drawing.Point(21, 210);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(74, 50);
+            this.pictureBox3.TabIndex = 10;
+            this.pictureBox3.TabStop = false;
+            // 
+            // pictureBox4
+            // 
+            this.pictureBox4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(82)))));
+            this.pictureBox4.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox4.BackgroundImage")));
+            this.pictureBox4.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox4.Location = new System.Drawing.Point(50, 275);
+            this.pictureBox4.Name = "pictureBox4";
+            this.pictureBox4.Size = new System.Drawing.Size(50, 50);
+            this.pictureBox4.TabIndex = 11;
+            this.pictureBox4.TabStop = false;
+            // 
+            // pictureBox5
+            // 
+            this.pictureBox5.BackColor = System.Drawing.Color.SpringGreen;
+            this.pictureBox5.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox5.BackgroundImage")));
+            this.pictureBox5.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox5.Location = new System.Drawing.Point(12, 334);
+            this.pictureBox5.Name = "pictureBox5";
+            this.pictureBox5.Size = new System.Drawing.Size(59, 50);
+            this.pictureBox5.TabIndex = 12;
+            this.pictureBox5.TabStop = false;
+            // 
+            // pictureBox6
+            // 
+            this.pictureBox6.BackColor = System.Drawing.Color.MediumBlue;
+            this.pictureBox6.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox6.BackgroundImage")));
+            this.pictureBox6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox6.Location = new System.Drawing.Point(50, 516);
+            this.pictureBox6.Name = "pictureBox6";
+            this.pictureBox6.Size = new System.Drawing.Size(59, 50);
+            this.pictureBox6.TabIndex = 13;
+            this.pictureBox6.TabStop = false;
+            // 
+            // pictureBox7
+            // 
+            this.pictureBox7.BackColor = System.Drawing.Color.Magenta;
+            this.pictureBox7.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox7.BackgroundImage")));
+            this.pictureBox7.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox7.Location = new System.Drawing.Point(36, 460);
+            this.pictureBox7.Name = "pictureBox7";
+            this.pictureBox7.Size = new System.Drawing.Size(59, 50);
+            this.pictureBox7.TabIndex = 14;
+            this.pictureBox7.TabStop = false;
+            // 
+            // pictureBox8
+            // 
+            this.pictureBox8.BackColor = System.Drawing.Color.Gold;
+            this.pictureBox8.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox8.BackgroundImage")));
+            this.pictureBox8.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.pictureBox8.Location = new System.Drawing.Point(21, 398);
+            this.pictureBox8.Name = "pictureBox8";
+            this.pictureBox8.Size = new System.Drawing.Size(59, 50);
+            this.pictureBox8.TabIndex = 15;
+            this.pictureBox8.TabStop = false;
+            // 
             // AdminDashboard
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -860,8 +1183,11 @@ namespace Employees_Management_System.Forms
             this.panelMain.ResumeLayout(false);
             this.panelNavigation.ResumeLayout(false);
             this.panelNavigation.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             this.panelContent.ResumeLayout(false);
+            this.panelAttendanceSummary.ResumeLayout(false);
+            this.panelAttendanceSummary.PerformLayout();
             this.panelEmployeeReport.ResumeLayout(false);
             this.panelEmployeeReport.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeReport)).EndInit();
@@ -876,6 +1202,12 @@ namespace Employees_Management_System.Forms
             this.panelEmployeeDetails.ResumeLayout(false);
             this.panelEmployeeDetails.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvEmployeeDetails)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox4)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox5)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox6)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox7)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox8)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -885,6 +1217,7 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.Panel panelMain;
         private System.Windows.Forms.Panel panelNavigation;
         private System.Windows.Forms.Button btnWorkingDates;
+        private System.Windows.Forms.Button btnAttendanceSummary;
         private System.Windows.Forms.Button btnEmployeeReport;
         private System.Windows.Forms.Button btnRequestManagement;
         private System.Windows.Forms.Button btnDepartmentManagement;
@@ -897,6 +1230,19 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.Button btnAddAsOffDay;
         private System.Windows.Forms.Button btnAddAsWorkingDay;
         private System.Windows.Forms.MonthCalendar monthCalendar;
+        private System.Windows.Forms.Panel panelAttendanceSummary;
+        private System.Windows.Forms.Label lblAttendanceSummaryTitle;
+        private System.Windows.Forms.Button btnUpdateSalary;
+        private System.Windows.Forms.Label lblTotalSalary;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label lblDeduction;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Label lblLeaveDays;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.Label lblAttendanceDays;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.ComboBox cmbEmployeeCode;
+        private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Panel panelEmployeeReport;
         private System.Windows.Forms.Label lblEmployeeReportTitle;
         private System.Windows.Forms.Button btnDownloadPDF;
@@ -909,6 +1255,7 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.DataGridView dgvRequestManagement;
         private System.Windows.Forms.Panel panelDepartmentManagement;
         private System.Windows.Forms.Label lblDepartmentManagementTitle;
+        private System.Windows.Forms.Button btnDeleteDepartment;
         private System.Windows.Forms.Button btnUpdateDepartment;
         private System.Windows.Forms.Button btnAddDepartment;
         private System.Windows.Forms.TextBox txtDepartmentName;
@@ -916,6 +1263,7 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.DataGridView dgvDepartmentManagement;
         private System.Windows.Forms.Panel panelEmployeeSection;
         private System.Windows.Forms.Label lblEmployeeSectionTitle;
+        private System.Windows.Forms.Button btnDeleteEmployee;
         private System.Windows.Forms.Button btnUpdateEmployee;
         private System.Windows.Forms.Button btnAddEmployee;
         private System.Windows.Forms.TextBox txtSalary;
@@ -935,7 +1283,13 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.Panel panelEmployeeDetails;
         private System.Windows.Forms.Label lblEmployeeDetailsTitle;
         private System.Windows.Forms.DataGridView dgvEmployeeDetails;
+        private System.Windows.Forms.PictureBox pictureBox2;
         private System.Windows.Forms.PictureBox pictureBox1;
-        private System.Windows.Forms.ComboBox cmbEmployeeCode;
+        private System.Windows.Forms.PictureBox pictureBox4;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.PictureBox pictureBox8;
+        private System.Windows.Forms.PictureBox pictureBox7;
+        private System.Windows.Forms.PictureBox pictureBox6;
+        private System.Windows.Forms.PictureBox pictureBox5;
     }
 }
