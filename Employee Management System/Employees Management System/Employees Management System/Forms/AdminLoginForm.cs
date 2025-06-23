@@ -37,7 +37,7 @@ namespace Employees_Management_System.Forms
                     int count = (int)cmd.ExecuteScalar();
                     if (count > 0)
                     {
-                        AdminDashboard adminDashboard = new AdminDashboard("Noushad");
+                        AdminDashboard adminDashboard = new AdminDashboard(username);
                         adminDashboard.Show();
                         this.Hide();
                     }

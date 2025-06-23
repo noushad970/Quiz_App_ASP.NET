@@ -27,7 +27,7 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees WHERE SecretCode = @SecretCode";
+                string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary, adminKey FROM Employees WHERE SecretCode = @SecretCode";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@SecretCode", secretCode);
@@ -42,8 +42,9 @@ namespace Employees_Management_System.Forms
                             string phone = reader.GetString(4);
                             int departmentId = reader.GetInt32(5);
                             decimal salary = reader.GetDecimal(7);
+                            string adminKey = reader.GetString(8); // Retrieve adminKey
 
-                            EmployeeProfile profile = new EmployeeProfile(employeeId, employeeCode, name, email, phone, departmentId, secretCode, salary);
+                            EmployeeProfile profile = new EmployeeProfile(employeeId, employeeCode, name, email, phone, departmentId, secretCode, salary, adminKey);
                             profile.Show();
                             this.Hide();
                         }
@@ -58,7 +59,6 @@ namespace Employees_Management_System.Forms
 
         private void txtSecretCode_TextChanged(object sender, EventArgs e)
         {
-
         }
     }
 }

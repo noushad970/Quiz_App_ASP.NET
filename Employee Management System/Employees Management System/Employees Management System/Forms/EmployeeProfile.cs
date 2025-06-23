@@ -17,8 +17,9 @@ namespace Employees_Management_System.Forms
         private int departmentId;
         private string secretCode;
         private decimal salary;
+        private string currentAdminKey; // Added to store the adminKey
 
-        public EmployeeProfile(int employeeId, string employeeCode, string name, string email, string phone, int departmentId, string secretCode, decimal salary)
+        public EmployeeProfile(int employeeId, string employeeCode, string name, string email, string phone, int departmentId, string secretCode, decimal salary, string currentAdminKey)
         {
             InitializeComponent();
             this.employeeId = employeeId;
@@ -29,6 +30,7 @@ namespace Employees_Management_System.Forms
             this.departmentId = departmentId;
             this.secretCode = secretCode;
             this.salary = salary;
+            this.currentAdminKey = currentAdminKey; // Store the adminKey
         }
 
         private void EmployeeProfile_Load(object sender, EventArgs e)
@@ -41,19 +43,21 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentId = @DepartmentId";
+                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentId = @DepartmentId AND adminKey = @adminKey";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
+                    cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                     string departmentName = cmd.ExecuteScalar()?.ToString() ?? "Unknown";
                     lblDepartment.Text = "Department: " + departmentName;
                 }
 
                 // Add image retrieval
-                string imageQuery = "SELECT EmployeeImage FROM Employees WHERE EmployeeId = @EmployeeId";
+                string imageQuery = "SELECT EmployeeImage FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
                 using (SqlCommand imgCmd = new SqlCommand(imageQuery, conn))
                 {
                     imgCmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                    imgCmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                     using (SqlDataReader imgReader = imgCmd.ExecuteReader())
                     {
                         if (imgReader.Read())
@@ -77,7 +81,6 @@ namespace Employees_Management_System.Forms
             lblSalary.Text = "Salary: " + salary.ToString("C");
             LoadLeaveRequests();
             UpdateAttendanceSummary();
-            LoadNotices();
         }
 
         private void LoadLeaveRequests()
@@ -85,10 +88,11 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT RequestId, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE EmployeeCode = @EmployeeCode";
+                string query = "SELECT RequestId, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE EmployeeCode = @EmployeeCode AND adminKey = @adminKey";
                 using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                 {
                     da.SelectCommand.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                    da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                     DataTable dt = new DataTable();
                     da.Fill(dt);
                     dgvLeaveRequests.DataSource = dt;
@@ -108,11 +112,12 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "SELECT WorkDate, IsWorkingDay FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate";
+                string query = "SELECT WorkDate, IsWorkingDay FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND adminKey = @adminKey";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
                     cmd.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                    cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                     using (SqlDataReader reader = cmd.ExecuteReader())
                     {
                         while (reader.Read())
@@ -136,20 +141,22 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string dutyQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                string dutyQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                 using (SqlCommand cmdDuty = new SqlCommand(dutyQuery, conn))
                 {
                     cmdDuty.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
                     cmdDuty.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                    cmdDuty.Parameters.AddWithValue("@adminKey", currentAdminKey);
                     int totalDutyDays = (int)cmdDuty.ExecuteScalar();
                     lblTotalDutyDays.Text = $"Total Duty Days: {totalDutyDays}";
 
-                    string attendanceQuery = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                    string attendanceQuery = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                     using (SqlCommand cmdAttendance = new SqlCommand(attendanceQuery, conn))
                     {
                         cmdAttendance.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                         cmdAttendance.Parameters.AddWithValue("@StartDate", firstDayOfMonth);
                         cmdAttendance.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
+                        cmdAttendance.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int attendanceDays = (int)cmdAttendance.ExecuteScalar();
 
                         int unexcusedAbsences = Math.Max(0, totalDutyDays - attendanceDays);
@@ -164,37 +171,14 @@ namespace Employees_Management_System.Forms
 
         private void btnLeaveRequest_Click(object sender, EventArgs e)
         {
-            LeaveRequest leaveRequest = new LeaveRequest(employeeId, employeeCode);
+            LeaveRequest leaveRequest = new LeaveRequest(employeeId, employeeCode, currentAdminKey); // Pass adminKey
             leaveRequest.ShowDialog();
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
         {
-            GiveAttendance giveAttendance = new GiveAttendance(employeeId, employeeCode);
+            GiveAttendance giveAttendance = new GiveAttendance(employeeId, employeeCode, currentAdminKey); // Pass adminKey
             giveAttendance.ShowDialog();
-        }
-
-        private void LoadNotices()
-        {
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
-            {
-                conn.Open();
-                string query = "SELECT NoticeId, NoticeText, PublishDate FROM Notices WHERE DepartmentId = @DepartmentId";
-                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
-                {
-                    da.SelectCommand.Parameters.AddWithValue("@DepartmentId", departmentId);
-                    DataTable dt = new DataTable();
-                    da.Fill(dt);
-                    dgvNotices.DataSource = dt;
-                    dgvNotices.Columns["NoticeId"].Visible = false;
-                    dgvNotices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    // Style columns
-                    if (dgvNotices.Columns.Contains("NoticeText"))
-                        dgvNotices.Columns["NoticeText"].HeaderText = "Notice";
-                    if (dgvNotices.Columns.Contains("PublishDate"))
-                        dgvNotices.Columns["PublishDate"].HeaderText = "Published On";
-                }
-            }
         }
     }
 }

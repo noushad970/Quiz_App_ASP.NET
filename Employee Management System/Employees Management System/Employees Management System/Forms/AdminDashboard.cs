@@ -13,24 +13,45 @@ namespace Employees_Management_System.Forms
         private int selectedEmployeeId = -1;
         private int selectedDepartmentId = -1;
         private string currentUsername;
+        private string currentAdminKey; // Added to store the adminKey
 
         public AdminDashboard(string username)
         {
             InitializeComponent();
             currentUsername = username;
             lblWelcome.Text = $"Welcome, {currentUsername}!";
+            LoadAdminKey(); // Load the adminKey based on username
             InitializeWorkingDatesPanel();
+        }
+
+        private void LoadAdminKey()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT adminKey FROM Admins WHERE Username = @Username";
+                using (SqlCommand cmd = new SqlCommand(query, conn))
+                {
+                    cmd.Parameters.AddWithValue("@Username", currentUsername);
+                    object result = cmd.ExecuteScalar();
+                    currentAdminKey = result?.ToString();
+                    if (string.IsNullOrEmpty(currentAdminKey))
+                    {
+                        MessageBox.Show("Admin key not found. Please log in again.");
+                        this.Close();
+                    }
+                }
+            }
         }
 
         private void InitializeWorkingDatesPanel()
         {
-
             monthCalendar = new MonthCalendar();
             monthCalendar.Location = new Point(10, 10);
             monthCalendar.Name = "monthCalendar";
-            monthCalendar.Size = new Size(300, 250); // Added size for visibility
+            monthCalendar.Size = new Size(300, 250);
             monthCalendar.TabIndex = 14;
-            monthCalendar.DateChanged += new DateRangeEventHandler(monthCalendar_DateChanged); // Added DateChanged event
+            monthCalendar.DateChanged += new DateRangeEventHandler(monthCalendar_DateChanged);
             panelWorkingDates.Controls.Add(monthCalendar);
 
             btnAddAsWorkingDay = new Button();
@@ -61,7 +82,7 @@ namespace Employees_Management_System.Forms
             LoadRequestManagement();
             LoadDepartments();
             LoadEmployeeCodes();
-            panelEmployeeDetails.Visible = true; // Default to Employee Details
+            panelEmployeeDetails.Visible = true;
             ApplyDataGridViewStyling();
         }
 
@@ -72,9 +93,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees";
+                    string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees WHERE adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvEmployeeDetails.DataSource = null;
@@ -124,9 +146,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT DepartmentId, DepartmentName FROM Departments";
+                    string query = "SELECT DepartmentId, DepartmentName FROM Departments WHERE adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvDepartmentManagement.DataSource = dt;
@@ -146,9 +169,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT RequestId, EmployeeCode, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE Status = 'Pending'";
+                    string query = "SELECT RequestId, EmployeeCode, RequestType, Reason, RequestDate, Status FROM EmployeeRequests WHERE Status = 'Pending' AND adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvRequestManagement.DataSource = dt;
@@ -186,9 +210,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT DepartmentId, DepartmentName FROM Departments";
+                    string query = "SELECT DepartmentId, DepartmentName FROM Departments WHERE adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         cmbDepartment.DataSource = dt;
@@ -210,9 +235,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT EmployeeCode FROM Employees";
+                    string query = "SELECT EmployeeCode FROM Employees WHERE adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         cmbEmployeeCode.DataSource = dt;
@@ -280,7 +306,6 @@ namespace Employees_Management_System.Forms
 
         private void btnEmployeeReport_Click(object sender, EventArgs e)
         {
-            
             panelEmployeeDetails.Visible = false;
             panelDepartmentManagement.Visible = false;
             panelRequestManagement.Visible = false;
@@ -313,7 +338,6 @@ namespace Employees_Management_System.Forms
             panelEmployeeReport.Visible = false;
             panelAttendanceSummary.Visible = false;
             panelWorkingDates.Visible = true;
-            // Removed monthCalendar.SetDate(DateTime.Now) to allow user selection
         }
 
         private void dgvEmployeeDetails_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -332,73 +356,6 @@ namespace Employees_Management_System.Forms
             }
         }
 
-        /* private void btnAddEmployee_Click(object sender, EventArgs e)
-         {
-             string employeeCode = txtEmployeeCode.Text.Trim();
-             string name = txtName.Text.Trim();
-             string email = txtEmail.Text.Trim();
-             string phone = txtPhone.Text.Trim();
-             int departmentId = (int)cmbDepartment.SelectedValue;
-             string secretCode = txtSecretCode.Text.Trim();
-             decimal salary;
-             if (!decimal.TryParse(txtSalary.Text.Trim(), out salary))
-             {
-                 MessageBox.Show("Please enter a valid salary!");
-                 return;
-             }
-
-             if (string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(secretCode))
-             {
-                 MessageBox.Show("All fields are required!");
-                 return;
-             }
-
-             if (secretCode.Length < 6)
-             {
-                 MessageBox.Show("Secret code must be at least 6 characters long!");
-                 return;
-             }
-
-             try
-             {
-                 using (SqlConnection conn = DatabaseHelper.GetConnection())
-                 {
-                     conn.Open();
-                     string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId";
-                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
-                     {
-                         cmdCheck.Parameters.AddWithValue("@SecretCode", secretCode);
-                         cmdCheck.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId == -1 ? 0 : selectedEmployeeId);
-                         int count = (int)cmdCheck.ExecuteScalar();
-                         if (count > 0)
-                         {
-                             MessageBox.Show("The secret code is already in use by another employee!");
-                             return;
-                         }
-                     }
-
-                     string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary)";
-                     using (SqlCommand cmd = new SqlCommand(query, conn))
-                     {
-                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
-                         cmd.Parameters.AddWithValue("@Name", name);
-                         cmd.Parameters.AddWithValue("@Email", email);
-                         cmd.Parameters.AddWithValue("@Phone", phone);
-                         cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
-                         cmd.Parameters.AddWithValue("@SecretCode", secretCode);
-                         cmd.Parameters.AddWithValue("@Salary", salary);
-                         cmd.ExecuteNonQuery();
-                     }
-                 }
-                 MessageBox.Show("Employee added successfully!");
-                 LoadEmployeeDetails();
-                 ClearEmployeeFields();
-             }
-             catch (Exception ex)
-             {
-                 MessageBox.Show($"Error adding employee: {ex.Message}");
-             }
-         }*/
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
             string employeeCode = txtEmployeeCode.Text.Trim();
@@ -410,7 +367,6 @@ namespace Employees_Management_System.Forms
             decimal salary;
             byte[] employeeImage = null;
 
-            // Add image handling
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
                 using (var stream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
@@ -443,11 +399,12 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId";
+                    string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId AND adminKey = @adminKey";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {
                         cmdCheck.Parameters.AddWithValue("@SecretCode", secretCode);
                         cmdCheck.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId == -1 ? 0 : selectedEmployeeId);
+                        cmdCheck.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int count = (int)cmdCheck.ExecuteScalar();
                         if (count > 0)
                         {
@@ -455,7 +412,7 @@ namespace Employees_Management_System.Forms
                             return;
                         }
                     }
-                    string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary, EmployeeImage) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary, @EmployeeImage)";
+                    string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary, EmployeeImage, adminKey) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary, @EmployeeImage, @adminKey)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
@@ -465,7 +422,8 @@ namespace Employees_Management_System.Forms
                         cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
                         cmd.Parameters.AddWithValue("@SecretCode", secretCode);
                         cmd.Parameters.AddWithValue("@Salary", salary);
-                        cmd.Parameters.AddWithValue("@EmployeeImage", employeeImage ?? (object)DBNull.Value); // Handle null image
+                        cmd.Parameters.AddWithValue("@EmployeeImage", employeeImage ?? (object)DBNull.Value);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -478,6 +436,7 @@ namespace Employees_Management_System.Forms
                 MessageBox.Show($"Error adding employee: {ex.Message}");
             }
         }
+
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             if (selectedEmployeeId == -1)
@@ -516,11 +475,12 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId";
+                    string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId AND adminKey = @adminKey";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {
                         cmdCheck.Parameters.AddWithValue("@SecretCode", secretCode);
                         cmdCheck.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                        cmdCheck.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int count = (int)cmdCheck.ExecuteScalar();
                         if (count > 0)
                         {
@@ -529,7 +489,7 @@ namespace Employees_Management_System.Forms
                         }
                     }
 
-                    string query = "UPDATE Employees SET EmployeeCode = @EmployeeCode, Name = @Name, Email = @Email, Phone = @Phone, DepartmentId = @DepartmentId, SecretCode = @SecretCode, Salary = @Salary WHERE EmployeeId = @EmployeeId";
+                    string query = "UPDATE Employees SET EmployeeCode = @EmployeeCode, Name = @Name, Email = @Email, Phone = @Phone, DepartmentId = @DepartmentId, SecretCode = @SecretCode, Salary = @Salary WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
@@ -540,6 +500,7 @@ namespace Employees_Management_System.Forms
                         cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
                         cmd.Parameters.AddWithValue("@SecretCode", secretCode);
                         cmd.Parameters.AddWithValue("@Salary", salary);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -569,17 +530,19 @@ namespace Employees_Management_System.Forms
                     using (SqlConnection conn = DatabaseHelper.GetConnection())
                     {
                         conn.Open();
-                        string deleteRequestsQuery = "DELETE FROM EmployeeRequests WHERE EmployeeCode = (SELECT EmployeeCode FROM Employees WHERE EmployeeId = @EmployeeId)";
+                        string deleteRequestsQuery = "DELETE FROM EmployeeRequests WHERE EmployeeCode = (SELECT EmployeeCode FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey)";
                         using (SqlCommand cmdDeleteRequests = new SqlCommand(deleteRequestsQuery, conn))
                         {
                             cmdDeleteRequests.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                            cmdDeleteRequests.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             cmdDeleteRequests.ExecuteNonQuery();
                         }
 
-                        string deleteEmployeeQuery = "DELETE FROM Employees WHERE EmployeeId = @EmployeeId";
+                        string deleteEmployeeQuery = "DELETE FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
                         using (SqlCommand cmdDeleteEmployee = new SqlCommand(deleteEmployeeQuery, conn))
                         {
                             cmdDeleteEmployee.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                            cmdDeleteEmployee.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             cmdDeleteEmployee.ExecuteNonQuery();
                         }
                     }
@@ -630,10 +593,11 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "INSERT INTO Departments (DepartmentName) VALUES (@DepartmentName)";
+                    string query = "INSERT INTO Departments (DepartmentName, adminKey) VALUES (@DepartmentName, @adminKey)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@DepartmentName", departmentName);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -668,11 +632,12 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE Departments SET DepartmentName = @DepartmentName WHERE DepartmentId = @DepartmentId";
+                    string query = "UPDATE Departments SET DepartmentName = @DepartmentName WHERE DepartmentId = @DepartmentId AND adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@DepartmentName", departmentName);
                         cmd.Parameters.AddWithValue("@DepartmentId", selectedDepartmentId);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -703,10 +668,11 @@ namespace Employees_Management_System.Forms
                     using (SqlConnection conn = DatabaseHelper.GetConnection())
                     {
                         conn.Open();
-                        string query = "DELETE FROM Departments WHERE DepartmentId = @DepartmentId";
+                        string query = "DELETE FROM Departments WHERE DepartmentId = @DepartmentId AND adminKey = @adminKey";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@DepartmentId", selectedDepartmentId);
+                            cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             cmd.ExecuteNonQuery();
                         }
                     }
@@ -732,7 +698,7 @@ namespace Employees_Management_System.Forms
                     for (int i = 0; i < dgv.Rows.Count; i++)
                     {
                         if (i % 2 == 0)
-                            dgv.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(240, 248, 255); // AliceBlue
+                            dgv.Rows[i].DefaultCellStyle.BackColor = Color.FromArgb(240, 248, 255);
                         else
                             dgv.Rows[i].DefaultCellStyle.BackColor = Color.WhiteSmoke;
                     }
@@ -761,7 +727,7 @@ namespace Employees_Management_System.Forms
             if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
             {
                 if (e.RowIndex % 2 == 0)
-                    dgvEmployeeDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(240, 248, 255); // AliceBlue
+                    dgvEmployeeDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.FromArgb(240, 248, 255);
                 else
                     dgvEmployeeDetails.Rows[e.RowIndex].DefaultCellStyle.BackColor = Color.WhiteSmoke;
             }
@@ -795,17 +761,19 @@ namespace Employees_Management_System.Forms
                             using (SqlConnection conn = DatabaseHelper.GetConnection())
                             {
                                 conn.Open();
-                                string deleteRequestsQuery = "DELETE FROM EmployeeRequests WHERE EmployeeCode = (SELECT EmployeeCode FROM Employees WHERE EmployeeId = @EmployeeId)";
+                                string deleteRequestsQuery = "DELETE FROM EmployeeRequests WHERE EmployeeCode = (SELECT EmployeeCode FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey)";
                                 using (SqlCommand cmdDeleteRequests = new SqlCommand(deleteRequestsQuery, conn))
                                 {
                                     cmdDeleteRequests.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                                    cmdDeleteRequests.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                     cmdDeleteRequests.ExecuteNonQuery();
                                 }
 
-                                string deleteEmployeeQuery = "DELETE FROM Employees WHERE EmployeeId = @EmployeeId";
+                                string deleteEmployeeQuery = "DELETE FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
                                 using (SqlCommand cmdDeleteEmployee = new SqlCommand(deleteEmployeeQuery, conn))
                                 {
                                     cmdDeleteEmployee.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId);
+                                    cmdDeleteEmployee.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                     cmdDeleteEmployee.ExecuteNonQuery();
                                 }
                             }
@@ -848,11 +816,12 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "UPDATE EmployeeRequests SET Status = @Status WHERE RequestId = @RequestId";
+                    string query = "UPDATE EmployeeRequests SET Status = @Status WHERE RequestId = @RequestId AND adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@RequestId", requestId);
                         cmd.Parameters.AddWithValue("@Status", status);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -881,10 +850,11 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees WHERE SecretCode LIKE @SecretCode";
+                    string query = "SELECT EmployeeId, EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary FROM Employees WHERE SecretCode LIKE @SecretCode AND adminKey = @adminKey";
                     using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
                     {
                         da.SelectCommand.Parameters.AddWithValue("@SecretCode", $"%{secretCode}%");
+                        da.SelectCommand.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         DataTable dt = new DataTable();
                         da.Fill(dt);
                         dgvEmployeeReport.DataSource = dt;
@@ -896,6 +866,7 @@ namespace Employees_Management_System.Forms
                 MessageBox.Show($"Error loading employee report: {ex.Message}");
             }
         }
+
         private void LoadAttendanceSummary()
         {
             if (cmbEmployeeCode.SelectedValue == null) return;
@@ -903,34 +874,37 @@ namespace Employees_Management_System.Forms
             try
             {
                 string employeeCode = cmbEmployeeCode.SelectedValue.ToString();
-                DateTime now = DateTime.Now; // 06:31 AM +06, June 21, 2025
-                DateTime startOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
-                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+                DateTime now = DateTime.Now;
+                DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
 
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                    string query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                         cmd.Parameters.AddWithValue("@StartDate", startOfMonth);
                         cmd.Parameters.AddWithValue("@EndDate", endOfMonth);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int attendanceDays = (int)cmd.ExecuteScalar();
 
-                        query = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                        query = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                         using (SqlCommand cmdWorking = new SqlCommand(query, conn))
                         {
                             cmdWorking.Parameters.AddWithValue("@StartDate", startOfMonth);
                             cmdWorking.Parameters.AddWithValue("@EndDate", endOfMonth);
+                            cmdWorking.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             int totalWorkingDays = (int)cmdWorking.ExecuteScalar();
                             int leaveDays = totalWorkingDays - attendanceDays;
                             decimal deduction = leaveDays * 200;
                             decimal salary = 0;
-                            query = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode";
+                            query = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode AND adminKey = @adminKey";
                             using (SqlCommand cmdSalary = new SqlCommand(query, conn))
                             {
                                 cmdSalary.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                                cmdSalary.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 object salaryObj = cmdSalary.ExecuteScalar();
                                 if (salaryObj != null && salaryObj != DBNull.Value)
                                 {
@@ -965,18 +939,19 @@ namespace Employees_Management_System.Forms
             try
             {
                 string employeeCode = cmbEmployeeCode.SelectedValue.ToString();
-                DateTime now = DateTime.Now; // 06:31 AM +06, June 21, 2025
-                DateTime startOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
-                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+                DateTime now = DateTime.Now;
+                DateTime startOfMonth = new DateTime(now.Year, now.Month, 1);
+                DateTime endOfMonth = startOfMonth.AddMonths(1).AddDays(-1);
 
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode";
+                    string query = "SELECT Salary FROM Employees WHERE EmployeeCode = @EmployeeCode AND adminKey = @adminKey";
                     decimal currentSalary = 0;
                     using (SqlCommand cmdSalary = new SqlCommand(query, conn))
                     {
                         cmdSalary.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                        cmdSalary.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         object salaryObj = cmdSalary.ExecuteScalar();
                         if (salaryObj != null && salaryObj != DBNull.Value)
                         {
@@ -984,29 +959,32 @@ namespace Employees_Management_System.Forms
                         }
                     }
 
-                    query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                    query = "SELECT COUNT(*) FROM Attendance WHERE EmployeeCode = @EmployeeCode AND AttendanceDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                         cmd.Parameters.AddWithValue("@StartDate", startOfMonth);
                         cmd.Parameters.AddWithValue("@EndDate", endOfMonth);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int attendanceDays = (int)cmd.ExecuteScalar();
 
-                        query = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1";
+                        query = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate BETWEEN @StartDate AND @EndDate AND IsWorkingDay = 1 AND adminKey = @adminKey";
                         using (SqlCommand cmdWorking = new SqlCommand(query, conn))
                         {
                             cmdWorking.Parameters.AddWithValue("@StartDate", startOfMonth);
                             cmdWorking.Parameters.AddWithValue("@EndDate", endOfMonth);
+                            cmdWorking.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             int totalWorkingDays = (int)cmdWorking.ExecuteScalar();
                             int leaveDays = totalWorkingDays - attendanceDays;
                             decimal deduction = leaveDays * 200;
                             decimal totalSalary = currentSalary - deduction;
 
-                            query = "UPDATE Employees SET Salary = @Salary WHERE EmployeeCode = @EmployeeCode";
+                            query = "UPDATE Employees SET Salary = @Salary WHERE EmployeeCode = @EmployeeCode AND adminKey = @adminKey";
                             using (SqlCommand cmdUpdate = new SqlCommand(query, conn))
                             {
                                 cmdUpdate.Parameters.AddWithValue("@EmployeeCode", employeeCode);
                                 cmdUpdate.Parameters.AddWithValue("@Salary", totalSalary);
+                                cmdUpdate.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 cmdUpdate.ExecuteNonQuery();
                             }
                         }
@@ -1024,32 +1002,34 @@ namespace Employees_Management_System.Forms
         private void btnAddAsWorkingDay_Click(object sender, EventArgs e)
         {
             DateTime selectedDate = monthCalendar.SelectionStart;
-            MessageBox.Show($"Adding {selectedDate:yyyy-MM-dd} as a working day"); // Debug: Verify selected date
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string checkQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate = @WorkDate";
+                    string checkQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate = @WorkDate AND adminKey = @adminKey";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {
                         cmdCheck.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                        cmdCheck.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int count = (int)cmdCheck.ExecuteScalar();
                         if (count == 0)
                         {
-                            string insertQuery = "INSERT INTO WorkingDates (WorkDate, IsWorkingDay) VALUES (@WorkDate, 1)";
+                            string insertQuery = "INSERT INTO WorkingDates (WorkDate, IsWorkingDay, adminKey) VALUES (@WorkDate, 1, @adminKey)";
                             using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
                             {
                                 cmdInsert.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                                cmdInsert.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 cmdInsert.ExecuteNonQuery();
                             }
                         }
                         else
                         {
-                            string updateQuery = "UPDATE WorkingDates SET IsWorkingDay = 1 WHERE WorkDate = @WorkDate";
+                            string updateQuery = "UPDATE WorkingDates SET IsWorkingDay = 1 WHERE WorkDate = @WorkDate AND adminKey = @adminKey";
                             using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn))
                             {
                                 cmdUpdate.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                                cmdUpdate.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 cmdUpdate.ExecuteNonQuery();
                             }
                         }
@@ -1066,32 +1046,34 @@ namespace Employees_Management_System.Forms
         private void btnAddAsOffDay_Click(object sender, EventArgs e)
         {
             DateTime selectedDate = monthCalendar.SelectionStart;
-            MessageBox.Show($"Adding {selectedDate:yyyy-MM-dd} as an off day"); // Debug: Verify selected date
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string checkQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate = @WorkDate";
+                    string checkQuery = "SELECT COUNT(*) FROM WorkingDates WHERE WorkDate = @WorkDate AND adminKey = @adminKey";
                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
                     {
                         cmdCheck.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                        cmdCheck.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         int count = (int)cmdCheck.ExecuteScalar();
                         if (count == 0)
                         {
-                            string insertQuery = "INSERT INTO WorkingDates (WorkDate, IsWorkingDay) VALUES (@WorkDate, 0)";
+                            string insertQuery = "INSERT INTO WorkingDates (WorkDate, IsWorkingDay, adminKey) VALUES (@WorkDate, 0, @adminKey)";
                             using (SqlCommand cmdInsert = new SqlCommand(insertQuery, conn))
                             {
                                 cmdInsert.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                                cmdInsert.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 cmdInsert.ExecuteNonQuery();
                             }
                         }
                         else
                         {
-                            string updateQuery = "UPDATE WorkingDates SET IsWorkingDay = 0 WHERE WorkDate = @WorkDate";
+                            string updateQuery = "UPDATE WorkingDates SET IsWorkingDay = 0 WHERE WorkDate = @WorkDate AND adminKey = @adminKey";
                             using (SqlCommand cmdUpdate = new SqlCommand(updateQuery, conn))
                             {
                                 cmdUpdate.Parameters.AddWithValue("@WorkDate", selectedDate.Date);
+                                cmdUpdate.Parameters.AddWithValue("@adminKey", currentAdminKey);
                                 cmdUpdate.ExecuteNonQuery();
                             }
                         }
@@ -1107,7 +1089,6 @@ namespace Employees_Management_System.Forms
 
         private void monthCalendar_DateChanged(object sender, DateRangeEventArgs e)
         {
-            MessageBox.Show($"Date changed to: {monthCalendar.SelectionStart:yyyy-MM-dd}"); // Debug: Track date changes
         }
 
         private void btnDownloadPDF_Click(object sender, EventArgs e)
@@ -1180,7 +1161,7 @@ namespace Employees_Management_System.Forms
             try
             {
                 process.Start();
-                process.WaitForExit(30000); // 30-second timeout
+                process.WaitForExit(30000);
 
                 if (process.ExitCode == 0 && File.Exists(pdfFile))
                 {
@@ -1208,24 +1189,30 @@ namespace Employees_Management_System.Forms
             }
         }
 
-        //notice function to display messages
-
         private void btnNoticePublish_Click(object sender, EventArgs e)
         {
-            NoticePublishForm noticeForm = new NoticePublishForm();
+            NoticePublishForm noticeForm = new NoticePublishForm(currentAdminKey);
             noticeForm.ShowDialog();
         }
 
-        // Separate form class (add this in a new file, e.g., NoticePublishForm.cs)
+        private void addNoticeButton_Click(object sender, EventArgs e)
+        {
+            NoticePublishForm noticeForm = new NoticePublishForm(currentAdminKey);
+            noticeForm.ShowDialog();
+        }
+
+        // Separate form class (NoticePublishForm.cs)
         public partial class NoticePublishForm : Form
         {
             private ComboBox cmbDepartment;
             private TextBox txtNotice;
             private Button btnSubmit;
+            private string currentAdminKey; // Added to store the adminKey
 
-            public NoticePublishForm()
+            public NoticePublishForm(string currentAdminKey)
             {
                 InitializeComponent();
+                this.currentAdminKey = currentAdminKey; // Store the adminKey
             }
 
             private void InitializeComponent()
@@ -1281,9 +1268,10 @@ namespace Employees_Management_System.Forms
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    string query = "SELECT DepartmentId, DepartmentName FROM Departments";
+                    string query = "SELECT DepartmentId, DepartmentName FROM Departments WHERE adminKey = @adminKey";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                         using (SqlDataReader reader = cmd.ExecuteReader())
                         {
                             DataTable dt = new DataTable();
@@ -1309,12 +1297,13 @@ namespace Employees_Management_System.Forms
                     using (SqlConnection conn = DatabaseHelper.GetConnection())
                     {
                         conn.Open();
-                        string query = "INSERT INTO Notices (DepartmentId, NoticeText, PublishDate) VALUES (@DepartmentId, @NoticeText, @PublishDate)";
+                        string query = "INSERT INTO Notices (DepartmentId, NoticeText, PublishDate, adminKey) VALUES (@DepartmentId, @NoticeText, @PublishDate, @adminKey)";
                         using (SqlCommand cmd = new SqlCommand(query, conn))
                         {
                             cmd.Parameters.AddWithValue("@DepartmentId", cmbDepartment.SelectedValue);
                             cmd.Parameters.AddWithValue("@NoticeText", txtNotice.Text.Trim());
                             cmd.Parameters.AddWithValue("@PublishDate", DateTime.Now);
+                            cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
                             cmd.ExecuteNonQuery();
                             MessageBox.Show("Notice published successfully.");
                             this.Close();
@@ -1326,12 +1315,6 @@ namespace Employees_Management_System.Forms
                     MessageBox.Show($"Error publishing notice: {ex.Message}");
                 }
             }
-        }
-
-        private void addNoticeButton_Click(object sender, EventArgs e)
-        {
-            NoticePublishForm noticeForm = new NoticePublishForm();
-            noticeForm.ShowDialog();
         }
     }
 }

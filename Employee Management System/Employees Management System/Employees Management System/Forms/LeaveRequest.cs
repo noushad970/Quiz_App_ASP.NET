@@ -8,12 +8,14 @@ namespace Employees_Management_System.Forms
     {
         private int employeeId;
         private string employeeCode;
+        private string currentAdminKey; // Added to store the adminKey
 
-        public LeaveRequest(int employeeId, string employeeCode)
+        public LeaveRequest(int employeeId, string employeeCode, string currentAdminKey)
         {
             InitializeComponent();
             this.employeeId = employeeId;
             this.employeeCode = employeeCode;
+            this.currentAdminKey = currentAdminKey; // Store the adminKey
         }
 
         private void LeaveRequest_Load(object sender, EventArgs e)
@@ -36,7 +38,7 @@ namespace Employees_Management_System.Forms
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 conn.Open();
-                string query = "INSERT INTO EmployeeRequests (EmployeeId, EmployeeCode, RequestType, Reason, RequestDate, Status) VALUES (@EmployeeId, @EmployeeCode, @RequestType, @Reason, @RequestDate, @Status)";
+                string query = "INSERT INTO EmployeeRequests (EmployeeId, EmployeeCode, RequestType, Reason, RequestDate, Status, adminKey) VALUES (@EmployeeId, @EmployeeCode, @RequestType, @Reason, @RequestDate, @Status, @adminKey)";
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
                     cmd.Parameters.AddWithValue("@EmployeeId", employeeId);
@@ -45,6 +47,7 @@ namespace Employees_Management_System.Forms
                     cmd.Parameters.AddWithValue("@Reason", reason);
                     cmd.Parameters.AddWithValue("@RequestDate", startDate);
                     cmd.Parameters.AddWithValue("@Status", "Pending");
+                    cmd.Parameters.AddWithValue("@adminKey", currentAdminKey); // Add adminKey to the query
                     cmd.ExecuteNonQuery();
                     MessageBox.Show($"{requestType} request submitted successfully!");
                     this.Close();
