@@ -89,11 +89,11 @@
     <Compile Include="Forms\LoginSelection.Designer.cs">
       <DependentUpon>LoginSelection.cs</DependentUpon>
     </Compile>
-    <Compile Include="Forms\LoginForm.cs">
+    <Compile Include="Forms\PublishNoticeForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Forms\LoginForm.Designer.cs">
-      <DependentUpon>LoginForm.cs</DependentUpon>
+    <Compile Include="Forms\PublishNoticeForm.Designer.cs">
+      <DependentUpon>PublishNoticeForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\Employee.cs" />

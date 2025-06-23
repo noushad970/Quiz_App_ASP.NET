@@ -77,6 +77,7 @@ namespace Employees_Management_System.Forms
             lblSalary.Text = "Salary: " + salary.ToString("C");
             LoadLeaveRequests();
             UpdateAttendanceSummary();
+            LoadNotices();
         }
 
         private void LoadLeaveRequests()
@@ -99,9 +100,9 @@ namespace Employees_Management_System.Forms
 
         private void btnThisMonthSchedule_Click(object sender, EventArgs e)
         {
-            DateTime now = DateTime.Now; // 05:32 PM +06, June 20, 2025
-            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
-            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+            DateTime now = DateTime.Now;
+            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
             StringBuilder schedule = new StringBuilder($"Schedule for {firstDayOfMonth:MMMM yyyy}:\n");
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -128,9 +129,9 @@ namespace Employees_Management_System.Forms
 
         private void UpdateAttendanceSummary()
         {
-            DateTime now = DateTime.Now; // 05:32 PM +06, June 20, 2025
-            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1); // June 1, 2025
-            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1); // June 30, 2025
+            DateTime now = DateTime.Now;
+            DateTime firstDayOfMonth = new DateTime(now.Year, now.Month, 1);
+            DateTime lastDayOfMonth = firstDayOfMonth.AddMonths(1).AddDays(-1);
 
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -151,7 +152,7 @@ namespace Employees_Management_System.Forms
                         cmdAttendance.Parameters.AddWithValue("@EndDate", lastDayOfMonth);
                         int attendanceDays = (int)cmdAttendance.ExecuteScalar();
 
-                        int unexcusedAbsences = Math.Max(0, totalDutyDays - attendanceDays); // Ensure non-negative
+                        int unexcusedAbsences = Math.Max(0, totalDutyDays - attendanceDays);
                         lblUnexcusedAbsences.Text = $"Unexcused Absences: {unexcusedAbsences}";
 
                         decimal fine = unexcusedAbsences * 200;
@@ -171,6 +172,29 @@ namespace Employees_Management_System.Forms
         {
             GiveAttendance giveAttendance = new GiveAttendance(employeeId, employeeCode);
             giveAttendance.ShowDialog();
+        }
+
+        private void LoadNotices()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT NoticeId, NoticeText, PublishDate FROM Notices WHERE DepartmentId = @DepartmentId";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@DepartmentId", departmentId);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvNotices.DataSource = dt;
+                    dgvNotices.Columns["NoticeId"].Visible = false;
+                    dgvNotices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    // Style columns
+                    if (dgvNotices.Columns.Contains("NoticeText"))
+                        dgvNotices.Columns["NoticeText"].HeaderText = "Notice";
+                    if (dgvNotices.Columns.Contains("PublishDate"))
+                        dgvNotices.Columns["PublishDate"].HeaderText = "Published On";
+                }
+            }
         }
     }
 }

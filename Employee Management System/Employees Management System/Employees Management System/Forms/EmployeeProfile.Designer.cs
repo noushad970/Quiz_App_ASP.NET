@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.tableLayoutPanelMain = new System.Windows.Forms.TableLayoutPanel();
             this.panelHeader = new System.Windows.Forms.Panel();
             this.labelTitle = new System.Windows.Forms.Label();
@@ -53,6 +54,9 @@
             this.lblTotalDutyDays = new System.Windows.Forms.Label();
             this.lblUnexcusedAbsences = new System.Windows.Forms.Label();
             this.lblFine = new System.Windows.Forms.Label();
+            this.panelNotices = new System.Windows.Forms.Panel();
+            this.tableLayoutPanelNotices = new System.Windows.Forms.TableLayoutPanel();
+            this.dgvNotices = new System.Windows.Forms.DataGridView();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.tableLayoutPanelMain.SuspendLayout();
             this.panelHeader.SuspendLayout();
@@ -66,6 +70,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgvLeaveRequests)).BeginInit();
             this.panelSummary.SuspendLayout();
             this.tableLayoutPanelSummary.SuspendLayout();
+            this.panelNotices.SuspendLayout();
+            this.tableLayoutPanelNotices.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotices)).BeginInit();
             this.SuspendLayout();
             // 
             // tableLayoutPanelMain
@@ -77,17 +84,19 @@
             this.tableLayoutPanelMain.Controls.Add(this.panelButtons, 0, 2);
             this.tableLayoutPanelMain.Controls.Add(this.panelGrid, 0, 3);
             this.tableLayoutPanelMain.Controls.Add(this.panelSummary, 0, 4);
+            this.tableLayoutPanelMain.Controls.Add(this.panelNotices, 0, 5);
             this.tableLayoutPanelMain.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelMain.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanelMain.Margin = new System.Windows.Forms.Padding(4);
             this.tableLayoutPanelMain.Name = "tableLayoutPanelMain";
-            this.tableLayoutPanelMain.RowCount = 5;
+            this.tableLayoutPanelMain.RowCount = 6;
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 60F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 100F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1100, 850);
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F)); // Reduced from 100F to 70F
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1100, 970); // Adjusted height
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // panelHeader
@@ -182,7 +191,7 @@
             this.lblName.Name = "lblName";
             this.lblName.Size = new System.Drawing.Size(393, 23);
             this.lblName.TabIndex = 2;
-            this.lblName.Text = "asasaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
+            this.lblName.Text = "asasa";
             // 
             // lblEmail
             // 
@@ -241,7 +250,7 @@
             this.panelButtons.Margin = new System.Windows.Forms.Padding(4);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Padding = new System.Windows.Forms.Padding(10);
-            this.panelButtons.Size = new System.Drawing.Size(1092, 132);
+            this.panelButtons.Size = new System.Drawing.Size(400, 132);
             this.panelButtons.TabIndex = 2;
             // 
             // tableLayoutPanelButtons
@@ -272,7 +281,7 @@
             this.btnAttendance.Location = new System.Drawing.Point(361, 4);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(4);
             this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(349, 104);
+            this.btnAttendance.Size = new System.Drawing.Size(200, 50);
             this.btnAttendance.TabIndex = 8;
             this.btnAttendance.Text = "Give Attendance";
             this.btnAttendance.UseVisualStyleBackColor = false;
@@ -288,7 +297,7 @@
             this.btnThisMonthSchedule.Location = new System.Drawing.Point(718, 4);
             this.btnThisMonthSchedule.Margin = new System.Windows.Forms.Padding(4);
             this.btnThisMonthSchedule.Name = "btnThisMonthSchedule";
-            this.btnThisMonthSchedule.Size = new System.Drawing.Size(344, 104);
+            this.btnThisMonthSchedule.Size = new System.Drawing.Size(200, 50);
             this.btnThisMonthSchedule.TabIndex = 10;
             this.btnThisMonthSchedule.Text = "This Month Schedule";
             this.btnThisMonthSchedule.UseVisualStyleBackColor = false;
@@ -304,7 +313,7 @@
             this.btnLeaveRequest.Location = new System.Drawing.Point(4, 4);
             this.btnLeaveRequest.Margin = new System.Windows.Forms.Padding(4);
             this.btnLeaveRequest.Name = "btnLeaveRequest";
-            this.btnLeaveRequest.Size = new System.Drawing.Size(349, 104);
+            this.btnLeaveRequest.Size = new System.Drawing.Size(200, 50);
             this.btnLeaveRequest.TabIndex = 7;
             this.btnLeaveRequest.Text = "Apply Leave Request";
             this.btnLeaveRequest.UseVisualStyleBackColor = false;
@@ -312,6 +321,7 @@
             // 
             // panelGrid
             // 
+            this.panelGrid.AutoScroll = true; // Enable scrolling
             this.panelGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
             this.panelGrid.Controls.Add(this.tableLayoutPanelGrid);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -356,7 +366,7 @@
             this.panelSummary.Margin = new System.Windows.Forms.Padding(4);
             this.panelSummary.Name = "panelSummary";
             this.panelSummary.Padding = new System.Windows.Forms.Padding(10);
-            this.panelSummary.Size = new System.Drawing.Size(1092, 92);
+            this.panelSummary.Size = new System.Drawing.Size(1092, 62); // Reduced size
             this.panelSummary.TabIndex = 4;
             // 
             // tableLayoutPanelSummary
@@ -374,7 +384,7 @@
             this.tableLayoutPanelSummary.Name = "tableLayoutPanelSummary";
             this.tableLayoutPanelSummary.RowCount = 1;
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(1072, 72);
+            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(1072, 42); // Reduced size
             this.tableLayoutPanelSummary.TabIndex = 0;
             // 
             // lblTotalDutyDays
@@ -413,6 +423,50 @@
             this.lblFine.TabIndex = 13;
             this.lblFine.Text = "Fine: 0 Taka";
             // 
+            // panelNotices
+            // 
+            this.panelNotices.AutoScroll = true; // Enable scrolling
+            this.panelNotices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(77)))));
+            this.panelNotices.Controls.Add(this.tableLayoutPanelNotices);
+            this.panelNotices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panelNotices.Location = new System.Drawing.Point(4, 824);
+            this.panelNotices.Margin = new System.Windows.Forms.Padding(4);
+            this.panelNotices.Name = "panelNotices";
+            this.panelNotices.Padding = new System.Windows.Forms.Padding(10);
+            this.panelNotices.Size = new System.Drawing.Size(1092, 142);
+            this.panelNotices.TabIndex = 5;
+            // 
+            // tableLayoutPanelNotices
+            // 
+            this.tableLayoutPanelNotices.ColumnCount = 1;
+            this.tableLayoutPanelNotices.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelNotices.Controls.Add(this.dgvNotices, 0, 0);
+            this.tableLayoutPanelNotices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableLayoutPanelNotices.Location = new System.Drawing.Point(10, 10);
+            this.tableLayoutPanelNotices.Margin = new System.Windows.Forms.Padding(4);
+            this.tableLayoutPanelNotices.Name = "tableLayoutPanelNotices";
+            this.tableLayoutPanelNotices.RowCount = 1;
+            this.tableLayoutPanelNotices.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableLayoutPanelNotices.Size = new System.Drawing.Size(1072, 122);
+            this.tableLayoutPanelNotices.TabIndex = 0;
+            // 
+            // dgvNotices
+            // 
+            this.dgvNotices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(90)))), ((int)(((byte)(100)))));
+            this.dgvNotices.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvNotices.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvNotices.ColumnHeadersDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.SteelBlue, ForeColor = System.Drawing.Color.White, Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold) };
+            this.dgvNotices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvNotices.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(90))))), ForeColor = System.Drawing.Color.White, SelectionBackColor = System.Drawing.Color.DodgerBlue, SelectionForeColor = System.Drawing.Color.White };
+            this.dgvNotices.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgvNotices.Location = new System.Drawing.Point(4, 4);
+            this.dgvNotices.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvNotices.Name = "dgvNotices";
+            this.dgvNotices.RowHeadersWidth = 51;
+            this.dgvNotices.RowTemplate.Height = 28;
+            this.dgvNotices.Size = new System.Drawing.Size(1064, 114);
+            this.dgvNotices.TabIndex = 0;
+            // 
             // openFileDialog1
             // 
             this.openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
@@ -423,7 +477,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1100, 850);
+            this.ClientSize = new System.Drawing.Size(1100, 970); // Adjusted height
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeProfile";
@@ -445,6 +499,9 @@
             this.panelSummary.ResumeLayout(false);
             this.tableLayoutPanelSummary.ResumeLayout(false);
             this.tableLayoutPanelSummary.PerformLayout();
+            this.panelNotices.ResumeLayout(false);
+            this.tableLayoutPanelNotices.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgvNotices)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -477,5 +534,8 @@
         private System.Windows.Forms.Label lblUnexcusedAbsences;
         private System.Windows.Forms.Label lblFine;
         private System.Windows.Forms.OpenFileDialog openFileDialog1;
+        private System.Windows.Forms.Panel panelNotices;
+        private System.Windows.Forms.TableLayoutPanel tableLayoutPanelNotices;
+        private System.Windows.Forms.DataGridView dgvNotices;
     }
 }

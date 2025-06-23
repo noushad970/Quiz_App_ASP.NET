@@ -1208,6 +1208,130 @@ namespace Employees_Management_System.Forms
             }
         }
 
-        
+        //notice function to display messages
+
+        private void btnNoticePublish_Click(object sender, EventArgs e)
+        {
+            NoticePublishForm noticeForm = new NoticePublishForm();
+            noticeForm.ShowDialog();
+        }
+
+        // Separate form class (add this in a new file, e.g., NoticePublishForm.cs)
+        public partial class NoticePublishForm : Form
+        {
+            private ComboBox cmbDepartment;
+            private TextBox txtNotice;
+            private Button btnSubmit;
+
+            public NoticePublishForm()
+            {
+                InitializeComponent();
+            }
+
+            private void InitializeComponent()
+            {
+                this.cmbDepartment = new System.Windows.Forms.ComboBox();
+                this.txtNotice = new System.Windows.Forms.TextBox();
+                this.btnSubmit = new System.Windows.Forms.Button();
+                this.SuspendLayout();
+
+                // cmbDepartment
+                this.cmbDepartment.FormattingEnabled = true;
+                this.cmbDepartment.Location = new System.Drawing.Point(20, 20);
+                this.cmbDepartment.Name = "cmbDepartment";
+                this.cmbDepartment.Size = new System.Drawing.Size(260, 24);
+                this.cmbDepartment.TabIndex = 0;
+                this.cmbDepartment.DropDownStyle = ComboBoxStyle.DropDownList;
+
+                // txtNotice
+                this.txtNotice.Location = new System.Drawing.Point(20, 60);
+                this.txtNotice.Multiline = true;
+                this.txtNotice.Name = "txtNotice";
+                this.txtNotice.Size = new System.Drawing.Size(260, 100);
+                this.txtNotice.TabIndex = 1;
+
+                // btnSubmit
+                this.btnSubmit.Location = new System.Drawing.Point(100, 170);
+                this.btnSubmit.Name = "btnSubmit";
+                this.btnSubmit.Size = new System.Drawing.Size(100, 30);
+                this.btnSubmit.TabIndex = 2;
+                this.btnSubmit.Text = "Submit";
+                this.btnSubmit.UseVisualStyleBackColor = true;
+                this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
+
+                // Form
+                this.ClientSize = new System.Drawing.Size(300, 220);
+                this.Controls.Add(this.btnSubmit);
+                this.Controls.Add(this.txtNotice);
+                this.Controls.Add(this.cmbDepartment);
+                this.Name = "NoticePublishForm";
+                this.Text = "Publish Notice";
+                this.Load += new System.EventHandler(this.NoticePublishForm_Load);
+                this.ResumeLayout(false);
+                this.PerformLayout();
+            }
+
+            private void NoticePublishForm_Load(object sender, EventArgs e)
+            {
+                LoadDepartments();
+            }
+
+            private void LoadDepartments()
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    string query = "SELECT DepartmentId, DepartmentName FROM Departments";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
+                    {
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            DataTable dt = new DataTable();
+                            dt.Load(reader);
+                            cmbDepartment.DataSource = dt;
+                            cmbDepartment.DisplayMember = "DepartmentName";
+                            cmbDepartment.ValueMember = "DepartmentId";
+                        }
+                    }
+                }
+            }
+
+            private void btnSubmit_Click(object sender, EventArgs e)
+            {
+                if (string.IsNullOrWhiteSpace(txtNotice.Text) || cmbDepartment.SelectedIndex == -1)
+                {
+                    MessageBox.Show("Please enter a notice and select a department.");
+                    return;
+                }
+
+                try
+                {
+                    using (SqlConnection conn = DatabaseHelper.GetConnection())
+                    {
+                        conn.Open();
+                        string query = "INSERT INTO Notices (DepartmentId, NoticeText, PublishDate) VALUES (@DepartmentId, @NoticeText, @PublishDate)";
+                        using (SqlCommand cmd = new SqlCommand(query, conn))
+                        {
+                            cmd.Parameters.AddWithValue("@DepartmentId", cmbDepartment.SelectedValue);
+                            cmd.Parameters.AddWithValue("@NoticeText", txtNotice.Text.Trim());
+                            cmd.Parameters.AddWithValue("@PublishDate", DateTime.Now);
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Notice published successfully.");
+                            this.Close();
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Error publishing notice: {ex.Message}");
+                }
+            }
+        }
+
+        private void addNoticeButton_Click(object sender, EventArgs e)
+        {
+            NoticePublishForm noticeForm = new NoticePublishForm();
+            noticeForm.ShowDialog();
+        }
     }
 }
