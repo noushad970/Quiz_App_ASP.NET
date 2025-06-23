@@ -1,4 +1,5 @@
-﻿using System.Drawing;
+﻿using System;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Employees_Management_System.Forms
@@ -726,6 +727,30 @@ namespace Employees_Management_System.Forms
             this.label1.Size = new System.Drawing.Size(161, 23);
             this.label1.TabIndex = 0;
             this.label1.Text = "Employee Position:";
+
+            this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
+            this.btnUploadImage = new System.Windows.Forms.Button();
+
+            // 
+            // openFileDialog1
+            // 
+            this.openFileDialog1.Filter = "Image Files|*.jpg;*.jpeg;*.png;*.bmp";
+            this.openFileDialog1.Title = "Select Employee Image";
+
+            // 
+            // btnUploadImage
+            // 
+            this.btnUploadImage.Location = new System.Drawing.Point(499, 335);
+            this.btnUploadImage.Name = "btnUploadImage";
+            this.btnUploadImage.Size = new System.Drawing.Size(102, 43);
+            this.btnUploadImage.TabIndex = 10;
+            this.btnUploadImage.Text = "Upload Image";
+            this.btnUploadImage.UseVisualStyleBackColor = true;
+            this.btnUploadImage.Click += new System.EventHandler(this.btnUploadImage_Click);
+
+            // Add to panelEmployeeSection
+            this.panelEmployeeSection.Controls.Add(this.btnUploadImage);
+
             // 
             // panelEmployeeDetails
             // 
@@ -1257,6 +1282,15 @@ namespace Employees_Management_System.Forms
 
         }
 
+        private void btnUploadImage_Click(object sender, EventArgs e)
+        {
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                // Image selection is handled; saving occurs in btnAddEmployee_Click
+                MessageBox.Show("Image selected. Add employee to save the image.");
+            }
+        }
+
         #endregion
 
         private System.Windows.Forms.Panel panelMain;
@@ -1335,7 +1369,9 @@ namespace Employees_Management_System.Forms
         private System.Windows.Forms.PictureBox pictureBox8;
         private System.Windows.Forms.PictureBox pictureBox7;
         private System.Windows.Forms.PictureBox pictureBox6;
-        private System.Windows.Forms.PictureBox pictureBox5;
+        private System.Windows.Forms.PictureBox pictureBox5; 
+        private System.Windows.Forms.Button btnUploadImage;
+        private System.Windows.Forms.OpenFileDialog openFileDialog1;
 
     }
 }

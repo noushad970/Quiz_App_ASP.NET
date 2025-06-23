@@ -280,6 +280,7 @@ namespace Employees_Management_System.Forms
 
         private void btnEmployeeReport_Click(object sender, EventArgs e)
         {
+            
             panelEmployeeDetails.Visible = false;
             panelDepartmentManagement.Visible = false;
             panelRequestManagement.Visible = false;
@@ -331,6 +332,73 @@ namespace Employees_Management_System.Forms
             }
         }
 
+        /* private void btnAddEmployee_Click(object sender, EventArgs e)
+         {
+             string employeeCode = txtEmployeeCode.Text.Trim();
+             string name = txtName.Text.Trim();
+             string email = txtEmail.Text.Trim();
+             string phone = txtPhone.Text.Trim();
+             int departmentId = (int)cmbDepartment.SelectedValue;
+             string secretCode = txtSecretCode.Text.Trim();
+             decimal salary;
+             if (!decimal.TryParse(txtSalary.Text.Trim(), out salary))
+             {
+                 MessageBox.Show("Please enter a valid salary!");
+                 return;
+             }
+
+             if (string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(secretCode))
+             {
+                 MessageBox.Show("All fields are required!");
+                 return;
+             }
+
+             if (secretCode.Length < 6)
+             {
+                 MessageBox.Show("Secret code must be at least 6 characters long!");
+                 return;
+             }
+
+             try
+             {
+                 using (SqlConnection conn = DatabaseHelper.GetConnection())
+                 {
+                     conn.Open();
+                     string checkQuery = "SELECT COUNT(*) FROM Employees WHERE SecretCode = @SecretCode AND EmployeeId != @EmployeeId";
+                     using (SqlCommand cmdCheck = new SqlCommand(checkQuery, conn))
+                     {
+                         cmdCheck.Parameters.AddWithValue("@SecretCode", secretCode);
+                         cmdCheck.Parameters.AddWithValue("@EmployeeId", selectedEmployeeId == -1 ? 0 : selectedEmployeeId);
+                         int count = (int)cmdCheck.ExecuteScalar();
+                         if (count > 0)
+                         {
+                             MessageBox.Show("The secret code is already in use by another employee!");
+                             return;
+                         }
+                     }
+
+                     string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary)";
+                     using (SqlCommand cmd = new SqlCommand(query, conn))
+                     {
+                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
+                         cmd.Parameters.AddWithValue("@Name", name);
+                         cmd.Parameters.AddWithValue("@Email", email);
+                         cmd.Parameters.AddWithValue("@Phone", phone);
+                         cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
+                         cmd.Parameters.AddWithValue("@SecretCode", secretCode);
+                         cmd.Parameters.AddWithValue("@Salary", salary);
+                         cmd.ExecuteNonQuery();
+                     }
+                 }
+                 MessageBox.Show("Employee added successfully!");
+                 LoadEmployeeDetails();
+                 ClearEmployeeFields();
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show($"Error adding employee: {ex.Message}");
+             }
+         }*/
         private void btnAddEmployee_Click(object sender, EventArgs e)
         {
             string employeeCode = txtEmployeeCode.Text.Trim();
@@ -340,24 +408,36 @@ namespace Employees_Management_System.Forms
             int departmentId = (int)cmbDepartment.SelectedValue;
             string secretCode = txtSecretCode.Text.Trim();
             decimal salary;
+            byte[] employeeImage = null;
+
+            // Add image handling
+            if (openFileDialog1.ShowDialog() == DialogResult.OK)
+            {
+                using (var stream = new FileStream(openFileDialog1.FileName, FileMode.Open, FileAccess.Read))
+                {
+                    using (var memoryStream = new MemoryStream())
+                    {
+                        stream.CopyTo(memoryStream);
+                        employeeImage = memoryStream.ToArray();
+                    }
+                }
+            }
+
             if (!decimal.TryParse(txtSalary.Text.Trim(), out salary))
             {
                 MessageBox.Show("Please enter a valid salary!");
                 return;
             }
-
             if (string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(secretCode))
             {
                 MessageBox.Show("All fields are required!");
                 return;
             }
-
             if (secretCode.Length < 6)
             {
                 MessageBox.Show("Secret code must be at least 6 characters long!");
                 return;
             }
-
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -375,8 +455,7 @@ namespace Employees_Management_System.Forms
                             return;
                         }
                     }
-
-                    string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary)";
+                    string query = "INSERT INTO Employees (EmployeeCode, Name, Email, Phone, DepartmentId, SecretCode, Salary, EmployeeImage) VALUES (@EmployeeCode, @Name, @Email, @Phone, @DepartmentId, @SecretCode, @Salary, @EmployeeImage)";
                     using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
                         cmd.Parameters.AddWithValue("@EmployeeCode", employeeCode);
@@ -386,6 +465,7 @@ namespace Employees_Management_System.Forms
                         cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
                         cmd.Parameters.AddWithValue("@SecretCode", secretCode);
                         cmd.Parameters.AddWithValue("@Salary", salary);
+                        cmd.Parameters.AddWithValue("@EmployeeImage", employeeImage ?? (object)DBNull.Value); // Handle null image
                         cmd.ExecuteNonQuery();
                     }
                 }
@@ -398,7 +478,6 @@ namespace Employees_Management_System.Forms
                 MessageBox.Show($"Error adding employee: {ex.Message}");
             }
         }
-
         private void btnUpdateEmployee_Click(object sender, EventArgs e)
         {
             if (selectedEmployeeId == -1)

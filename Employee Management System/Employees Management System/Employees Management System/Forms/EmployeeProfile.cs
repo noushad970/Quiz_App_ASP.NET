@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.IO;
 using System.Text;
 using System.Windows.Forms;
 
@@ -46,6 +47,31 @@ namespace Employees_Management_System.Forms
                     cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
                     string departmentName = cmd.ExecuteScalar()?.ToString() ?? "Unknown";
                     lblDepartment.Text = "Department: " + departmentName;
+                }
+
+                // Add image retrieval
+                string imageQuery = "SELECT EmployeeImage FROM Employees WHERE EmployeeId = @EmployeeId";
+                using (SqlCommand imgCmd = new SqlCommand(imageQuery, conn))
+                {
+                    imgCmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                    using (SqlDataReader imgReader = imgCmd.ExecuteReader())
+                    {
+                        if (imgReader.Read())
+                        {
+                            if (!imgReader.IsDBNull(0) && imgReader["EmployeeImage"] != DBNull.Value)
+                            {
+                                byte[] imageData = (byte[])imgReader["EmployeeImage"];
+                                using (var ms = new MemoryStream(imageData))
+                                {
+                                    pictureBoxProfile.Image = System.Drawing.Image.FromStream(ms);
+                                }
+                            }
+                            else
+                            {
+                                pictureBoxProfile.Image = null; // Clear if no image
+                            }
+                        }
+                    }
                 }
             }
             lblSalary.Text = "Salary: " + salary.ToString("C");
