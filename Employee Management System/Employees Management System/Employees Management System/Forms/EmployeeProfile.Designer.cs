@@ -46,6 +46,7 @@
             this.btnAttendance = new System.Windows.Forms.Button();
             this.btnThisMonthSchedule = new System.Windows.Forms.Button();
             this.btnLeaveRequest = new System.Windows.Forms.Button();
+            this.btnRefresh = new System.Windows.Forms.Button();
             this.panelGrid = new System.Windows.Forms.Panel();
             this.tableLayoutPanelGrid = new System.Windows.Forms.TableLayoutPanel();
             this.dgvLeaveRequests = new System.Windows.Forms.DataGridView();
@@ -250,18 +251,20 @@
             this.panelButtons.Margin = new System.Windows.Forms.Padding(4);
             this.panelButtons.Name = "panelButtons";
             this.panelButtons.Padding = new System.Windows.Forms.Padding(10);
-            this.panelButtons.Size = new System.Drawing.Size(400, 132);
+            this.panelButtons.Size = new System.Drawing.Size(1092, 132);
             this.panelButtons.TabIndex = 2;
             // 
             // tableLayoutPanelButtons
             // 
-            this.tableLayoutPanelButtons.ColumnCount = 3;
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
-            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableLayoutPanelButtons.ColumnCount = 4;
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
+            this.tableLayoutPanelButtons.Controls.Add(this.btnLeaveRequest, 0, 0);
             this.tableLayoutPanelButtons.Controls.Add(this.btnAttendance, 1, 0);
             this.tableLayoutPanelButtons.Controls.Add(this.btnThisMonthSchedule, 2, 0);
-            this.tableLayoutPanelButtons.Controls.Add(this.btnLeaveRequest, 0, 0);
+            this.tableLayoutPanelButtons.Controls.Add(this.btnRefresh, 3, 0);
             this.tableLayoutPanelButtons.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanelButtons.Location = new System.Drawing.Point(10, 10);
             this.tableLayoutPanelButtons.Margin = new System.Windows.Forms.Padding(4);
@@ -273,15 +276,15 @@
             // 
             // btnAttendance
             // 
-            this.btnAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(192)))), ((int)(((byte)(0)))));
+            this.btnAttendance.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(40)))), ((int)(((byte)(167)))), ((int)(((byte)(69)))));
             this.btnAttendance.FlatAppearance.BorderSize = 0;
             this.btnAttendance.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnAttendance.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnAttendance.ForeColor = System.Drawing.Color.White;
-            this.btnAttendance.Location = new System.Drawing.Point(361, 4);
+            this.btnAttendance.Location = new System.Drawing.Point(272, 4);
             this.btnAttendance.Margin = new System.Windows.Forms.Padding(4);
             this.btnAttendance.Name = "btnAttendance";
-            this.btnAttendance.Size = new System.Drawing.Size(200, 50);
+            this.btnAttendance.Size = new System.Drawing.Size(260, 50);
             this.btnAttendance.TabIndex = 8;
             this.btnAttendance.Text = "Give Attendance";
             this.btnAttendance.UseVisualStyleBackColor = false;
@@ -289,15 +292,15 @@
             // 
             // btnThisMonthSchedule
             // 
-            this.btnThisMonthSchedule.BackColor = System.Drawing.Color.Gold;
+            this.btnThisMonthSchedule.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(193)))), ((int)(((byte)(7)))));
             this.btnThisMonthSchedule.FlatAppearance.BorderSize = 0;
             this.btnThisMonthSchedule.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnThisMonthSchedule.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
             this.btnThisMonthSchedule.ForeColor = System.Drawing.Color.Black;
-            this.btnThisMonthSchedule.Location = new System.Drawing.Point(718, 4);
+            this.btnThisMonthSchedule.Location = new System.Drawing.Point(540, 4);
             this.btnThisMonthSchedule.Margin = new System.Windows.Forms.Padding(4);
             this.btnThisMonthSchedule.Name = "btnThisMonthSchedule";
-            this.btnThisMonthSchedule.Size = new System.Drawing.Size(200, 50);
+            this.btnThisMonthSchedule.Size = new System.Drawing.Size(260, 50);
             this.btnThisMonthSchedule.TabIndex = 10;
             this.btnThisMonthSchedule.Text = "This Month Schedule";
             this.btnThisMonthSchedule.UseVisualStyleBackColor = false;
@@ -305,7 +308,7 @@
             // 
             // btnLeaveRequest
             // 
-            this.btnLeaveRequest.BackColor = System.Drawing.Color.Crimson;
+            this.btnLeaveRequest.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(220)))), ((int)(((byte)(53)))), ((int)(((byte)(69)))));
             this.btnLeaveRequest.FlatAppearance.BorderSize = 0;
             this.btnLeaveRequest.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLeaveRequest.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
@@ -313,11 +316,27 @@
             this.btnLeaveRequest.Location = new System.Drawing.Point(4, 4);
             this.btnLeaveRequest.Margin = new System.Windows.Forms.Padding(4);
             this.btnLeaveRequest.Name = "btnLeaveRequest";
-            this.btnLeaveRequest.Size = new System.Drawing.Size(200, 50);
+            this.btnLeaveRequest.Size = new System.Drawing.Size(260, 50);
             this.btnLeaveRequest.TabIndex = 7;
             this.btnLeaveRequest.Text = "Apply Leave Request";
             this.btnLeaveRequest.UseVisualStyleBackColor = false;
             this.btnLeaveRequest.Click += new System.EventHandler(this.btnLeaveRequest_Click);
+            // 
+            // btnRefresh
+            // 
+            this.btnRefresh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255)))));
+            this.btnRefresh.FlatAppearance.BorderSize = 0;
+            this.btnRefresh.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnRefresh.Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold);
+            this.btnRefresh.ForeColor = System.Drawing.Color.White;
+            this.btnRefresh.Location = new System.Drawing.Point(808, 4);
+            this.btnRefresh.Margin = new System.Windows.Forms.Padding(4);
+            this.btnRefresh.Name = "btnRefresh";
+            this.btnRefresh.Size = new System.Drawing.Size(260, 50);
+            this.btnRefresh.TabIndex = 11;
+            this.btnRefresh.Text = "Refresh";
+            this.btnRefresh.UseVisualStyleBackColor = false;
+            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // panelGrid
             // 
@@ -348,12 +367,18 @@
             // 
             // dgvLeaveRequests
             // 
+            this.dgvLeaveRequests.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
+            this.dgvLeaveRequests.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dgvLeaveRequests.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
+            this.dgvLeaveRequests.ColumnHeadersDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54))))), ForeColor = System.Drawing.Color.White, Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold) };
             this.dgvLeaveRequests.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvLeaveRequests.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67))))), ForeColor = System.Drawing.Color.White, SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255))))), SelectionForeColor = System.Drawing.Color.White };
             this.dgvLeaveRequests.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvLeaveRequests.Location = new System.Drawing.Point(4, 4);
             this.dgvLeaveRequests.Margin = new System.Windows.Forms.Padding(4);
             this.dgvLeaveRequests.Name = "dgvLeaveRequests";
             this.dgvLeaveRequests.RowHeadersWidth = 51;
+            this.dgvLeaveRequests.RowTemplate.Height = 28;
             this.dgvLeaveRequests.Size = new System.Drawing.Size(1064, 264);
             this.dgvLeaveRequests.TabIndex = 9;
             // 
@@ -426,7 +451,7 @@
             // panelNotices
             // 
             this.panelNotices.AutoScroll = true;
-            this.panelNotices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(77)))));
+            this.panelNotices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
             this.panelNotices.Controls.Add(this.tableLayoutPanelNotices);
             this.panelNotices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelNotices.Location = new System.Drawing.Point(4, 824);
@@ -452,12 +477,12 @@
             // 
             // dgvNotices
             // 
-            this.dgvNotices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(80)))), ((int)(((byte)(90)))), ((int)(((byte)(100)))));
+            this.dgvNotices.BackgroundColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
             this.dgvNotices.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dgvNotices.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.Single;
-            this.dgvNotices.ColumnHeadersDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.SteelBlue, ForeColor = System.Drawing.Color.White, Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold) };
+            this.dgvNotices.ColumnHeadersDefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(45)))), ((int)(((byte)(52)))), ((int)(((byte)(54))))), ForeColor = System.Drawing.Color.White, Font = new System.Drawing.Font("Segoe UI", 10F, System.Drawing.FontStyle.Bold) };
             this.dgvNotices.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvNotices.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(70)))), ((int)(((byte)(80)))), ((int)(((byte)(90))))), ForeColor = System.Drawing.Color.White, SelectionBackColor = System.Drawing.Color.DodgerBlue, SelectionForeColor = System.Drawing.Color.White };
+            this.dgvNotices.DefaultCellStyle = new System.Windows.Forms.DataGridViewCellStyle { BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67))))), ForeColor = System.Drawing.Color.White, SelectionBackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(123)))), ((int)(((byte)(255))))), SelectionForeColor = System.Drawing.Color.White };
             this.dgvNotices.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvNotices.Location = new System.Drawing.Point(4, 4);
             this.dgvNotices.Margin = new System.Windows.Forms.Padding(4);
@@ -503,7 +528,6 @@
             this.tableLayoutPanelNotices.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvNotices)).EndInit();
             this.ResumeLayout(false);
-
         }
 
         #endregion
@@ -525,6 +549,7 @@
         private System.Windows.Forms.Button btnLeaveRequest;
         private System.Windows.Forms.Button btnAttendance;
         private System.Windows.Forms.Button btnThisMonthSchedule;
+        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Panel panelGrid;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanelGrid;
         private System.Windows.Forms.DataGridView dgvLeaveRequests;

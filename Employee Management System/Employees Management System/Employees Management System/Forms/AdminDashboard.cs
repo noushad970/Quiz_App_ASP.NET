@@ -1315,5 +1315,18 @@ namespace Employees_Management_System.Forms
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            NoticePublishForm noticeForm = new NoticePublishForm(currentAdminKey);
+            noticeForm.ShowDialog();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginSelection loginForm = new LoginSelection();
+            loginForm.ShowDialog();
+        }
     }
 }

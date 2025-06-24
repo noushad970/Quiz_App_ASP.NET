@@ -190,6 +190,21 @@ namespace Employees_Management_System.Forms
             giveAttendance.ShowDialog();
         }
 
+        private void btnRefresh_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                LoadLeaveRequests();
+                UpdateAttendanceSummary();
+                LoadNotices();
+                MessageBox.Show("Data refreshed successfully.");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred while refreshing data: " + ex.Message);
+            }
+        }
+
         private void LoadNotices()
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -204,13 +219,19 @@ namespace Employees_Management_System.Forms
                     dgvNotices.DataSource = dt;
                     dgvNotices.Columns["NoticeId"].Visible = false;
                     dgvNotices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-                    // Style columns
                     if (dgvNotices.Columns.Contains("NoticeText"))
                         dgvNotices.Columns["NoticeText"].HeaderText = "Notice";
                     if (dgvNotices.Columns.Contains("PublishDate"))
                         dgvNotices.Columns["PublishDate"].HeaderText = "Published On";
                 }
             }
+        }
+
+        private void btnLogout_Click(object sender, EventArgs e)
+        {
+            this.Close();
+            LoginSelection loginForm = new LoginSelection();
+            loginForm.ShowDialog();
         }
     }
 }

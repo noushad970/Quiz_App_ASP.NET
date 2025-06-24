@@ -49,9 +49,8 @@
             // 
             // txtSecretCode
             // 
-            this.txtSecretCode.Anchor = System.Windows.Forms.AnchorStyles.Left;
-            this.txtSecretCode.Location = new System.Drawing.Point(287, 92);
-            this.txtSecretCode.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtSecretCode.Location = new System.Drawing.Point(287, 86);
+            this.txtSecretCode.Margin = new System.Windows.Forms.Padding(4);
             this.txtSecretCode.Name = "txtSecretCode";
             this.txtSecretCode.Size = new System.Drawing.Size(132, 22);
             this.txtSecretCode.TabIndex = 1;
@@ -59,13 +58,12 @@
             // 
             // btnLogin
             // 
-            this.btnLogin.Anchor = System.Windows.Forms.AnchorStyles.Left;
             this.btnLogin.BackColor = System.Drawing.Color.RoyalBlue;
             this.btnLogin.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogin.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold);
             this.btnLogin.ForeColor = System.Drawing.Color.White;
-            this.btnLogin.Location = new System.Drawing.Point(229, 157);
-            this.btnLogin.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnLogin.Location = new System.Drawing.Point(229, 171);
+            this.btnLogin.Margin = new System.Windows.Forms.Padding(4);
             this.btnLogin.Name = "btnLogin";
             this.btnLogin.Size = new System.Drawing.Size(133, 49);
             this.btnLogin.TabIndex = 2;
@@ -79,11 +77,11 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(533, 369);
+            this.ClientSize = new System.Drawing.Size(526, 371);
             this.Controls.Add(this.btnLogin);
             this.Controls.Add(this.txtSecretCode);
             this.Controls.Add(this.label1);
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeLogin";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Employee Login";
