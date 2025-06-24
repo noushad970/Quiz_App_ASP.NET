@@ -17,10 +17,14 @@ namespace Employees_Management_System.Forms
         private int departmentId;
         private string secretCode;
         private decimal salary;
-        private string currentAdminKey; // Added to store the adminKey
+        private string currentAdminKey;
 
         public EmployeeProfile(int employeeId, string employeeCode, string name, string email, string phone, int departmentId, string secretCode, decimal salary, string currentAdminKey)
         {
+            if (string.IsNullOrEmpty(employeeCode) || string.IsNullOrEmpty(name) || string.IsNullOrEmpty(email) || string.IsNullOrEmpty(phone) || string.IsNullOrEmpty(currentAdminKey))
+            {
+                throw new ArgumentNullException("One or more required parameters are null or empty.");
+            }
             InitializeComponent();
             this.employeeId = employeeId;
             this.employeeCode = employeeCode;
@@ -30,39 +34,39 @@ namespace Employees_Management_System.Forms
             this.departmentId = departmentId;
             this.secretCode = secretCode;
             this.salary = salary;
-            this.currentAdminKey = currentAdminKey; // Store the adminKey
+            this.currentAdminKey = currentAdminKey;
         }
 
         private void EmployeeProfile_Load(object sender, EventArgs e)
         {
-            lblEmployeeCode.Text = "Employee Position: " + employeeCode;
-            lblName.Text = "Name: " + name;
-            lblEmail.Text = "Email: " + email;
-            lblPhone.Text = "Phone: " + phone;
-
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            try
             {
-                conn.Open();
-                string query = "SELECT DepartmentName FROM Departments WHERE DepartmentId = @DepartmentId AND adminKey = @adminKey";
-                using (SqlCommand cmd = new SqlCommand(query, conn))
-                {
-                    cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
-                    cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
-                    string departmentName = cmd.ExecuteScalar()?.ToString() ?? "Unknown";
-                    lblDepartment.Text = "Department: " + departmentName;
-                }
+                lblEmployeeCode.Text = "Employee Position: " + employeeCode;
+                lblName.Text = "Name: " + name;
+                lblEmail.Text = "Email: " + email;
+                lblPhone.Text = "Phone: " + phone;
 
-                // Add image retrieval
-                string imageQuery = "SELECT EmployeeImage FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
-                using (SqlCommand imgCmd = new SqlCommand(imageQuery, conn))
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
-                    imgCmd.Parameters.AddWithValue("@EmployeeId", employeeId);
-                    imgCmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
-                    using (SqlDataReader imgReader = imgCmd.ExecuteReader())
+                    if (conn == null) throw new Exception("Database connection is null.");
+                    conn.Open();
+                    string query = "SELECT DepartmentName FROM Departments WHERE DepartmentId = @DepartmentId AND adminKey = @adminKey";
+                    using (SqlCommand cmd = new SqlCommand(query, conn))
                     {
-                        if (imgReader.Read())
+                        cmd.Parameters.AddWithValue("@DepartmentId", departmentId);
+                        cmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
+                        string departmentName = cmd.ExecuteScalar()?.ToString() ?? "Unknown";
+                        lblDepartment.Text = "Department: " + departmentName;
+                    }
+
+                    string imageQuery = "SELECT EmployeeImage FROM Employees WHERE EmployeeId = @EmployeeId AND adminKey = @adminKey";
+                    using (SqlCommand imgCmd = new SqlCommand(imageQuery, conn))
+                    {
+                        imgCmd.Parameters.AddWithValue("@EmployeeId", employeeId);
+                        imgCmd.Parameters.AddWithValue("@adminKey", currentAdminKey);
+                        using (SqlDataReader imgReader = imgCmd.ExecuteReader())
                         {
-                            if (!imgReader.IsDBNull(0) && imgReader["EmployeeImage"] != DBNull.Value)
+                            if (imgReader.Read() && !imgReader.IsDBNull(0))
                             {
                                 byte[] imageData = (byte[])imgReader["EmployeeImage"];
                                 using (var ms = new MemoryStream(imageData))
@@ -72,15 +76,20 @@ namespace Employees_Management_System.Forms
                             }
                             else
                             {
-                                pictureBoxProfile.Image = null; // Clear if no image
+                                pictureBoxProfile.Image = null;
                             }
                         }
                     }
                 }
+                lblSalary.Text = "Salary: " + salary.ToString("C");
+                LoadLeaveRequests();
+                UpdateAttendanceSummary();
+                LoadNotices();
             }
-            lblSalary.Text = "Salary: " + salary.ToString("C");
-            LoadLeaveRequests();
-            UpdateAttendanceSummary();
+            catch (Exception ex)
+            {
+                MessageBox.Show("An error occurred: " + ex.Message);
+            }
         }
 
         private void LoadLeaveRequests()
@@ -171,14 +180,37 @@ namespace Employees_Management_System.Forms
 
         private void btnLeaveRequest_Click(object sender, EventArgs e)
         {
-            LeaveRequest leaveRequest = new LeaveRequest(employeeId, employeeCode, currentAdminKey); // Pass adminKey
+            LeaveRequest leaveRequest = new LeaveRequest(employeeId, employeeCode, currentAdminKey);
             leaveRequest.ShowDialog();
         }
 
         private void btnAttendance_Click(object sender, EventArgs e)
         {
-            GiveAttendance giveAttendance = new GiveAttendance(employeeId, employeeCode, currentAdminKey); // Pass adminKey
+            GiveAttendance giveAttendance = new GiveAttendance(employeeId, employeeCode, currentAdminKey);
             giveAttendance.ShowDialog();
+        }
+
+        private void LoadNotices()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                conn.Open();
+                string query = "SELECT NoticeId, NoticeText, PublishDate FROM Notices WHERE DepartmentId = @DepartmentId";
+                using (SqlDataAdapter da = new SqlDataAdapter(query, conn))
+                {
+                    da.SelectCommand.Parameters.AddWithValue("@DepartmentId", departmentId);
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    dgvNotices.DataSource = dt;
+                    dgvNotices.Columns["NoticeId"].Visible = false;
+                    dgvNotices.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                    // Style columns
+                    if (dgvNotices.Columns.Contains("NoticeText"))
+                        dgvNotices.Columns["NoticeText"].HeaderText = "Notice";
+                    if (dgvNotices.Columns.Contains("PublishDate"))
+                        dgvNotices.Columns["PublishDate"].HeaderText = "Published On";
+                }
+            }
         }
     }
 }

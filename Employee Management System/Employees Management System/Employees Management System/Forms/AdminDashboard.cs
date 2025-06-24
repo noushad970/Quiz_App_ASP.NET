@@ -1124,8 +1124,7 @@ namespace Employees_Management_System.Forms
 \usepackage{fancyhdr}
 \pagestyle{fancy}
 \fancyhf{}
-\rhead{Employee Report - Generated on " + DateTime.Now.ToString("MMMM dd, yyyy HH:mm:ss") + @" +06}
-\lhead{Employees Management System}
+\rhead{Sonargaon Textile LTD. Employee Report - Generated on " + DateTime.Now.ToString("MMMM dd, yyyy HH:mm:ss") + @" +06}
 \cfoot{\thepage}
 \begin{document}
 

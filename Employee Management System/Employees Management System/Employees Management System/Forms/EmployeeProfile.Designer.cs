@@ -94,9 +94,9 @@
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 250F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 140F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 50F));
-            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F)); // Reduced from 100F to 70F
+            this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 70F));
             this.tableLayoutPanelMain.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 150F));
-            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1100, 970); // Adjusted height
+            this.tableLayoutPanelMain.Size = new System.Drawing.Size(1100, 970);
             this.tableLayoutPanelMain.TabIndex = 0;
             // 
             // panelHeader
@@ -321,7 +321,7 @@
             // 
             // panelGrid
             // 
-            this.panelGrid.AutoScroll = true; // Enable scrolling
+            this.panelGrid.AutoScroll = true;
             this.panelGrid.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(54)))), ((int)(((byte)(60)))), ((int)(((byte)(67)))));
             this.panelGrid.Controls.Add(this.tableLayoutPanelGrid);
             this.panelGrid.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -366,7 +366,7 @@
             this.panelSummary.Margin = new System.Windows.Forms.Padding(4);
             this.panelSummary.Name = "panelSummary";
             this.panelSummary.Padding = new System.Windows.Forms.Padding(10);
-            this.panelSummary.Size = new System.Drawing.Size(1092, 62); // Reduced size
+            this.panelSummary.Size = new System.Drawing.Size(1092, 62);
             this.panelSummary.TabIndex = 4;
             // 
             // tableLayoutPanelSummary
@@ -384,7 +384,7 @@
             this.tableLayoutPanelSummary.Name = "tableLayoutPanelSummary";
             this.tableLayoutPanelSummary.RowCount = 1;
             this.tableLayoutPanelSummary.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(1072, 42); // Reduced size
+            this.tableLayoutPanelSummary.Size = new System.Drawing.Size(1072, 42);
             this.tableLayoutPanelSummary.TabIndex = 0;
             // 
             // lblTotalDutyDays
@@ -425,7 +425,7 @@
             // 
             // panelNotices
             // 
-            this.panelNotices.AutoScroll = true; // Enable scrolling
+            this.panelNotices.AutoScroll = true;
             this.panelNotices.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(64)))), ((int)(((byte)(70)))), ((int)(((byte)(77)))));
             this.panelNotices.Controls.Add(this.tableLayoutPanelNotices);
             this.panelNotices.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -477,7 +477,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(34)))), ((int)(((byte)(36)))), ((int)(((byte)(49)))));
-            this.ClientSize = new System.Drawing.Size(1100, 970); // Adjusted height
+            this.ClientSize = new System.Drawing.Size(1100, 970);
             this.Controls.Add(this.tableLayoutPanelMain);
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "EmployeeProfile";
